@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:33:50 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/08 14:51:11 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/08 16:38:42 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ void	start(void)
 	free(g_shell->prompt);
 	if (g_shell->command != NULL)
 	{
+		ft_free();
 		if (g_shell->command[0] > 0)
 		{
-			ft_free();
 			ft_parser();
 			if (g_shell->commandlist[0])
 				runcommand(g_shell->commandlist[0]);

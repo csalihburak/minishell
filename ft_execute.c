@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:08:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/08 14:55:03 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/08 16:40:34 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	ft_searchfor2(int flag, int i)
 		{
 			flag = 2;
 			ft_execve(i);
+			envexecupdate(g_shell->path[i]);
 		}
 		if (ft_strchr(g_shell->commandlist[0], '/'))
 		{
@@ -112,6 +113,9 @@ void	runcommand(char *arr)
 	{
 		ft_path(arr);
 		if (ft_builtinsearch(arr) == 0)
+		{
+			g_shell->free_flag = 0;
 			ft_searchfor(arr);
+		}
 	}
 }

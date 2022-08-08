@@ -31,7 +31,7 @@ PACKAGE_TARNAME = readline
 srcdir = .
 
 top_srcdir = .
-BUILD_DIR = /Users/agunes/Desktop/Minishell/newminishell/lib/readline
+BUILD_DIR = /Users/agunes/Desktop/Minishell/lib/readline
 
 INSTALL = /usr/bin/install -c
 INSTALL_PROGRAM = ${INSTALL}
@@ -48,7 +48,7 @@ MV = mv
 
 SHELL = /bin/sh
 
-prefix = /Users/agunes/Desktop/Minishell/newminishell/lib/readline
+prefix = /Users/agunes/Desktop/Minishell/lib/readline
 exec_prefix = ${prefix}
 
 datarootdir = ${prefix}/share
