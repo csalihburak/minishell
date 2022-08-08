@@ -48,14 +48,12 @@ void	start(void)
 
 int	main(int argc, char **argv, char **env)
 {
-	argc = 0;
-	argv = 0;
+	(void)argc;
+	(void)argv;
 	g_shell = malloc(sizeof(t_shell));
 	ft_signal();
 	envcpy(env);
 	while (1)
-	{
 		start();
-	}
 	return (0);
 }

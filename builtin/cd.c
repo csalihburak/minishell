@@ -14,11 +14,9 @@
 
 int	ft_cd(char *command)
 {
-	int		i;
 	char	*old;
 	char	*new;
 
-	i = 0;
 	if (!command)
 	{
 		old = getcwd(NULL, 0);

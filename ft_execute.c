@@ -83,21 +83,16 @@ int	ft_searchfor2(int flag, int i)
 
 void	ft_searchfor(char *arr)
 {
-	int		i;
 	int		flag;
 
-	i = -1;
 	flag = 0;
-	flag = ft_searchfor2(flag, i);
+	flag = ft_searchfor2(flag, -1);
 	if (flag == 1)
 		printf("minishell: %s: %s\n", strerror(errno), arr);
 }
 
 void	runcommand(char *arr)
 {
-	int		i;
-
-	i = -1;
 	if (g_shell->pipe_flag > 0)
 	{
 		run_pipes();

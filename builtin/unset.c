@@ -30,7 +30,6 @@ void	ft_unset2(void)
 {
 	int		i;
 	int		len;
-	char	*temp;
 
 	len = ft_strlen(g_shell->commandlist[1]);
 	i = 0;
@@ -42,12 +41,8 @@ void	ft_unset2(void)
 			if (g_shell->env[i][len] == '=')
 			{
 				free(g_shell->env[i]);
-				while (g_shell->env[i])
-				{
-					temp = g_shell->env[i];
+				while (g_shell->env[i++])
 					g_shell->env[i] = g_shell->env[i + 1];
-					i++;
-				}
 				break ;
 			}			
 		}

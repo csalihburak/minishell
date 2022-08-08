@@ -41,6 +41,7 @@ int	ft_echo(char **arg)
 		i = 1;
 	else
 		return (1);
+	i = 0;
 	while (arg[i])
 	{
 		if (arg[i][0] == '\"' || arg[i][0] == '\'')
