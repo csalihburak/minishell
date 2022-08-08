@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:53:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/06 17:18:00 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/08 17:23:12 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ int	ft_cd(char *command)
 			return (1);
 		}
 		old = getcwd(NULL, 0);
-		chdir(command);
+		if (chdir(command) == -1)
+			printf("cd: permission denied: %s\n", command);
 		new = getcwd(NULL, 0);
 		envupdate(new, old);
 	}
