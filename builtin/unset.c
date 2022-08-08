@@ -40,9 +40,11 @@ void	ft_unset2(void)
 		{
 			if (g_shell->env[i][len] == '=')
 			{
-				free(g_shell->env[i]);
 				while (g_shell->env[i++])
+				{
+					free(g_shell->env[i]);
 					g_shell->env[i] = g_shell->env[i + 1];
+				}
 				break ;
 			}			
 		}

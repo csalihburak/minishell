@@ -21,11 +21,17 @@ void	envcpy(char **env)
 	free(buff);
 }
 
-void	start(void)
+void prompt(void)
 {
 	g_shell->prompt = ft_prompt();
 	g_shell->command = readline(g_shell->prompt);
 	free(g_shell->prompt);
+}
+
+void	start(void)
+{
+	ft_signal();
+	prompt();
 	if (g_shell->command != NULL)
 	{
 		ft_free();
@@ -51,7 +57,6 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	g_shell = malloc(sizeof(t_shell));
-	ft_signal();
 	envcpy(env);
 	while (1)
 		start();

@@ -31,6 +31,5 @@ int	ft_envexe(void)
 		}
 		i++;
 	}
-	i = 0;
 	return (1);
 }
