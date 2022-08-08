@@ -6,11 +6,25 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 10:26:44 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/08 16:40:04 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/08 17:05:25 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ft_builtfree(void)
+{
+	int	i;
+
+	i = 0;
+	if (g_shell->path)
+	{
+		while (g_shell->path[i])
+			free(g_shell->path[i++]);
+		free(g_shell->path);
+		g_shell->free_flag = 1;
+	}
+}
 
 void	ft_free(void)
 {

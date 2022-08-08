@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:52:27 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/08 16:42:53 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/08 17:05:38 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,7 @@ int	runlastexec(void)
 	int		i;
 
 	i = 0;
-	if (g_shell->path)
-	{
-		while (g_shell->path[i])
-			free(g_shell->path[i++]);
-		free(g_shell->path);
-		g_shell->free_flag = 1;
-	}
+	ft_builtfree();
 	i = 0;
 	while (g_shell->env[i])
 		i++;
@@ -51,6 +45,8 @@ int	ft_env(void)
 {
 	int	i;
 
+	i = 0;
+	ft_builtfree();
 	i = 0;
 	while (g_shell->env[i])
 		i++;
