@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 12:48:17 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/04 11:59:29 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/09 15:08:24 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,14 @@ int	flagcheck(char **arg)
 	return (flag);
 }
 
+void	dolar(char *arr)
+{
+	char *a;
+
+	a = ft_getenv(arr + 1);
+	write(1, ft_getenv(arr + 1), ft_strlen(a));
+}
+
 int	ft_echo(char **arg)
 {
 	int	i;
@@ -41,10 +49,12 @@ int	ft_echo(char **arg)
 		i = 1;
 	else
 		return (1);
-	i = 0;
+	i = 1;
 	while (arg[i])
 	{
-		if (arg[i][0] == '\"' || arg[i][0] == '\'')
+		if (arg[i][0] == '$')
+			dolar(arg[i]);
+		else if (arg[i][0] == '\"' || arg[i][0] == '\'')
 			write(1, arg[i] + 1, ft_strlen(arg[i]) - 1);
 		else
 			write(1, arg[i], ft_strlen(arg[i]));

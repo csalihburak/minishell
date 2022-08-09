@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 13:14:13 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/09 12:24:29 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/09 15:03:08 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 void	ft_exit(void);
 void	envupdate(char *old, char *new);
-char	*ft_getenv(void);
+char	*ft_getenv(char *arr);
 int		ft_cd(char *command);
 int		ft_env(void);
 int		ft_builtinsearch(char *arr);

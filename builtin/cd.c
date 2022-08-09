@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:53:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/09 12:23:34 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/09 15:04:54 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-char	*ft_getenv(void)
+char	*ft_getenv(char *arr)
 {
 	int	i;
 
 	i = 0;
 	while (g_shell->env[i])
 	{
-		if (ft_strncmp(g_shell->env[i], "HOME", 4) == 0)
+		if (ft_strncmp(g_shell->env[i], arr, 4) == 0)
 		{
 			return (ft_strchr(g_shell->env[i], '=') + 1);
 		}
@@ -27,7 +27,6 @@ char	*ft_getenv(void)
 	}
 	return (NULL);
 }
-
 
 int	ft_cd(char *command)
 {
@@ -37,7 +36,7 @@ int	ft_cd(char *command)
 	if (!command)
 	{
 		old = getcwd(NULL, 0);
-		chdir(ft_getenv());
+		chdir(ft_getenv(command));
 		new = getcwd(NULL, 0);
 		envupdate(new, old);
 	}
