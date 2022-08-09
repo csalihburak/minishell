@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 13:14:13 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/08 17:05:09 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/09 12:24:29 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,14 @@
 # include "../minishell.h"
 # include "unistd.h"
 
-int		ft_cd(char *command);
+void	ft_exit(void);
 void	envupdate(char *old, char *new);
+char	*ft_getenv(void);
+int		ft_cd(char *command);
 int		ft_env(void);
 int		ft_builtinsearch(char *arr);
 int		ft_echo(char **command);
 int		ft_pwd(void);
-void	ft_exit(void);
 int		ft_export(void);
 int		ft_unset(void);
 int		equal(void);

@@ -3,14 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:53:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/08 17:36:19 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/09 12:23:34 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
+
+char	*ft_getenv(void)
+{
+	int	i;
+
+	i = 0;
+	while (g_shell->env[i])
+	{
+		if (ft_strncmp(g_shell->env[i], "HOME", 4) == 0)
+		{
+			return (ft_strchr(g_shell->env[i], '=') + 1);
+		}
+		i++;
+	}
+	return (NULL);
+}
+
 
 int	ft_cd(char *command)
 {
@@ -20,7 +37,7 @@ int	ft_cd(char *command)
 	if (!command)
 	{
 		old = getcwd(NULL, 0);
-		chdir(getenv("HOME"));
+		chdir(ft_getenv());
 		new = getcwd(NULL, 0);
 		envupdate(new, old);
 	}
