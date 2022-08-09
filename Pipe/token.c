@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:49:29 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/08 12:56:08 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/09 11:34:24 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	ft_execve2(char *arr, char **lst, char **env)
 	while (lst[i])
 		free(lst[i++]);
 	free(lst);
+	kill(getpid(), SIGTERM);
 	return (0);
 }
 
