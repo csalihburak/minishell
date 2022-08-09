@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/09 15:02:32 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/09 18:55:01 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_shell
 	char		*command;
 	char		*prompt;
 	char		*envexe;
+	int			echoflag;
 	int			free_flag;
 	int			pipe_flag;
 	int			**pipes;

@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:07:10 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/04 16:15:24 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/09 19:33:43 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	**spltnorm(char *command, int i, int k, int j)
 	while (command[++i])
 	{
 		j = 0;
-		if (command[i] != '"' && command[i] != ' ')
+		if (command[i] != '"')
 		{
 			cmd[k] = malloc(sizeof(char) * 1000);
 			while (command[i] && command[i] != '"' && command[i] != ' ')

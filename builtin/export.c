@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:00:33 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/09 12:03:44 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/09 19:39:18 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,11 @@ int	eqcheck(void)
 	int	i;
 
 	i = 0;
-	while (g_shell->commandlist[1][i])
+	if (g_shell->commandlist[1] == NULL)
+		while (g_shell->env[i])
+			printf("%s\n", g_shell->env[i++]);
+
+	while (g_shell->commandlist[1] && g_shell->commandlist[1][i])
 		if (g_shell->commandlist[1][i++] == '=')
 			return (0);
 	return (1);
