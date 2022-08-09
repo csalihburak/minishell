@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:33:50 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/08 16:38:42 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/09 11:05:53 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	envcpy(char **env)
 	free(buff);
 }
 
-void prompt(void)
+void	prompt(void)
 {
 	g_shell->prompt = ft_prompt();
 	g_shell->command = readline(g_shell->prompt);

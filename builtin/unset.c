@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 10:56:28 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/08 17:06:52 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/09 11:14:19 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void	ft_unset2(void)
 			{
 				while (g_shell->env[i++])
 				{
-					free(g_shell->env[i]);
+					if (g_shell->env[i + 1])
+						free(g_shell->env[i]);
 					g_shell->env[i] = g_shell->env[i + 1];
 				}
 				break ;
