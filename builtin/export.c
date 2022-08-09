@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:00:33 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/08 16:35:26 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/09 12:03:44 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,27 @@ void	exportupdate(void)
 	g_shell->env[g_shell->exportflag] = ft_strdup(g_shell->commandlist[1]);
 }
 
+int	eqcheck(void)
+{
+	int	i;
+
+	i = 0;
+	while (g_shell->commandlist[1][i])
+		if (g_shell->commandlist[1][i++] == '=')
+			return (0);
+	return (1);
+}
+
 int	ft_export(void)
 {
 	int		i;
 	char	*buff;
 	char	*temp;
 
+	g_shell->free_flag = 1;
+	ft_builtfree();
+	if (eqcheck())
+		return (1);
 	if (exportcheck())
 	{
 		i = 0;
