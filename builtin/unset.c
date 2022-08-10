@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 10:56:28 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/09 11:14:19 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/10 13:24:36 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	ft_unset2(void)
 
 	len = ft_strlen(g_shell->commandlist[1]);
 	i = 0;
-	ft_builtfree();
 	while (g_shell->env[i])
 	{
 		if (!ft_strncmp(g_shell->env[i], g_shell->commandlist[1], len))

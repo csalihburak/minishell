@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:00:33 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/09 20:40:19 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/10 12:28:11 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,57 +56,12 @@ void	exportupdate(void)
 	g_shell->env[g_shell->exportflag] = ft_strdup(g_shell->commandlist[1]);
 }
 
-void	exportedit(void)
-{
-	int		i;
-	int		j;
-	char	*buff;
-	char	**temp;
-
-	i = -1;
-	j = 0;
-	temp = malloc(sizeof(char *) * 100);
-	while (g_shell->env[++i])
-		temp[i] = ft_strdup(g_shell->env[i]);
-	i = 0;
-	while (temp[i])
-	{
-		j = 0;
-		while (temp[j])
-		{
-			if (temp[j][0] > temp[i][0])
-			{
-				buff = temp[i];
-				temp[i] = temp[j];
-				temp[j] = buff;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
-int	eqcheck(void)
-{
-	int	i;
-
-	i = 0;
-	if (g_shell->commandlist[1] == NULL)
-		exportedit();
-	while (g_shell->commandlist[1] && g_shell->commandlist[1][i])
-		if (g_shell->commandlist[1][i++] == '=')
-			return (0);
-	return (1);
-}
-
 int	ft_export(void)
 {
 	int		i;
 	char	*buff;
 	char	*temp;
 
-	g_shell->free_flag = 1;
-	ft_builtfree();
 	if (eqcheck())
 		return (1);
 	if (exportcheck())

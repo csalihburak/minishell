@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:52:27 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/09 11:14:04 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/10 13:29:53 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,15 @@ int	runlastexec(void)
 	int		i;
 
 	i = 0;
-	ft_builtfree();
 	i = 0;
 	while (g_shell->env[i])
 		i++;
-	buff = ft_strrchr(g_shell->env[i - 1], '/');
-	runcommand(buff + 1);
-	i = 0;
+	buff = ft_strrchr(g_shell->env[i - 1], '/') + 1;
+	if (ft_builtinsearch(buff) == 0)
+	{
+		ft_path(buff);
+		ft_searchfor(buff);
+	}
 	return (1);
 }
 
@@ -46,13 +48,13 @@ int	ft_env(void)
 	int	i;
 
 	i = 0;
-	ft_builtfree();
- 	while (g_shell->env[i])
+	while (g_shell->env[i])
 		i++;
 	free(g_shell->env[i - 1]);
 	g_shell->env[i - 1] = ft_strdup("_=/usr/bin/env");
 	i = 0;
 	while (g_shell->env[i])
 		printf("%s\n", g_shell->env[i++]);
+	g_shell->free_flag = 0;
 	return (1);
 }

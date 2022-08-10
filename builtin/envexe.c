@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 14:00:42 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/09 12:14:01 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/10 13:40:51 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@ int	ft_envexe(void)
 	int	i;
 	int	len;
 
-	i = 0;
+	i = -1;
 	len = ft_strlen((g_shell->commandlist[0] + 1));
-	while (g_shell->env[i])
+	g_shell->pipe_flag = 0;
+	while (g_shell->env[++i])
 	{
 		if (!ft_strncmp(g_shell->commandlist[0] + 1, g_shell->env[i], len))
 		{
 			if (g_shell->env[i][len] == '=')
 			{
-				g_shell->free_flag = 1;
-				ft_builtfree();
 				g_shell->envexe = ft_strdup(g_shell->env[i] + (len + 1));
-				runcommand(g_shell->envexe);
+				if (ft_builtinsearch(g_shell->envexe) == 0)
+				{
+					ft_path(g_shell->envexe);
+					ft_searchfor(g_shell->envexe);
+				}
 				free(g_shell->envexe);
 				break ;
 			}
 		}
-		i++;
 	}
-	ft_builtfree();
-	g_shell->free_flag = 1;
 	return (1);
 }

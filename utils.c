@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 10:55:41 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/08 11:44:15 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/10 10:03:39 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,14 @@ int	dblen(char **array)
 		len++;
 	}
 	return (len);
+}
+
+int	dblen2(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+		i++;
+	return (i + 1);
 }

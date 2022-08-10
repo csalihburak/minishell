@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:49:29 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/09 11:34:24 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/10 11:58:39 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,22 +83,24 @@ t_token	*create_tokens(char *commandlist)
 	i = 0;
 	flag = 2;
 	program = malloc(sizeof(t_token));
+	g_shell->program = program;
 	program->command = ft_split(commandlist, ' ');
 	ft_path1(program);
-	if (ft_builtinsearch_pipe(program) == 0)
+	if (ft_builtinsearch_pipe(program->command[0]) == 0)
 	{
+		program->kill_flag = 1;
 		flag = ft_searchfor3(program, flag, -1);
 		if (flag == 1)
 			printf("minishell: %s: %s\n", strerror(errno), \
 			g_shell->commandlist[0]);
 	}
-	while (program->path[i])
+/* 	while (program->path[i])
 		free(program->path[i++]);
 	i = 0;
 	while (program->command[i])
 		free(program->command[i++]);
 	free(program->command);
 	free(program->path);
-	free(program);
+	free(program); */
 	return (program);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_pipes.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 12:43:23 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/09 11:52:23 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/10 12:19:12 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	run_with_forks(int i)
 			else
 				ft_dup(i);
 			create_tokens(g_shell->commandlist[i]);
+			kill(getpid(), SIGTERM);
 			return ;
 		}
 		ft_close(g_shell->pipes[i]);

@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:53:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/09 19:05:13 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/10 11:16:28 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	ft_cd(char *command)
 	char	*old;
 	char	*new;
 
+	printf("%s\n", command);
 	if (!command)
 	{
 		old = getcwd(NULL, 0);

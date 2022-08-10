@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/09 18:55:01 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/10 11:09:50 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,20 @@
 
 typedef struct s_token
 {
-	char	**path; //free
-	char	**arglist; //free
+	char	**path;
+	char	**arglist;
 	char	**command;
-	int		*fd;	//to_write
-	int		*fd1;	//to_read
+	int		*fd;
+	int		*fd1;
 	int		pr_lstfreeflag;
+	int		kill_flag;
 }		t_token;
 
 typedef struct s_shell
 {
-	char		**commandlist; //free
+	char		**commandlist;
 	char		**env;
-	char		**path;		//free
+	char		**path;
 	char		*command;
 	char		*prompt;
 	char		*envexe;
@@ -68,10 +69,11 @@ int		ft_commandsearch(void);
 void	ft_path(char *arr);
 void	ft_free(void);
 char	*merge(char **command);
-int		ft_builtinsearch_pipe(t_token *program);
+int		ft_builtinsearch_pipe(char *arr);
 void	create_pipes(t_token *program);
 void	run_pipes(void);
 int		dblen(char **array);
 void	ft_signal(void);
 void	ft_searchfor(char *arr);
+int		dblen2(char **array);
 #endif

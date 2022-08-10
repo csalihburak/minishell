@@ -9,6 +9,7 @@ SRCS = cd.c		\
 	pwd.c			\
 	exit.c			\
 	export.c		\
+	export2.c		\
 	unset.c			\
 	envexe.c		\
 
