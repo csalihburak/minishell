@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:53:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/10 11:16:28 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/10 13:56:42 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,10 @@ int	ft_cd(char *command)
 	char	*old;
 	char	*new;
 
-	printf("%s\n", command);
 	if (!command)
 	{
 		old = getcwd(NULL, 0);
-		chdir(ft_getenv(command));
+		chdir(ft_getenv("HOME"));
 		new = getcwd(NULL, 0);
 		envupdate(new, old);
 	}

@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 10:36:18 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/10 10:42:10 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/10 14:27:36 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,16 @@
 
 void	ft_sig(int signo)
 {
+	int	a;
+
+	a = 0;
 	if (signo == SIGINT)
 	{
 		printf("\n");
 		rl_on_new_line();
 		rl_replace_line("", 0);
-		rl_redisplay();
+		if (g_shell->pipe_flag == 0)
+			rl_redisplay();
 	}
 }
 

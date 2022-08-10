@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:25:49 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/10 13:25:03 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/10 14:09:59 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,5 @@ int	ft_builtinsearch(char *arr)
 		return (ft_export());
 	if (!ft_strcmp(arr, "unset"))
 		return (ft_unset());
-	g_shell->free_flag = 1;
 	return (0);
 }
