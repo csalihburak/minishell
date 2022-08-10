@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:00:33 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/10 12:28:11 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/10 15:49:51 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int	ft_export(void)
 	char	*buff;
 	char	*temp;
 
+	g_shell->free_flag = 1;
+	ft_builtfree();
 	if (eqcheck())
 		return (1);
 	if (exportcheck())

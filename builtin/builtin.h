@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 13:14:13 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/10 10:35:10 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/10 15:49:07 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ int		ft_envexe(void);
 int		envexecupdate(char *arr);
 int		runlastexec(void);
 void	ft_builtfree(void);
-int		eqcheck(void);
 char	**exportedit(void);
-
+int     eqcheck(void);
 #endif

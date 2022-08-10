@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:33:50 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/10 14:17:27 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/10 16:22:25 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,10 @@ void	start(void)
 	prompt();
 	if (g_shell->command != NULL)
 	{
+		printf("evet\n");
+		ft_free();
 		if (g_shell->command[0] > 0)
 		{
-			ft_free();
 			ft_parser();
 			if (g_shell->commandlist[0])
 				runcommand(g_shell->commandlist[0]);

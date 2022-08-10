@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:08:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/10 13:40:46 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/10 16:17:05 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,9 @@ int	ft_execve(int i)
 		kill(getpid(), SIGTERM);
 	}
 	else
+	{
 		wait(NULL);
+	}
 	return (0);
 }
 
@@ -92,13 +94,23 @@ void	ft_searchfor(char *arr)
 void	runcommand(char *arr)
 {
 	if (g_shell->pipe_flag > 0)
+	{
 		run_pipes();
+/* 		g_shell->program = malloc(sizeof(t_token) * g_shell->pipe_flag);
+		create_pipes(g_shell->program);
+		while (g_shell->commandlist[++i])
+		{
+			g_shell->program[i] = \
+			*create_tokens(g_shell->commandlist[i]);
+		} */
+	}
 	else
 	{
+		if (arr[0] != '$')
+			ft_path(arr);
 		if (ft_builtinsearch(arr) == 0)
 		{
-			g_shell->free_flag = 1;
-			ft_path(arr);
+			g_shell->free_flag = 0;
 			ft_searchfor(arr);
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:49:29 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/10 11:58:39 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/10 15:54:34 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,6 @@ int	ft_searchfor3(t_token *program, int flag, int i)
 	return (flag);
 }
 
-//freelenecek bir ton şey var aq
-
 t_token	*create_tokens(char *commandlist)
 {
 	t_token	*program;
@@ -88,19 +86,10 @@ t_token	*create_tokens(char *commandlist)
 	ft_path1(program);
 	if (ft_builtinsearch_pipe(program->command[0]) == 0)
 	{
-		program->kill_flag = 1;
 		flag = ft_searchfor3(program, flag, -1);
 		if (flag == 1)
 			printf("minishell: %s: %s\n", strerror(errno), \
 			g_shell->commandlist[0]);
 	}
-/* 	while (program->path[i])
-		free(program->path[i++]);
-	i = 0;
-	while (program->command[i])
-		free(program->command[i++]);
-	free(program->command);
-	free(program->path);
-	free(program); */
 	return (program);
 }
