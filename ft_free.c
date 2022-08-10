@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 10:26:44 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/10 15:45:10 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/10 17:58:24 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_free(void)
 	int	i;
 
 	i = -0;
-	if (g_shell->pipe_flag == 0)
+	if (g_shell->pipe_flag == 0 && g_shell->command[0] > 0)
 	{
 		if (g_shell->commandlist)
 		{
