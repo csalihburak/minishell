@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 14:25:57 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/11 18:15:42 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 18:18:08 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,16 @@ int	exportsearch(char *arr)
 {
 	int	i;
 	int	len;
-	int	len2;
 
 	i = 0;
 	len = findindex(arr, '=');
-	len2 = ft_strlen(arr);
 	while (g_shell->export[i])
 	{
 		if (ft_strncmp(g_shell->export[i], arr, len) == 0)
 		{
 			if (g_shell->export[i][len] == '=')
 				return (0);
-			if (g_shell->export[i][len2] == '\0' && \
-			!ft_strcmp(g_shell->export[i], arr))
+			if (!ft_strcmp(g_shell->export[i], arr))
 				return (0);
 		}
 		i++;
