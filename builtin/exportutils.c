@@ -42,9 +42,7 @@ void	addenv(char *commandlist)
 
 	i = 0;
 	buff = merge(g_shell->env);
-	while (g_shell->env[i])
-		free(g_shell->env[i++]);
-	free(g_shell->env);
+	dbfree(g_shell->env);
 	i = 0;
 	buff = ft_strjoin(buff, " ");
 	buff = ft_strjoin(buff, commandlist);
@@ -97,6 +95,7 @@ int	exportupdate(char *commandlist)
 	{
 		if (equalcheck(commandlist))
 		{
+			free(g_shell->export[i]);
 			g_shell->export[i] = addquote(commandlist);
 			g_shell->export[i] = ft_strjoin(g_shell->export[i], "\"");
 		}
