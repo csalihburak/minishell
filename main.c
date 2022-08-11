@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:33:50 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/10 18:15:46 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 11:54:29 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	envcpy(char **env)
 
 	buff = merge(env);
 	g_shell->env = ft_split(buff, ' ');
+	g_shell->export = ft_split(buff, ' ');
 	free(buff);
 }
 

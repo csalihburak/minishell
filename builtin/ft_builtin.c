@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:25:49 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/08 15:59:52 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 12:24:37 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 
 int	ft_builtinsearch(char *arr)
 {
-	if (!ft_strncmp(arr, "$_", 2))
-		return (runlastexec());
-	if (!ft_strncmp(arr, "$", 1))
-		return (ft_envexe());
 	if (!ft_strcmp(arr, "env"))
 		return (ft_env());
 	if (!ft_strcmp(arr, "cd"))
@@ -30,7 +26,7 @@ int	ft_builtinsearch(char *arr)
 		ft_exit();
 	if (!ft_strcmp(arr, "export"))
 		return (ft_export());
-	if (!ft_strcmp(arr, "unset"))
-		return (ft_unset());
+/* 	if (!ft_strcmp(arr, "unset"))
+		return (ft_unset()); */
 	return (0);
 }

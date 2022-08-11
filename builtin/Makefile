@@ -9,9 +9,8 @@ SRCS = cd.c		\
 	pwd.c			\
 	exit.c			\
 	export.c		\
-	export2.c		\
-	unset.c			\
-	envexe.c		\
+	utilsexport.c	\
+#	unset.c			\
 
 # colors for printing
 PRIN = ../libft/libft.a

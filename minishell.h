@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/10 18:15:43 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 11:56:30 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,26 @@
 
 typedef struct s_token
 {
-	char	**path; //free
-	char	**arglist; //free
+	char	**path;
+	char	**arglist;
 	char	**command;
-	int		*fd;	//to_write
-	int		*fd1;	//to_read
+	int		*fd;
+	int		*fd1;
 	int		pr_lstfreeflag;
 }		t_token;
 
 typedef struct s_shell
 {
-	char		**commandlist; //free
+	char		**commandlist;
 	char		**env;
-	char		**path;		//free
+	char		**export;
+	char		**path;
 	char		*command;
 	char		*prompt;
-	char		*envexe;
 	int			echoflag;
-	int			free_flag;
 	int			pipe_flag;
 	int			**pipes;
 	int			*pids;
-	int			exportflag;
-	int			pathflag;
 	t_token		*program;
 }		t_shell;
 

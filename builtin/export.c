@@ -6,81 +6,58 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:00:33 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/10 15:49:51 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 14:30:46 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-int	exportcheck(void)
+void	exportupdate(char *commandlist)
 {
-	int		i;
-	int		len;
+	char	*buff;
+	char	*temp;
 
-	i = 0;
-	len = 0;
-	while (g_shell->commandlist[1][len] && \
-	g_shell->commandlist[1][len] != '=')
-		len++;
-	while (g_shell->env[i])
+	buff = merge(g_shell->export);
+	buff = ft_strjoin(buff, " ");
+	if (equalcheck(commandlist) == 1)
 	{
-		if (!ft_strncmp(g_shell->env[i], g_shell->commandlist[1], len))
-		{
-			if (g_shell->env[i][len] == '=')
-			{
-				g_shell->exportflag = i;
-				return (0);
-			}
-		}
-		i++;
+		temp = addquote(commandlist);
+		buff = ft_strjoin(buff, temp);
+		free(temp);
+		buff = ft_strjoin(buff, "\"");
 	}
-	return (1);
+	else if (!ft_getenv(commandlist))
+		buff = ft_strjoin(buff, commandlist);
+	g_shell->export = ft_split(buff, ' ');
+	free(buff);
 }
 
-void	addenv(void)
+void	envupdate(char *commandlist)
 {
-	int		i;
 	char	*buff;
 
-	i = 0;
-	while (g_shell->env[i])
-		i++;
-	buff = g_shell->env[i - 1];
-	g_shell->env[i - 1] = g_shell->env[i - 2];
-	g_shell->env[i - 2] = buff;
-}
-
-void	exportupdate(void)
-{
-	free(g_shell->env[g_shell->exportflag]);
-	g_shell->env[g_shell->exportflag] = ft_strdup(g_shell->commandlist[1]);
+	buff = merge(g_shell->env);
+	buff = ft_strjoin(buff, " ");
+	buff = ft_strjoin(buff, commandlist);
+	g_shell->env = ft_split(buff, ' ');
+	free(buff);
 }
 
 int	ft_export(void)
 {
-	int		i;
-	char	*buff;
-	char	*temp;
+	int	i;
 
-	g_shell->free_flag = 1;
-	ft_builtfree();
-	if (eqcheck())
-		return (1);
-	if (exportcheck())
+	i = 1;
+	while (g_shell->commandlist[i])
 	{
-		i = 0;
-		buff = merge(g_shell->env);
-		while (g_shell->env[i])
-			free(g_shell->env[i++]);
-		free(g_shell->env);
-		buff = ft_strjoin(buff, " ");
-		buff = ft_strjoin(buff, g_shell->commandlist[1]);
-		temp = buff;
-		g_shell->env = ft_split(buff, ' ');
-		free(temp);
-		addenv();
+		if (exportsearch(g_shell->commandlist[i]) && \
+		envsearch(g_shell->commandlist[i]))
+		{
+			if (equalcheck(g_shell->commandlist[i]) == 1)
+				envupdate(g_shell->commandlist[i]);
+			exportupdate(g_shell->commandlist[i]);
+		}
+		i++;
 	}
-	else
-		exportupdate();
 	return (1);
 }

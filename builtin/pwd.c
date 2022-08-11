@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:31:24 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/08 16:44:26 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 11:46:01 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@ int	ft_pwd(void)
 {
 	int		i;
 
-	i = 0;
-	while (g_shell->env[i])
-		i++;
-	free(g_shell->env[i - 1]);
-	g_shell->env[i - 1] = ft_strdup("_=/bin/pwd");
 	i = 0;
 	while (g_shell->env[i++])
 	{
