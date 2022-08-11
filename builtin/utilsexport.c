@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 14:25:57 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/11 15:13:56 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 16:41:20 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,17 +74,22 @@ int	exportsearch(char *arr)
 
 int	envsearch(char *arr)
 {
-	int	i;
-	int	len;
+	int		i;
+	int		len;
 
 	i = 0;
-	len = ft_strlen(arr);
+	len = 0;
+	while (arr[len] != '=')
+		len++;
 	while (g_shell->env[i])
 	{
-		if (ft_strncmp(g_shell->env[i], arr, len) == 0)
+		if (ft_strncmp(g_shell->env[i], arr, len + 1) == 0)
 		{
-			if (g_shell->env[i][len - 1] == '=')
+			if (g_shell->env[i][len] == '=')
+			{
+				g_shell->envflag = i;
 				return (0);
+			}
 		}
 		i++;
 	}
