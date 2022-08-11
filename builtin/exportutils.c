@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:00:33 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/11 17:32:43 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 17:57:33 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	addexport(char *commandlist)
 	char	*temp;
 
 	buff = merge(g_shell->export);
-	dbfree(g_shell->export, 1);
+	dbfree(g_shell->export);
 	buff = ft_strjoin(buff, " ");
 	if (equalcheck(commandlist) == 1)
 	{
@@ -92,16 +92,4 @@ char	**sortexport(void)
 		}
 	}
 	return (temp);
-}
-
-void	printexport(void)
-{
-	int		i;
-	char	**temp;
-
-	i = 0;
-	temp = sortexport();
-	while (temp[i])
-		printf("%s\n", temp[i++]);
-	dbfree(temp, 0);
 }
