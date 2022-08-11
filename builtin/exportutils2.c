@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utilsexport.c                                      :+:      :+:    :+:   */
+/*   exportutils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 14:25:57 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/11 16:58:22 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 17:33:51 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ int	exportsearch(char *arr)
 
 	i = 0;
 	len = findindex(arr, '=');
-	printf("%d\n", len);
 	while (g_shell->export[i])
 	{
 		if (ft_strncmp(g_shell->export[i], arr, len) == 0)

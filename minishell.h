@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/11 16:41:14 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 17:32:32 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,5 @@ int		dblen(char **array);
 void	ft_signal(void);
 void	ft_searchfor(char *arr);
 int		dblen2(char **array);
+void	dbfree(char **arr, int flag);
 #endif

@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:00:33 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/11 17:12:00 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 17:32:43 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,9 @@ void	addexport(char *commandlist)
 {
 	char	*buff;
 	char	*temp;
-	int		i;
 
-	i = 0;
 	buff = merge(g_shell->export);
-	while (g_shell->export[i])
-		free(g_shell->export[i++]);
-	free(g_shell->export);
+	dbfree(g_shell->export, 1);
 	buff = ft_strjoin(buff, " ");
 	if (equalcheck(commandlist) == 1)
 	{
@@ -70,11 +66,42 @@ void	envupdate(char *commandlist)
 	g_shell->env[g_shell->envflag] = ft_strdup(commandlist);
 }
 
+char	**sortexport(void)
+{
+	int		i;
+	int		j;
+	char	*buff;
+	char	**temp;
+
+	i = -1;
+	temp = malloc(sizeof(char *) * dblen2(g_shell->export));
+	while (g_shell->export[++i])
+		temp[i] = ft_strdup(g_shell->export[i]);
+	i = -1;
+	while (temp[++i])
+	{
+		j = -1;
+		while (temp[++j])
+		{
+			if (temp[j][0] > temp[i][0])
+			{
+				buff = temp[i];
+				temp[i] = temp[j];
+				temp[j] = buff;
+			}
+		}
+	}
+	return (temp);
+}
+
 void	printexport(void)
 {
-	int	i;
+	int		i;
+	char	**temp;
 
 	i = 0;
-	while (g_shell->export[i])
-		printf("%s\n", g_shell->export[i++]);
+	temp = sortexport();
+	while (temp[i])
+		printf("%s\n", temp[i++]);
+	dbfree(temp, 0);
 }

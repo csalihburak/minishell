@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 10:26:44 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/11 11:45:02 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 17:32:59 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,24 @@ void	ft_free(void)
 			if (g_shell->path)
 				free(g_shell->path);
 		}
+	}
+}
+
+void	dbfree(char **arr, int flag)
+{
+	int	i;
+
+	i = 0;
+	if (flag == 0)
+	{
+		while (arr[i])
+			free(arr[i++]);
+		free(arr);
+	}
+	if (flag == 1)
+	{
+		while (arr[i + 1])
+			free(arr[i++]);
+		free(arr);
 	}
 }
