@@ -6,13 +6,13 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:00:33 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/11 14:57:00 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 15:14:01 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-void	exportupdate(char *commandlist)
+void	addexport(char *commandlist)
 {
 	char	*buff;
 	char	*temp;
@@ -32,7 +32,7 @@ void	exportupdate(char *commandlist)
 	free(buff);
 }
 
-void	envupdate(char *commandlist)
+void	addenv(char *commandlist)
 {
 	char	*buff;
 
@@ -41,6 +41,18 @@ void	envupdate(char *commandlist)
 	buff = ft_strjoin(buff, commandlist);
 	g_shell->env = ft_split(buff, ' ');
 	free(buff);
+}
+
+void	envupdate(char *commandlist)
+{
+	int	i;
+
+	i = 0;
+	while (g_shell->env[i])
+	{
+		if (!ft_strcmp(g_shell->env[i++], commandlist))
+			printf("%s\n", g_shell->env[i]);
+	}
 }
 
 int	ft_export(void)
@@ -52,9 +64,9 @@ int	ft_export(void)
 	{
 		if (envsearch(g_shell->commandlist[i]))
 			if (equalcheck(g_shell->commandlist[i]))
-				envupdate(g_shell->commandlist[i]);
+				addenv(g_shell->commandlist[i]);
 		if (exportsearch(g_shell->commandlist[i]))
-			exportupdate(g_shell->commandlist[i]);
+			addexport(g_shell->commandlist[i]);
 		i++;
 	}
 	return (1);

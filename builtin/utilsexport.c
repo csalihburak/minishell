@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 14:25:57 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/11 14:51:52 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 15:13:56 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	envsearch(char *arr)
 	{
 		if (ft_strncmp(g_shell->env[i], arr, len) == 0)
 		{
-			if (g_shell->env[i][len + 1] == '=')
+			if (g_shell->env[i][len - 1] == '=')
 				return (0);
 		}
 		i++;
