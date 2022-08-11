@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 14:25:57 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/11 17:33:51 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 17:41:40 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	findindex(char *arr, char c)
 	while (arr[i])
 	{
 		if (arr[i] == c)
-			return (i + 1);
+			return (i);
 		i++;
 	}
 	return (0);
@@ -76,7 +76,7 @@ int	exportsearch(char *arr)
 	{
 		if (ft_strncmp(g_shell->export[i], arr, len) == 0)
 		{
-			if (g_shell->export[i][len - 1] == '=')
+			if (g_shell->export[i][len] == '=')
 				return (0);
 			if (g_shell->export[i][len] == '\0')
 				return (0);
@@ -92,13 +92,13 @@ int	envsearch(char *arr)
 	int		len;
 
 	i = 0;
-	len = 0;
-	while (arr[len] != '=')
-		len++;
+	len = findindex(arr, '=');
+
 	while (g_shell->env[i])
 	{
-		if (ft_strncmp(g_shell->env[i], arr, len + 1) == 0)
+		if (ft_strncmp(g_shell->env[i], arr, len) == 0)
 		{
+			printf("%s %c %d\n", g_shell->env[i], g_shell->env[i][len], len);
 			if (g_shell->env[i][len] == '=')
 			{
 				g_shell->envflag = i;
