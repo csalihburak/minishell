@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:00:33 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/11 17:57:33 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 18:47:49 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,34 +62,22 @@ void	addenv(char *commandlist)
 
 void	envupdate(char *commandlist)
 {
-	free(g_shell->env[g_shell->envflag]);
-	g_shell->env[g_shell->envflag] = ft_strdup(commandlist);
+	int	i;
+
+	i = g_shell->envflag;
+	free(g_shell->env[i]);
+	g_shell->env[i] = ft_strdup(commandlist);
 }
 
-char	**sortexport(void)
+void	exportupdate(char *commandlist)
 {
-	int		i;
-	int		j;
-	char	*buff;
-	char	**temp;
+	int	i;
 
-	i = -1;
-	temp = malloc(sizeof(char *) * dblen2(g_shell->export));
-	while (g_shell->export[++i])
-		temp[i] = ft_strdup(g_shell->export[i]);
-	i = -1;
-	while (temp[++i])
+	i = g_shell->exportflag;
+	if (i != 0)
 	{
-		j = -1;
-		while (temp[++j])
-		{
-			if (temp[j][0] > temp[i][0])
-			{
-				buff = temp[i];
-				temp[i] = temp[j];
-				temp[j] = buff;
-			}
-		}
+		free(g_shell->export[i]);
+		g_shell->export[i] = addquote(commandlist);
+		g_shell->export[i] = ft_strjoin(g_shell->export[i], "\"");
 	}
-	return (temp);
 }
