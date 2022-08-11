@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:00:33 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/11 14:38:39 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 14:57:00 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,11 @@ int	ft_export(void)
 	i = 1;
 	while (g_shell->commandlist[i])
 	{
-		if (exportsearch(g_shell->commandlist[i]) && \
-		envsearch(g_shell->commandlist[i]))
-		{
-			if (equalcheck(g_shell->commandlist[i]) == 1)
+		if (envsearch(g_shell->commandlist[i]))
+			if (equalcheck(g_shell->commandlist[i]))
 				envupdate(g_shell->commandlist[i]);
+		if (exportsearch(g_shell->commandlist[i]))
 			exportupdate(g_shell->commandlist[i]);
-		}
 		i++;
 	}
 	return (1);
