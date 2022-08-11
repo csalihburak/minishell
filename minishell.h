@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/11 18:35:15 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 20:49:01 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_shell
 	int			pipe_flag;
 	int			envflag;
 	int			exportflag;
+	int			flag;
 	int			**pipes;
 	int			*pids;
 	t_token		*program;
@@ -71,7 +72,6 @@ void	run_pipes(void);
 void	ft_signal(void);
 void	ft_searchfor(char *arr);
 void	dbfree(char **arr);
-void	exportupdate(char *commandlist);
 int		ft_commandsearch(void);
 int		ft_strcmp(char *arr, char *arr1);
 int		ft_builtinsearch_pipe(char *arr);

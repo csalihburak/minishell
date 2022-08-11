@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:00:33 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/11 18:47:49 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 20:52:18 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,39 @@ void	envupdate(char *commandlist)
 	g_shell->env[i] = ft_strdup(commandlist);
 }
 
-void	exportupdate(char *commandlist)
+int	exportupsearch(char *commandlist)
+{
+	int	i;
+	int	len;
+
+	i = -1;
+	len = findindex(commandlist, '=');
+	while (g_shell->export[++i])
+	{
+		if (ft_strncmp(g_shell->export[i], commandlist, len) && \
+		g_shell->export[i][len] == '\0')
+		{
+			g_shell->exportflag = i;
+			return (0);
+		}
+	}
+	return (1);
+}
+
+int	exportupdate(char *commandlist)
 {
 	int	i;
 
 	i = g_shell->exportflag;
-	if (i != 0)
+	if (g_shell->exportflag != 0)
 	{
-		free(g_shell->export[i]);
-		g_shell->export[i] = addquote(commandlist);
-		g_shell->export[i] = ft_strjoin(g_shell->export[i], "\"");
+		if (equalcheck(commandlist))
+		{
+			g_shell->export[i] = addquote(commandlist);
+			g_shell->export[i] = ft_strjoin(g_shell->export[i], "\"");
+		}
+		return (1);
 	}
+	return (0);
 }
+

@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 17:06:00 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/11 18:48:29 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 20:51:48 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ int	export(void)
 			addexport(g_shell->commandlist[i]);
 		if (!envsearch(g_shell->commandlist[i]))
 			envupdate(g_shell->commandlist[i]);
-		if (!exportsearch(g_shell->commandlist[i]))
-			exportupdate(g_shell->commandlist[i]);
 		i++;
 	}
 	return (1);
