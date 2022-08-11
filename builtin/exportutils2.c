@@ -6,11 +6,25 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 14:25:57 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/11 16:41:20 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/11 16:58:22 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
+
+int	findindex(char *arr, char c)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		if (arr[i] == c)
+			return (i + 1);
+		i++;
+	}
+	return (0);
+}
 
 char	*addquote(char *commandlist)
 {
@@ -57,7 +71,8 @@ int	exportsearch(char *arr)
 	int	len;
 
 	i = 0;
-	len = ft_strlen(arr);
+	len = findindex(arr, '=');
+	printf("%d\n", len);
 	while (g_shell->export[i])
 	{
 		if (ft_strncmp(g_shell->export[i], arr, len) == 0)
@@ -95,4 +110,3 @@ int	envsearch(char *arr)
 	}
 	return (1);
 }
-

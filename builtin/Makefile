@@ -9,7 +9,8 @@ SRCS = cd.c		\
 	pwd.c			\
 	exit.c			\
 	export.c		\
-	utilsexport.c	\
+	exportutils.c	\
+	exportutils2.c	\
 #	unset.c			\
 
 # colors for printing
