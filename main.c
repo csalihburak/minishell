@@ -14,10 +14,8 @@
 
 void	envcpy(char **env)
 {
-	int		i;
 	char	*buff;
 
-	i = 0;
 	buff = merge(env);
 	g_shell->env = ft_split(buff, ' ');
 	g_shell->export = ft_split(buff, ' ');

@@ -76,9 +76,7 @@ t_token	*create_tokens(char *commandlist)
 {
 	t_token	*program;
 	int		flag;
-	int		i;
 
-	i = 0;
 	flag = 2;
 	program = malloc(sizeof(t_token));
 	g_shell->program = program;

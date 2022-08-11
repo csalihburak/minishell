@@ -52,10 +52,8 @@ char	*addquote(char *commandlist)
 int	equalcheck(char *commandlist)
 {
 	int	i;
-	int	y;
 
 	i = 0;
-	y = 0;
 	while (commandlist[i])
 	{
 		if (commandlist[i] == '=')
@@ -67,20 +65,24 @@ int	equalcheck(char *commandlist)
 
 int	exportsearch(char *arr)
 {
-	int	i;
-	int	len2;
-	int	len;
+	int		i;
+	int		len;
 
-	i = -1;
+	i = 0;
 	len = findindex(arr, '=');
-	len2 = ft_strlen(arr);
-	while (g_shell->export[++i])
+		if(len == 0)
+			len = ft_strlen(arr);
+	while (g_shell->export[i])
 	{
-		if (ft_strncmp(g_shell->export[i], arr, len) || \
-		!ft_strcmp(g_shell->export[i], arr))
+		if (ft_strncmp(g_shell->export[i], arr, len) == 0)
 		{
-			printf("%s %s %d\n", g_shell->export[i], arr, len2);
+			if (g_shell->export[i][len] == '=' || g_shell->export[i][len] == '\0')
+			{
+				g_shell->exportflag = i;
+				break;
+			}
 		}
+		i++;
 	}
 	if (exportupdate(arr))
 		return (0);
