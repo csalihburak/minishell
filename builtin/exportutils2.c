@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 14:25:57 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/12 11:43:39 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/12 12:53:58 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	findindex(char *arr, char c)
 			return (i);
 		i++;
 	}
-	return (0);
+	return (i);
 }
 
 char	*addquote(char *commandlist)
@@ -65,26 +65,27 @@ int	equalcheck(char *commandlist)
 
 int	exportsearch(char *arr)
 {
-	int		i;
-	int		len;
+	int	i;
+	int	len;
 
-	i = 0;
+	i = -1;
 	len = findindex(arr, '=');
-	if (len == 0)
-		len = ft_strlen(arr);
-	g_shell->exportflag = 0;
-	while (g_shell->export[i])
+	while (g_shell->export[++i])
 	{
-		if (ft_strncmp(g_shell->export[i], arr, len) == 0)
+		if (!ft_strncmp(g_shell->export[i], arr, len))
 		{
-			if ((g_shell->export[i][len] == '=' || \
-			g_shell->export[i][len] == '\0'))
+			if (g_shell->export[i][len] == '=')
 			{
 				g_shell->exportflag = i;
 				break ;
 			}
 		}
-		i++;
+		if (!ft_strncmp(g_shell->export[i], arr, len) && \
+		g_shell->export[i][len] == '\0')
+		{
+			g_shell->exportflag = i;
+			break ;
+		}
 	}
 	if (exportupdate(arr))
 		return (0);

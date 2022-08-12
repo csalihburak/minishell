@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:00:33 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/12 11:39:51 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/12 13:01:10 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	addexport(char *commandlist)
 		free(temp);
 		buff = ft_strjoin(buff, "\"");
 	}
-	else if (!ft_getenv(commandlist))
+	else
 		buff = ft_strjoin(buff, commandlist);
 	g_shell->export = ft_split(buff, ' ');
 	free(buff);
@@ -91,7 +91,7 @@ int	exportupdate(char *commandlist)
 	int	i;
 
 	i = g_shell->exportflag;
-	if (g_shell->exportflag != 0)
+	if (g_shell->exportflag != 0 && g_shell->unsetflag != 1)
 	{
 		if (equalcheck(commandlist))
 		{

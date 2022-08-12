@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:25:49 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/11 17:58:12 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/12 11:55:19 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_builtinsearch(char *arr)
 		ft_exit();
 	if (!ft_strcmp(arr, "export"))
 		return (export());
-/* 	if (!ft_strcmp(arr, "unset"))
-		return (ft_unset()); */
+	if (!ft_strcmp(arr, "unset"))
+		return (unset());
 	return (0);
 }

@@ -8,10 +8,10 @@ SRCS = cd.c		\
 	echo.c			\
 	pwd.c			\
 	exit.c			\
+	unset.c			\
 	export.c		\
 	exportutils.c	\
 	exportutils2.c	\
-#	unset.c			\
 
 PRIN = ../libft/libft.a
 
