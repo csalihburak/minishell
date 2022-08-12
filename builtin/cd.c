@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:53:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/12 15:25:15 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/12 17:08:28 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,12 @@ int	cdcheck(char *command)
 {
 	if (access(command, F_OK) == -1)
 	{
-		printf("cd: no such file or directory: %s\n", command);
+		printf("minishell: cd :%s: %s\n", command, strerror(ENOENT));
 		return (1);
 	}
 	if (chdir(command) == -1)
 	{
-		printf("cd: permission denied: %s\n", command);
+		printf("minishell: cd: %s: %s\n", command, strerror(EACCES));
 		return (1);
 	}
 	return (0);
