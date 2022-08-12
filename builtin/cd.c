@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:53:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/11 14:26:24 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/12 15:25:15 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@ char	*ft_getenv(char *arr)
 	return (NULL);
 }
 
+int	cdcheck(char *command)
+{
+	if (access(command, F_OK) == -1)
+	{
+		printf("cd: no such file or directory: %s\n", command);
+		return (1);
+	}
+	if (chdir(command) == -1)
+	{
+		printf("cd: permission denied: %s\n", command);
+		return (1);
+	}
+	return (0);
+}
+
 int	ft_cd(char *command)
 {
 	char	*old;
@@ -42,14 +57,8 @@ int	ft_cd(char *command)
 	}
 	else
 	{
-		if (access(command, F_OK) == -1)
-		{
-			printf("cd: no such file or directory: %s\n", command);
-			return (1);
-		}
+		cdcheck(command);
 		old = getcwd(NULL, 0);
-		if (chdir(command) == -1)
-			printf("cd: permission denied: %s\n", command);
 		new = getcwd(NULL, 0);
 		envpwdupdate(new, old);
 	}

@@ -6,21 +6,11 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 17:06:00 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/12 13:26:13 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/12 14:34:23 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
-
-int	exportcheck(char *arr)
-{
-	int	i;
-
-	i = 0;
-	if (!ft_isalpha(arr[0]) && arr[0] != '_')
-		return (0);
-	return (1);
-}
 
 void	printexport(void)
 {
@@ -41,7 +31,6 @@ int	export(void)
 	while (g_shell->commandlist[i])
 	{
 		g_shell->exportflag = 0;
-		g_shell->unsetflag = 0;
 		if (!exportcheck(g_shell->commandlist[i]))
 			return (1);
 		if (envsearch(g_shell->commandlist[i]))
