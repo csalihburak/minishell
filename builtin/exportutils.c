@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:00:33 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/12 14:40:06 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/12 17:33:32 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	exportupdate(char *commandlist)
 	int	i;
 
 	i = g_shell->exportflag;
-	if (g_shell->exportflag != 0 && g_shell->unsetflag != 1)
+	if (g_shell->exportflag != 0)
 	{
 		if (equalcheck(commandlist))
 		{

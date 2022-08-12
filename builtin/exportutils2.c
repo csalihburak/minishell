@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 14:25:57 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/12 17:12:39 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/12 17:35:37 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,13 @@ int	equalcheck(char *commandlist)
 	while (commandlist[i])
 	{
 		if (commandlist[i] == '=')
+		{
+			g_shell->unsetflag = 1;
 			return (1);
+		}
 		i++;
 	}
+	g_shell->unsetflag = 0;
 	return (0);
 }
 
