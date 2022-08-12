@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 17:06:00 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/12 11:38:34 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/12 11:43:46 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ int	export(void)
 	int	i;
 
 	i = 1;
-	g_shell->envflag = 0;
-	g_shell->exportflag = 0;
 	if (g_shell->commandlist[1] == NULL)
 		printexport();
 	while (g_shell->commandlist[i])
