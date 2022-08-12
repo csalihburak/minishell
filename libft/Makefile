@@ -58,7 +58,7 @@ $(NAME): $(OBJS)
 	@ar $(ARFLAGS) $(NAME) $(OBJS)
 
 %.o: %.c $(INC)
-	@echo "Compile alınıyor: $<"
+	@echo "Compiling: $<"
 	@$(CC) -c $< -o $@ $(CFLAGS)
 
 clean:

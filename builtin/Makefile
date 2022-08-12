@@ -13,7 +13,6 @@ SRCS = cd.c		\
 	exportutils2.c	\
 #	unset.c			\
 
-# colors for printing
 PRIN = ../libft/libft.a
 
 OBJS= $(SRCS:.c=.o)

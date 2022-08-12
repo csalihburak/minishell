@@ -37,7 +37,7 @@ $(NAME): $(OBJS) $(PRIN) $(BUILTIN)
 	@echo "Minishell ready."
 
 %.o: %.c
-	@echo $(R)Compile alınıyor: [$<]
+	@echo $(R)Compiling: [$<]
 	@${CC} $(CFLAGS) -c $^ -o $@ -Wall -Werror -Wextra
 
 clean:
