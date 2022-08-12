@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/11 20:49:01 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/12 13:00:41 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_shell
 	int			echoflag;
 	int			pipe_flag;
 	int			envflag;
+	int			unsetflag;
 	int			exportflag;
 	int			flag;
 	int			**pipes;
