@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 17:06:00 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/12 14:34:23 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/12 20:29:40 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	printexport(void)
 
 	i = 0;
 	while (g_shell->export[i])
-		printf("%s\n", g_shell->export[i++]);
+		printf("declare -x %s\n", g_shell->export[i++]);
 }
 
 int	export(void)

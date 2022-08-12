@@ -4,12 +4,13 @@ CFLAGS = -Wall -Wextra -Werror -g
 ARFLAGS = -rcs
 SRCS = cd.c		\
 	env.c 		\
-	ft_builtin.c	\
-	echo.c			\
 	pwd.c			\
 	exit.c			\
+	echo.c			\
 	unset.c			\
+	envexe.c		\
 	export.c		\
+	ft_builtin.c	\
 	exportutils.c	\
 	exportutils2.c	\
 
