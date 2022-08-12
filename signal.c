@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 10:36:18 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/10 15:56:59 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/12 17:23:50 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ void	ft_sig(int signo)
 			rl_redisplay();
 	}
 }
-
 
 void	ft_signal(void)
 {
