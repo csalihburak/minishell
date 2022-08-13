@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 17:06:00 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/13 21:35:06 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/13 22:52:55 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ void	printexport(void)
 		printf("declare -x %s\n", g_shell->export[i++]);
 }
 
-int	exportequal(char *commandlist)
+int	exportequal(char *command)
 {
 	char	*buff;
 
-	if (commandlist[0] == '=' && commandlist[1] == '\0')
+	if (command[0] == '=' && command[1] == '\0')
 	{
 		buff = ft_strdup("bash: export: `");
 		buff = ft_strjoin(buff, "=");
@@ -36,10 +36,10 @@ int	exportequal(char *commandlist)
 		free(buff);
 		return (1);
 	}
-	if (!ft_isalpha(commandlist[0]))
+	if (!ft_isalpha(command[0]) && command[0] != '_')
 	{
 		buff = ft_strdup("bash: export: `");
-		buff = ft_strjoin(buff, commandlist);
+		buff = ft_strjoin(buff, command);
 		buff = ft_strjoin(buff, "'");
 		buff = ft_strjoin(buff, ": not a valid identifier");
 		write(2, buff, ft_strlen(buff));
@@ -48,6 +48,17 @@ int	exportequal(char *commandlist)
 		return (1);
 	}
 	return (0);
+}
+
+int	underlinecheck(char *command)
+{
+	int	i;
+
+	i = 0;
+	if (command[0] == '_' && command[1] == '\0')
+		return (0);
+	else
+		return (1);
 }
 
 int	export(void)
@@ -60,8 +71,8 @@ int	export(void)
 	while (g_shell->commandlist[i])
 	{
 		g_shell->exportflag = 0;
-		if (g_shell->commandlist[i][0] != '_' && \
-		!exportequal(g_shell->commandlist[i]))
+		if (underlinecheck(g_shell->commandlist[i]) \
+		&& !exportequal(g_shell->commandlist[i]))
 		{
 			if (envsearch(g_shell->commandlist[i]))
 				if (equalcheck(g_shell->commandlist[i]))
