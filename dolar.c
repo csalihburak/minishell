@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 16:04:49 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/13 23:05:27 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/13 23:51:39 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,23 @@ int	dolarfind(char *arr)
 char	*cmdlistup(char *command)
 {
 	int		i;
+	int		j;
 	char	*buff;
 
-	i = -1;
-	buff = malloc(sizeof(char) * ft_strlen((command + dolarfind(command)) + 1));
-	while (command[++i] != '$')
-		buff[i] = command[i];
 	i = 0;
-	if (!envsearch(command + dolarfind(command)))
-	{
-		buff = ft_strjoin(buff, g_shell->env[g_shell->envflag] + \
-		findindex(g_shell->env[g_shell->echoflag], '=') + 1);
-	}
+	j = -1;
+	while (command[i] != '$')
+		i++;
+	i++;
+	buff = malloc(sizeof(char) * i + 1);
+	while (command[++j] != '$')
+		buff[j] = command[j];
+	buff[j] = '\0';
+	if (!envsearch(command + i))
+		buff = ft_strjoin(buff, (g_shell->env[g_shell->envflag] + \
+		findindex(g_shell->env[g_shell->envflag], '=')));
 	else
-		buff = ft_strjoin(buff, command + dolarfind(command) - 1);
+		buff = ft_strjoin(buff, command + dolarfind(command));
 	free(command);
 	return (buff);
 }
