@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/13 14:33:41 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/13 16:01:57 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int		ft_strcmp(char *arr, char *arr1);
 int		ft_builtinsearch_pipe(char *arr);
 int		envexe(void);
 int		dblen(char **array);
-int		dblen2(char **array);
+void	dolar(void);
 void	op_handle(char *command);
 
 #endif

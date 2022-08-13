@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_execute.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:08:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/12 12:36:23 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/13 16:00:06 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,7 @@ void	ft_searchfor(char *arr)
 void	runcommand(char *arr)
 {
 	if (g_shell->op_flag == 1)
-	{
 		op_handle(g_shell->command);
-	}
 	else if (g_shell->pipe_flag > 0)
 		run_pipes();
 	else

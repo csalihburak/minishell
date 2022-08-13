@@ -3,6 +3,7 @@ CC = clang
 CFLAGS = -Wall -Wextra -Werror -I ./lib/readline/include
 LDFLAGS = -L ./lib/readline/lib -lreadline
 SRCS = main.c \
+	dolar.c		\
 	utils.c		\
 	signal.c	\
 	ft_parser.c	\
