@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:08:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/13 18:34:30 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 02:28:48 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ void	ft_path(char *arr)
 	i = -1;
 	while (g_shell->env[++i])
 	{
-		if (ft_strncmp(g_shell->env[i], "PATH", 4) == 0)
+		if (!ft_strncmp(g_shell->env[i], "PATH", 4) && \
+		g_shell->env[i][4] == '=')
 			break ;
 	}
 	g_shell->path = ft_split(g_shell->env[i], ':');
@@ -52,41 +53,41 @@ int	ft_execve(int i)
 	return (0);
 }
 
-int	ft_searchfor2(int flag, int i)
+void	ft_searchfor2(void)
 {
+	int	i;
+
+	i = -1;
 	while (g_shell->path[++i])
 	{
 		if (access(g_shell->path[i], F_OK) == 0)
 		{
-			flag = 2;
+			g_shell->exeflag = 2;
 			ft_execve(i);
 		}
 		if (ft_strchr(g_shell->commandlist[0], '/'))
 		{
 			if (access(g_shell->commandlist[0], X_OK) == 0)
 			{
-				flag = 2;
+				g_shell->exeflag = 2;
 				ft_execve(i);
 			}
 			else if (access(g_shell->commandlist[0], X_OK) == -1)
-				flag = 1;
+				g_shell->exeflag = 1;
 		}
 	}
-	if (flag == 0)
-	{
-		printf("minishell: command not found: %s\n", \
-		(ft_strrchr(g_shell->path[0], '/') + 1));
-	}
-	return (flag);
 }
 
 void	ft_searchfor(char *arr)
 {
-	int		flag;
-
-	flag = 0;
-	flag = ft_searchfor2(flag, -1);
-	if (flag == 1)
+	g_shell->exeflag = 0;
+	ft_searchfor2();
+	if (g_shell->exeflag == 0)
+	{
+		printf("minishell: command not found: %s\n", \
+		(ft_strrchr(g_shell->path[0], '/') + 1));
+	}
+	if (g_shell->exeflag == 1)
 		printf("minishell: %s: %s\n", arr, strerror(errno));
 }
 
