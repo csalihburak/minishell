@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 12:48:17 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/13 14:27:30 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/13 14:33:27 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	onedolar(char *command)
 
 	i = 0;
 	command = 0;
-	return )(1;
+	return (1);
 }
 
 int	dolar(char *command)
@@ -29,10 +29,10 @@ int	dolar(char *command)
 
 	i = 0;
 	if (ft_strncmp(command, "$", 1) && command[1] == '\0')
-	{
-		if (onedolar(command))
+		{
+			if (onedolar(command))
 			return (1);
-	}
+		}
 	else
 	{
 		while (g_shell->env[i])
