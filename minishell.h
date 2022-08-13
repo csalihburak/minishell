@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/13 19:16:26 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/13 19:24:20 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,15 +46,14 @@ typedef struct s_shell
 	char		*lastexe;
 	char		*command;
 	char		*prompt;
+	int			**pipes;
+	int			*pids;
 	int			echoflag;
 	int			pipe_flag;
 	int			envflag;
 	int			unsetflag;
 	int			exportflag;
 	int			freeflag;
-	int			flag;
-	int			**pipes;
-	int			*pids;
 	int			op_flag;
 	t_token		*program;
 }		t_shell;
