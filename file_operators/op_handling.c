@@ -6,34 +6,11 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/11 18:06:47 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/13 14:29:01 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_op.h"
-
-void	ft_path2(t_op *file)
-{
-	int		i;
-
-	i = -1;
-	while (g_shell->env[++i])
-	{
-		if (ft_strncmp(g_shell->env[i], "PATH", 4) == 0)
-			break ;
-	}
-	file->path = ft_split(g_shell->env[i], ':');
-	free(file->path[0]);
-	file->path[0] = ft_strdup((ft_strchr(file->path[0], '=') + 1));
-	i = -1;
-	while (file->path[++i])
-	{
-		file->path[i] = ft_strjoin(file->path[i], "/");
-		file->path[i] = ft_strjoin(file->path[i], \
-		file->cmd_list[0]);
-	}
-	i = -1;
-}
 
 char	**ft_merge2(t_op *file)
 {
@@ -71,10 +48,14 @@ char	**ft_merge2(t_op *file)
 		}
 		i++;
 	}
+	i = 0;
 	while (file->cmd_list[i])
 		free(file->cmd_list[i++]);
 	free(file->cmd_list);
-	return (ft_split(res, '\"'));
+	file->cmd_list = ft_split(res, '\"');
+	i = 0;
+	free(res);
+	return (NULL);
 }
 
 void	op_handle(char *command)
@@ -85,6 +66,13 @@ void	op_handle(char *command)
 	i = 0;
 	file = malloc(sizeof(t_op));
 	file->cmd_list = ft_split(command, ' ');
-	file->cmd_list = merge(file);
-	ft_path2(file);
+	ft_merge2(file);
+	if (op_check(file))
+	{
+		op_setup(file);
+		dbfree(file->pipe_list);
+	}
+	dbfree(file->cmd_list);
+	dbfree(g_shell->commandlist);
+	free(file);
 }

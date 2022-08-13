@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_parser.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:06:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/09 19:44:52 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/12 13:07:05 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,13 @@ void	ft_parser(void)
 	int		i;
 
 	i = 0;
-	if (ft_strchr(g_shell->command, '|'))
+	if (ft_strchr(g_shell->command, '>'))
+	{
+		g_shell->commandlist = ft_split(g_shell->command, ' ');
+		g_shell->pipe_flag = 0;
+		g_shell->op_flag = 1;
+	}
+	else if (ft_strchr(g_shell->command, '|'))
 	{
 		g_shell->pipe_flag = 1;
 		g_shell->commandlist = ft_split(g_shell->command, '|');
@@ -105,5 +111,6 @@ void	ft_parser(void)
 	{
 		g_shell->commandlist = ft_split(g_shell->command, ' ');
 		g_shell->pipe_flag = 0;
+		g_shell->op_flag = 0;
 	}
 }

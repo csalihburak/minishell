@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/13 13:12:55 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/13 14:29:42 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_shell
 	int			flag;
 	int			**pipes;
 	int			*pids;
+	int			op_flag;
 	t_token		*program;
 }		t_shell;
 
@@ -80,4 +81,8 @@ int		ft_builtinsearch_pipe(char *arr);
 int		envexe(void);
 int		dblen(char **array);
 int		dblen2(char **array);
+//void	op_handle(char *command);
+
+//File operator functions
+
 #endif
