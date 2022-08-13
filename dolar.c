@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 16:04:49 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/13 18:06:36 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/13 19:22:02 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,39 @@ char	*cmdlistup(char *command)
 	return (buff);
 }
 
-void	dolar(void)
+char	*lastexe(void)
 {
-	int	i;
+	char	*buff;
+
+	buff = ft_strdup(g_shell->lastexe);
+	free(g_shell->lastexe);
+	return (buff);
+}
+
+int	dolar(void)
+{
+	int		i;
+	char	*temp;
 
 	i = 0;
+	g_shell->freeflag = 0;
 	while (g_shell->commandlist[i])
 	{
 		if (commandsearch(g_shell->commandlist[i], "$_"))
-			printf("test\n");
-		if (dolarfind(g_shell->commandlist[i]))
+		{
+			g_shell->freeflag = 1;
+			free(g_shell->commandlist[i]);
+			g_shell->commandlist[i] = lastexe();
+		}
+		else if (dolarfind(g_shell->commandlist[i]))
 			g_shell->commandlist[i] = cmdlistup(g_shell->commandlist[i]);
 		i++;
 	}
+	while (g_shell->commandlist[i])
+		i++;
+	temp = g_shell->lastexe;
+	g_shell->lastexe = ft_strdup(g_shell->commandlist[i - 1]);
+	if (g_shell->freeflag != 1)
+		free(temp);
+	return (1);
 }
