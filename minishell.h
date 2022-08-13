@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/12 17:33:09 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/13 13:12:55 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_shell
 	char		**path;
 	char		*command;
 	char		*prompt;
+	int			echodolarflag;
 	int			echoflag;
 	int			pipe_flag;
 	int			envflag;
@@ -76,6 +77,7 @@ void	dbfree(char **arr);
 int		ft_commandsearch(void);
 int		ft_strcmp(char *arr, char *arr1);
 int		ft_builtinsearch_pipe(char *arr);
+int		envexe(void);
 int		dblen(char **array);
 int		dblen2(char **array);
 #endif
