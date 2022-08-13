@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 10:55:41 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/13 23:09:30 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 02:56:45 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,35 +20,6 @@ int	ft_strcmp(char *s1, char *s2)
 	while ((s1 && s2) && s1[i] == s2[i] && s2[i])
 		i++;
 	return (s1[i] - s2[i]);
-}
-
-char	*ft_strjoin(char *s1, char *s2)
-{
-	int		i;
-	int		a;
-	char	*array;
-	size_t	len;
-
-	a = 0;
-	i = 0;
-	if (s1 != NULL)
-	{
-		len = ft_strlen(s1) + ft_strlen(s2) + 1;
-		array = (char *)malloc(sizeof(char) * (len));
-		if (!array)
-			return (0);
-		if (array == NULL)
-			return (0);
-		while (s1[i] != '\0')
-			array[a++] = s1[i++];
-		i = 0;
-		while (s2[i] != '\0')
-			array[a++] = s2[i++];
-		array[a] = '\0';
-		free(s1);
-		return (array);
-	}
-	return (0);
 }
 
 char	*ft_prompt(void)

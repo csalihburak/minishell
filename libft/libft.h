@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 13:27:21 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/04 11:26:14 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 02:57:42 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ char	*ft_strchr(const char *s, int c);
 char	*ft_strdup(char *src);		
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));	
 char	*ft_strnstr(const char *src, const char *dst, size_t len);	
+char	*ft_strjoin(char *s1, char *s2);
 char	*ft_strrchr(const char *str, int c);	
 char	*ft_strtrim(char const *s1, char const *set);	
 char	*ft_substr(char const *s, unsigned int start, size_t len);	
