@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 10:55:41 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/13 16:05:06 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/13 18:07:52 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,26 @@ int	dblen(char **array)
 		len++;
 	}
 	return (len);
+}
+
+int	commandsearch(char *s1, char *s2)
+{
+	int	i;
+	int	len;
+	int	s1len;
+	int	s2len;
+
+	i = 0;
+	len = 0;
+	s1len = ft_strlen(s1);
+	s2len = ft_strlen(s2);
+	while (s1[i] && s2[i])
+	{
+		if (s1[i] == s2[i])
+			len++;
+		i++;
+	}
+	if (s1len == s2len && len == s1len && len == s2len)
+		return (1);
+	return (0);
 }

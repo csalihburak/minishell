@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:08:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/13 16:00:06 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/13 18:01:08 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_searchfor(char *arr)
 	flag = 0;
 	flag = ft_searchfor2(flag, -1);
 	if (flag == 1)
-		printf("minishell: %s: %s\n", strerror(errno), arr);
+		printf("minishell: %s: %s\n", arr, strerror(errno));
 }
 
 void	runcommand(char *arr)

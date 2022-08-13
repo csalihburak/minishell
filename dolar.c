@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 16:04:49 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/13 17:46:59 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/13 18:06:36 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ void	dolar(void)
 	i = 0;
 	while (g_shell->commandlist[i])
 	{
+		if (commandsearch(g_shell->commandlist[i], "$_"))
+			printf("test\n");
 		if (dolarfind(g_shell->commandlist[i]))
 			g_shell->commandlist[i] = cmdlistup(g_shell->commandlist[i]);
 		i++;
