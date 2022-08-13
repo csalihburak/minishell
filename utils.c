@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 10:55:41 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/13 18:07:52 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/13 23:09:30 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ char	*ft_prompt(void)
 	char	*a;
 
 	a = getcwd(NULL, 0);
-	cwd = ft_strdup("\033[0;36mminishell / ");
+	cwd = ft_strdup("minishell / ");
 	cwd = ft_strjoin(cwd, ft_strrchr(a, '/') + 1);
-	cwd = ft_strjoin(cwd, " \n★ \033[0;35m");
+	cwd = ft_strjoin(cwd, " % ");
 	free(a);
 	return (cwd);
 }
