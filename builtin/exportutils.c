@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:00:33 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/12 17:33:32 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/13 21:35:38 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,6 @@ void	envupdate(char *commandlist)
 	i = g_shell->envflag;
 	free(g_shell->env[i]);
 	g_shell->env[i] = ft_strdup(commandlist);
-}
-
-int	exportcheck(char *arr)
-{
-	int	i;
-
-	i = 0;
-	if (!ft_isalpha(arr[0]) && arr[0] != '_')
-		return (0);
-	return (1);
 }
 
 int	exportupdate(char *commandlist)

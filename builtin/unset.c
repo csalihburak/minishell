@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 10:56:28 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/12 18:33:50 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/13 21:18:58 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,15 +61,21 @@ void	exportunset(char *commandlist)
 
 int	unset(void)
 {
-	int	i;
+	int		i;
+	char	*buff;
 
 	i = 0;
+	buff = ft_strdup("minishell: unset: `");
 	while (g_shell->commandlist[++i])
 	{
 		if (equalcheck(g_shell->commandlist[i]))
 		{
-			printf("minishell: unset: `%s': not a valid identifier error\n", \
-			g_shell->commandlist[i]);
+			buff = ft_strjoin(buff, g_shell->commandlist[i]);
+			buff = ft_strjoin(buff, "'");
+			buff = ft_strjoin(buff, ": not a valid identifier");
+			write(2, buff, ft_strlen(buff));
+			write(1, "\n", 1);
+			free(buff);
 			if (g_shell->commandlist[i + 1])
 				i++;
 		}

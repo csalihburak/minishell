@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 16:04:49 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/13 19:22:02 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/13 20:37:23 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ char	*cmdlistup(char *command)
 		findindex(command, '='));
 	else
 		buff = ft_strjoin(buff, command + dolarfind(command) - 1);
+	free(command);
 	return (buff);
 }
 
