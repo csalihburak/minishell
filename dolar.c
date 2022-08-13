@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 16:04:49 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 00:07:48 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 00:53:11 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,49 @@ int	dolarfind(char *arr)
 	return (0);
 }
 
+char	*merge2(char **command)
+{
+	char	*arr;
+	int		i;
+	int		j;
+	int		k;
+
+	i = 0;
+	k = 0;
+	arr = malloc(sizeof(char) * dblen(command));
+	while (command[i])
+	{
+		j = 0;
+		while (command[i][j])
+			arr[k++] = command[i][j++];
+		i++;
+	}
+	arr[k] = '\0';
+	return (arr);
+}
+
 char	*cmdlistup(char *command)
 {
 	int		i;
-	int		j;
-	char	*buff;
+	char	*temp;
+	char	**buff;
 
 	i = 0;
-	j = -1;
-	while (command[i] != '$')
+	buff = ft_split(command, '$');
+	while (buff[i])
+	{
+		if (!envsearch(buff[i]))
+		{
+			free(buff[i]);
+			buff[i] = ft_strdup(g_shell->env[g_shell->envflag] + \
+			findindex(g_shell->env[g_shell->envflag], '=') + 1);
+		}
 		i++;
-	i++;
-	buff = malloc(sizeof(char) * i + 1);
-	while (command[++j] != '$')
-		buff[j] = command[j];
-	buff[j] = '\0';
-	if (!envsearch(command + i))
-		buff = ft_strjoin(buff, (g_shell->env[g_shell->envflag] + \
-		findindex(g_shell->env[g_shell->envflag], '=')));
-	else
-		buff = ft_strjoin(buff, command + dolarfind(command) + 1);
+	}
+	temp = merge2(buff);
 	free(command);
-	return (buff);
+	dbfree(buff);
+	return (temp);
 }
 
 char	*lastexe(void)
