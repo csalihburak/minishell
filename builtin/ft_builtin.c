@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:25:49 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/12 20:56:44 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/13 19:25:40 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	ft_builtinsearch(char *arr)
 {
-	if (!ft_strcmp(arr, "$_"))
-		return (envexe());
 	if (!ft_strcmp(arr, "env"))
 		return (ft_env());
 	if (!ft_strcmp(arr, "cd"))

@@ -8,7 +8,6 @@ SRCS = cd.c		\
 	exit.c			\
 	echo.c			\
 	unset.c			\
-	envexe.c		\
 	export.c		\
 	ft_builtin.c	\
 	exportutils.c	\
