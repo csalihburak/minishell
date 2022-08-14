@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:00:33 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 22:13:37 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 00:30:52 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,27 +34,16 @@ void	addexport(char *commandlist)
 
 void	addenv(char *commandlist)
 {
-	char	*buff;
-	char	*temp;
-	char	*temp2;
 	int		i;
+	char	*temp;
 
 	i = 0;
-	buff = merge(g_shell->env);
-	dbfree(g_shell->env);
-	i = 0;
-	buff = ft_strjoin(buff, " ");
-	buff = ft_strjoin(buff, commandlist);
-	g_shell->env = ft_split(buff, ' ');
 	while (g_shell->env[i])
 		i++;
-	temp = ft_strdup(g_shell->env[i - 1]);
-	temp2 = ft_strdup(g_shell->env[i - 2]);
-	free(g_shell->env[i - 1]);
-	free(g_shell->env[i - 2]);
-	g_shell->env[i - 2] = temp;
-	g_shell->env[i - 1] = temp2;
-	free(buff);
+	temp = g_shell->env[i - 1];
+	g_shell->env[i] = temp;
+	g_shell->env[i - 1] = ft_strdup(commandlist);
+	g_shell->env[i + 1] = NULL;
 }
 
 void	envupdate(char *commandlist)
