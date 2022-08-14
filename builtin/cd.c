@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:53:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 23:00:53 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 00:06:47 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	golastpwd(void)
 		}
 		i++;
 	}
+	exportpwdupdate(new, old);
+	envpwdupdate(new, old);
 	free(new);
 	free(old);
 }

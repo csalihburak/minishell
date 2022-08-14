@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:55:59 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 23:04:15 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 23:50:40 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	envpwdupdate(char *new, char *old)
 	char	*buff;
 
 	buff = NULL;
-	exportpwdupdate(new, old);
 	if (!envsearch("PWD="))
 	{
 		buff = ft_strdup("PWD=");
