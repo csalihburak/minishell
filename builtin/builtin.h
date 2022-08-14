@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 13:14:13 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 22:58:53 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 01:05:30 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_getenv(char *arr);
 int		exportsearch(char *arr);
 int		envsearch(char *arr);
 int		equalcheck(char *commandlist);
-char	*addquote(char *commandlist);
+char	*addquote(char *commandlist, int status);
 void	envupdate(char *commandlist);
 void	addenv(char *commandlist);
 void	addexport(char *commandlist);

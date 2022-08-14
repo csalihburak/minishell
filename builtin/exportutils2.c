@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 14:25:57 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 00:06:35 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 01:04:42 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	findfirstindex(char *arr, char c)
 	return (i);
 }
 
-char	*addquote(char *commandlist)
+char	*addquote(char *commandlist, int status)
 {
 	int		i;
 	char	*buff;
@@ -50,6 +50,8 @@ char	*addquote(char *commandlist)
 	}
 	buff[i + 1] = '"';
 	buff[i + 2] = '\0';
+	if (status == 1)
+		free(commandlist);
 	return (buff);
 }
 

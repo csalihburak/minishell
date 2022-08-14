@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:55:59 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 23:50:40 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 01:08:36 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,42 +62,56 @@ void	notset(int status)
 
 void	exportpwdupdate(char *new, char *old)
 {
+	int		i;
 	char	*buff;
 
-	buff = NULL;
-	if (!exportsearch("PWD="))
+	i = -1;
+	while (g_shell->export[++i])
 	{
-		buff = ft_strdup("PWD=");
-		buff = ft_strjoin(buff, new);
-		exportupdate(buff);
-		free(buff);
-	}
-	if (!exportsearch("OLDPWD="))
-	{
-		buff = ft_strdup("OLDPWD=");
-		buff = ft_strjoin(buff, old);
-		exportupdate(buff);
-		free(buff);
+		if (!ft_strncmp(g_shell->export[i], "PWD=", 4))
+		{
+			buff = ft_strdup("PWD=");
+			buff = ft_strjoin(buff, new);
+			buff = addquote(buff, 1);
+			free(g_shell->export[i]);
+			g_shell->export[i] = ft_strdup(buff);
+			free(buff);
+		}
+		else if (!ft_strncmp(g_shell->export[i], "OLDPWD", 6))
+		{
+			buff = ft_strdup("OLDPWD=");
+			buff = ft_strjoin(buff, old);
+			buff = addquote(buff, 1);
+			free(g_shell->export[i]);
+			g_shell->export[i] = ft_strdup(buff);
+			free(buff);
+		}
 	}
 }
 
 void	envpwdupdate(char *new, char *old)
 {
+	int		i;
 	char	*buff;
 
-	buff = NULL;
-	if (!envsearch("PWD="))
+	i = -1;
+	while (g_shell->env[++i])
 	{
-		buff = ft_strdup("PWD=");
-		buff = ft_strjoin(buff, new);
-		envupdate(buff);
-		free(buff);
-	}
-	if (!envsearch("OLDPWD="))
-	{
-		buff = ft_strdup("OLDPWD=");
-		buff = ft_strjoin(buff, old);
-		envupdate(buff);
-		free(buff);
+		if (!ft_strncmp(g_shell->env[i], "PWD=", 4))
+		{
+			buff = ft_strdup("PWD=");
+			buff = ft_strjoin(buff, new);
+			free(g_shell->env[i]);
+			g_shell->env[i] = ft_strdup(buff);
+			free(buff);
+		}
+		else if (!ft_strncmp(g_shell->env[i], "OLDPWD", 6))
+		{
+			buff = ft_strdup("OLDPWD=");
+			buff = ft_strjoin(buff, old);
+			free(g_shell->env[i]);
+			g_shell->env[i] = ft_strdup(buff);
+			free(buff);
+		}
 	}
 }

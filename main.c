@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:33:50 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 19:18:36 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 01:06:10 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*exportedit(char *export)
 		if (equalcheck(export))
 		{
 			temp = export;
-			export = addquote(export);
+			export = addquote(export, 0);
 			free(temp);
 			return (export);
 		}
