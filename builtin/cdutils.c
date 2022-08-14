@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:55:59 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 19:58:27 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 21:18:08 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,15 +41,27 @@ int	cdcheck(char *command, char *old)
 	return (1);
 }
 
-void	notset(char *old)
+void	notset(char *old, int status)
 {
 	char	*buff;
 
-	buff = ft_strdup("HOME NOT SET");
-	write(2, buff, ft_strlen(buff));
-	write(1, "\n", 1);
-	free(old);
-	free(buff);
+	buff = NULL;
+	if (status == 1)
+	{
+		buff = ft_strdup("HOME NOT SET");
+		write(2, buff, ft_strlen(buff));
+		write(1, "\n", 1);
+		free(old);
+		free(buff);
+	}
+	if (status == 2)
+	{
+		buff = ft_strdup("minishell: cd: OLDPWD not set");
+		write(2, buff, ft_strlen(buff));
+		write(1, "\n", 1);
+		free(old);
+		free(buff);
+	}
 }
 
 void	exportpwdupdate(char *new, char *old)
@@ -57,15 +69,18 @@ void	exportpwdupdate(char *new, char *old)
 	int		i;
 	char	*buff;
 
-	i = 0;
+	i = -1;
 	buff = NULL;
-	while (g_shell->export[i])
+	while (g_shell->export[++i])
 	{
 		if (!ft_strncmp(g_shell->export[i], "PWD=", 4))
 		{
 			free(g_shell->export[i]);
 			g_shell->export[i] = ft_strdup("PWD=");
 			g_shell->export[i] = ft_strjoin(g_shell->export[i], new);
+			buff = g_shell->export[i];
+			g_shell->export[i] = addquote(g_shell->export[i]);
+			free(buff);
 		}
 		if (!ft_strncmp(g_shell->export[i], "OLDPWD", 5))
 		{
@@ -76,7 +91,6 @@ void	exportpwdupdate(char *new, char *old)
 			g_shell->export[i] = addquote(g_shell->export[i]);
 			free(buff);
 		}
-		i++;
 	}
 }
 

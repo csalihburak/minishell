@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 10:55:41 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 19:52:49 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 21:01:00 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,34 @@ char	*ft_getenv(char *arr)
 		i++;
 	}
 	return (NULL);
+}
+
+char	*deletechar(char *array, char c)
+{
+	int		i;
+	int		x;
+	int		len;
+	char	*newarray;
+
+	i = -1;
+	x = 0;
+	len = 0;
+	while (array[++i])
+	{
+		if (array[i] == c)
+			len++;
+	}
+	newarray = malloc(sizeof(char) * ft_strlen(array) - (len - 1));
+	i = -1;
+	while (array[++i])
+	{
+		if (array[i] != c)
+		{
+			newarray[x] = array[i];
+			x++;
+		}
+	}
+	newarray[x] = '\0';
+	return (newarray);
 }
 

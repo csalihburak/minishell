@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 16:04:49 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 19:52:17 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 20:43:24 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*cmdlistup(char *command)
 		{
 			free(buff[i]);
 			buff[i] = ft_strdup(g_shell->env[g_shell->envflag] + \
-			findindex(g_shell->env[g_shell->envflag], '=') + 1);
+			findfirstindex(g_shell->env[g_shell->envflag], '=') + 1);
 		}
 		else
 		{

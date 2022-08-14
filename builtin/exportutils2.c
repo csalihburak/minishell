@@ -6,13 +6,13 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 14:25:57 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 18:19:42 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 21:01:34 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-int	findindex(char *arr, char c)
+int	findfirstindex(char *arr, char c)
 {
 	int	i;
 
@@ -77,7 +77,7 @@ int	exportsearch(char *arr)
 	int	len;
 
 	i = -1;
-	len = findindex(arr, '=');
+	len = findfirstindex(arr, '=');
 	while (g_shell->export[++i])
 	{
 		if (!ft_strncmp(g_shell->export[i], arr, len))
@@ -107,7 +107,7 @@ int	envsearch(char *arr)
 
 	i = 0;
 	g_shell->envflag = 0;
-	len = findindex(arr, '=');
+	len = findfirstindex(arr, '=');
 	while (g_shell->env[i])
 	{
 		if (ft_strncmp(g_shell->env[i], arr, len) == 0)

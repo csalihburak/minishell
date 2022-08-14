@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:53:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 20:28:23 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 21:29:05 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	gohome(void)
 		pwdupdate(new, old);
 	}
 	else
-		notset(old);
+		notset(old, 1);
 }
 
 void	changedirectory(char *command)
@@ -45,29 +45,35 @@ void	golastpwd(void)
 	int		i;
 	char	*old;
 	char	*new;
-	char	*oldpwd;
+	char	*temp;
 
 	i = 0;
-	old = 0;
-	new = 0;
-	oldpwd = 0;
+	old = getcwd(NULL, 0);
 	while (g_shell->export[i])
 	{
 		if (!ft_strcmp(g_shell->export[i], "OLDPWD"))
-			printf("test\n");
+			notset(old, 2);
+		if (!ft_strncmp(g_shell->export[i], "OLDPWD=", 7))
+		{
+			new = deletechar(g_shell->export[i], '\"');
+			temp = new;
+			new = ft_strdup(new + findfirstindex(new, '=') + 1);
+			chdir(new);
+			free(temp);
+		}
 		i++;
 	}
-	old = getcwd(NULL, 0);
+	free(new);
+	free(old);
 }
 
 int	ft_cd(char *command)
 {
 	if (!command)
 		gohome();
-	if (!ft_strcmp(command, "-"))
+	else if (!ft_strcmp(command, "-"))
 		golastpwd();
 	else
 		changedirectory(command);
 	return (1);
 }
-

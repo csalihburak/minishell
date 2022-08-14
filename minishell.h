@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 19:57:07 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 21:01:09 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,7 @@ int		envexe(void);
 int		dblen(char **array);
 int		dolar(void);
 void	op_handle(char *command);
+char	*deletechar(char *array, char c);
 char	*ft_getenv(char *arr);
-void	notset(char *old);
-int		cdcheck(char *command, char *old);
 
 #endif
