@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/14 03:03:09 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/14 06:14:25 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,20 @@ char	**ft_merge2(t_op *file)
 {
 	char	*res;
 	int		i;
-	int		k;
 
 	i = 0;
-	k = 0;
 	while (file->cmd_list[i])
 		i++;
 	res = malloc(2048);
 	i = 0;
 	while (file->cmd_list[i])
 	{
-		while (file->cmd_list[i + 1] && \
-		!(ft_strncmp(file->cmd_list[i], ">>", 2) == 0 || \
-		ft_strncmp(file->cmd_list[i], "<", 1) == 0 \
-		|| ft_strncmp(file->cmd_list[i], "<<", 2) == 0 || \
-		ft_strncmp(file->cmd_list[i], ">", 1) == 0))
+		while (file->cmd_list[i + 1] && !operator_check(file->cmd_list[i]))
 		{
 			res = ft_strjoin(res, file->cmd_list[i]);
-			if (!(ft_strncmp(file->cmd_list[i + 1], ">>", 2) == 0 || \
-			ft_strncmp(file->cmd_list[i + 1], "<", 1) == 0 \
-			|| ft_strncmp(file->cmd_list[i + 1], "<<", 2) == 0 || \
-			ft_strncmp(file->cmd_list[i + 1], ">", 1) == 0))
+			if (!operator_check(file->cmd_list[i]))
 				res = ft_strjoin(res, " ");
 			i++;
-		}
-		if (file->cmd_list[i])
-		{
-			res = ft_strjoin(res, "\"");
-			res = ft_strjoin(res, file->cmd_list[i]);
-			res = ft_strjoin(res, "\"");
 		}
 		i++;
 	}
