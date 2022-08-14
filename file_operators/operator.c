@@ -37,9 +37,6 @@ void	ft_path2(t_op *file)
 
 int	ft_execve3(char *arr, char **lst, char **env)
 {
-	int	i;
-
-	i = 0;
 	execve(arr, lst, env);
 	kill(getpid(), SIGTERM);
 	return (0);

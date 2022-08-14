@@ -14,10 +14,8 @@
 
 void	envunset(char *commandlist)
 {
-	int	i;
 	int	temp;
 
-	i = 0;
 	temp = 0;
 	if (!envsearch(commandlist) && g_shell->unsetflag != 1)
 	{

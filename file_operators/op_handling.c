@@ -42,9 +42,7 @@ char	**ft_merge2(t_op *file)
 void	op_handle(char *command)
 {
 	t_op	*file;
-	int		i;
 
-	i = 0;
 	file = malloc(sizeof(t_op));
 	file->cmd_list = ft_split(command, ' ');
 	ft_merge2(file);

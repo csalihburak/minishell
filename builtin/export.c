@@ -52,9 +52,6 @@ int	exportequal(char *command)
 
 int	underlinecheck(char *command)
 {
-	int	i;
-
-	i = 0;
 	if (command[0] == '_' && command[1] == '\0')
 		return (0);
 	else
