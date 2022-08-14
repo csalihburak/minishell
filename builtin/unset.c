@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 10:56:28 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 16:39:25 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 19:33:06 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,12 @@ int	unset(void)
 	char	*buff;
 
 	i = 0;
-	buff = ft_strdup("minishell: unset: `");
+	buff = NULL;
 	while (g_shell->commandlist[++i])
 	{
 		if (equalcheck(g_shell->commandlist[i]))
 		{
+			buff = ft_strdup("minishell: unset: `");
 			buff = ft_strjoin(buff, g_shell->commandlist[i]);
 			buff = ft_strjoin(buff, "'");
 			buff = ft_strjoin(buff, ": not a valid identifier");
@@ -79,7 +80,6 @@ int	unset(void)
 		}
 		exportunset(g_shell->commandlist[i]);
 		envunset(g_shell->commandlist[i]);
-		free(buff);
 	}
 	return (1);
 }

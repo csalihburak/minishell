@@ -6,30 +6,47 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:33:50 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 17:32:14 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 19:18:36 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	envcpy(char **env)
+char	*exportedit(char *export)
+{
+	char	*temp;
+
+	temp = NULL;
+	if (!ft_strncmp(export, "OLDPWD=", 7))
+	{
+		free(export);
+		export = ft_strdup("OLDPWD");
+		return (export);
+	}
+	else
+	{
+		if (equalcheck(export))
+		{
+			temp = export;
+			export = addquote(export);
+			free(temp);
+			return (export);
+		}
+	}
+	return (export);
+}
+
+void	exportenvcpy(char **env)
 {
 	int		i;
 	char	*buff;
 
-	i = 0;
+	i = -1;
 	buff = merge(env);
 	g_shell->env = ft_split(buff, ' ');
 	g_shell->export = ft_split(buff, ' ');
-	while (g_shell->export[i])
-	{
-		if (!ft_strncmp(g_shell->export[i], "OLDPWD=", 7))
-		{
-			free(g_shell->export[i]);
-			g_shell->export[i] = ft_strdup("OLDPWD");
-		}
-		i++;
-	}
+	while (g_shell->export[++i])
+		g_shell->export[i] = exportedit(g_shell->export[i]);
 	free(g_shell->export[i - 1]);
 	g_shell->export[i - 1] = NULL;
 	free(buff);
@@ -72,7 +89,7 @@ int	main(int argc, char **argv, char **env)
 	(void)argc;
 	(void)argv;
 	g_shell = malloc(sizeof(t_shell));
-	envcpy(env);
+	exportenvcpy(env);
 	while (1)
 		start();
 	return (0);
