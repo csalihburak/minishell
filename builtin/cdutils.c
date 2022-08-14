@@ -6,13 +6,13 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:55:59 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 21:18:08 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 23:04:15 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-int	cdcheck(char *command, char *old)
+int	cdcheck(char *command)
 {
 	char	*buff;
 
@@ -24,7 +24,6 @@ int	cdcheck(char *command, char *old)
 		buff = ft_strjoin(buff, strerror(errno));
 		write(2, buff, ft_strlen(buff));
 		write(1, "\n", 1);
-		free(old);
 		free(buff);
 		return (0);
 	}
@@ -33,7 +32,6 @@ int	cdcheck(char *command, char *old)
 		buff = ft_strjoin(buff, strerror(errno));
 		write(2, buff, ft_strlen(buff));
 		write(1, "\n", 1);
-		free(old);
 		free(buff);
 		return (0);
 	}
@@ -41,7 +39,7 @@ int	cdcheck(char *command, char *old)
 	return (1);
 }
 
-void	notset(char *old, int status)
+void	notset(int status)
 {
 	char	*buff;
 
@@ -51,7 +49,6 @@ void	notset(char *old, int status)
 		buff = ft_strdup("HOME NOT SET");
 		write(2, buff, ft_strlen(buff));
 		write(1, "\n", 1);
-		free(old);
 		free(buff);
 	}
 	if (status == 2)
@@ -59,63 +56,49 @@ void	notset(char *old, int status)
 		buff = ft_strdup("minishell: cd: OLDPWD not set");
 		write(2, buff, ft_strlen(buff));
 		write(1, "\n", 1);
-		free(old);
 		free(buff);
 	}
 }
 
 void	exportpwdupdate(char *new, char *old)
 {
-	int		i;
 	char	*buff;
 
-	i = -1;
 	buff = NULL;
-	while (g_shell->export[++i])
+	if (!exportsearch("PWD="))
 	{
-		if (!ft_strncmp(g_shell->export[i], "PWD=", 4))
-		{
-			free(g_shell->export[i]);
-			g_shell->export[i] = ft_strdup("PWD=");
-			g_shell->export[i] = ft_strjoin(g_shell->export[i], new);
-			buff = g_shell->export[i];
-			g_shell->export[i] = addquote(g_shell->export[i]);
-			free(buff);
-		}
-		if (!ft_strncmp(g_shell->export[i], "OLDPWD", 5))
-		{
-			free(g_shell->export[i]);
-			g_shell->export[i] = ft_strdup("OLDPWD=");
-			g_shell->export[i] = ft_strjoin(g_shell->export[i], old);
-			buff = g_shell->export[i];
-			g_shell->export[i] = addquote(g_shell->export[i]);
-			free(buff);
-		}
+		buff = ft_strdup("PWD=");
+		buff = ft_strjoin(buff, new);
+		exportupdate(buff);
+		free(buff);
+	}
+	if (!exportsearch("OLDPWD="))
+	{
+		buff = ft_strdup("OLDPWD=");
+		buff = ft_strjoin(buff, old);
+		exportupdate(buff);
+		free(buff);
 	}
 }
 
-void	pwdupdate(char *new, char *old)
+void	envpwdupdate(char *new, char *old)
 {
-	int		i;
+	char	*buff;
 
-	i = 0;
-	while (g_shell->env[i])
+	buff = NULL;
+	exportpwdupdate(new, old);
+	if (!envsearch("PWD="))
 	{
-		exportpwdupdate(new, old);
-		if (!ft_strncmp(g_shell->env[i], "PWD=", 4))
-		{
-			free(g_shell->env[i]);
-			g_shell->env[i] = ft_strdup("PWD=");
-			g_shell->env[i] = ft_strjoin(g_shell->env[i], new);
-		}
-		if (!ft_strncmp(g_shell->env[i], "OLDPWD=", 6))
-		{
-			free(g_shell->env[i]);
-			g_shell->env[i] = ft_strdup("OLDPWD=");
-			g_shell->env[i] = ft_strjoin(g_shell->env[i], old);
-		}
-		i++;
+		buff = ft_strdup("PWD=");
+		buff = ft_strjoin(buff, new);
+		envupdate(buff);
+		free(buff);
 	}
-	free(new);
-	free(old);
+	if (!envsearch("OLDPWD="))
+	{
+		buff = ft_strdup("OLDPWD=");
+		buff = ft_strjoin(buff, old);
+		envupdate(buff);
+		free(buff);
+	}
 }

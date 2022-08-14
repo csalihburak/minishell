@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:53:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 21:29:05 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 23:00:53 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,13 @@ void	gohome(void)
 	if (chdir(ft_getenv("HOME")) == 0)
 	{
 		new = getcwd(NULL, 0);
-		pwdupdate(new, old);
+		exportpwdupdate(new, old);
+		envpwdupdate(new, old);
+		free(new);
 	}
 	else
-		notset(old, 1);
+		notset(1);
+	free(old);
 }
 
 void	changedirectory(char *command)
@@ -33,11 +36,14 @@ void	changedirectory(char *command)
 	char	*new;
 
 	old = getcwd(NULL, 0);
-	if (cdcheck(command, old))
+	if (cdcheck(command))
 	{
 		new = getcwd(NULL, 0);
-		pwdupdate(new, old);
+		exportpwdupdate(new, old);
+		envpwdupdate(new, old);
+		free(new);
 	}
+	free(old);
 }
 
 void	golastpwd(void)
@@ -52,7 +58,7 @@ void	golastpwd(void)
 	while (g_shell->export[i])
 	{
 		if (!ft_strcmp(g_shell->export[i], "OLDPWD"))
-			notset(old, 2);
+			notset(2);
 		if (!ft_strncmp(g_shell->export[i], "OLDPWD=", 7))
 		{
 			new = deletechar(g_shell->export[i], '\"');
