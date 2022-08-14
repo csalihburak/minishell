@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:54:53 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/12 18:20:29 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/14 02:52:55 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,10 @@ int	op_check(t_op *file)
 	{
 		if (ft_strchr(file->cmd_list[i], '|'))
 		{
-			file->pipe_flag = 1;
+			file->pipe_flag = 0;
 			file->pipe_list = ft_split(file->cmd_list[i], '|');
 			while (file->pipe_list[i++])
 				file->pipe_flag++;
-			file->pipe_flag -= 1;
 			return (1);
 		}
 		else

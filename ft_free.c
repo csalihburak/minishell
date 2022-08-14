@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 10:26:44 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/13 18:53:06 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 03:07:05 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	ft_free(void)
 	int	i;
 
 	i = -0;
-	if (g_shell->pipe_flag == 0 && g_shell->command[0] > 0)
+	if (g_shell->pipe_flag == 0 && g_shell->command[0] > 0 && \
+	g_shell->op_flag == 0)
 	{
 		if (g_shell->commandlist)
 		{
