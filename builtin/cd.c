@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:53:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 16:57:00 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 18:16:56 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,34 @@ void	notset(char *old)
 	free(buff);
 }
 
+void	exportpwdupdate(char *new, char *old)
+{
+	int		i;
+	char	*buff;
+
+	i = 0;
+	buff = NULL;
+	while (g_shell->export[i])
+	{
+		if (!ft_strncmp(g_shell->export[i], "PWD=", 4))
+		{
+			free(g_shell->export[i]);
+			g_shell->export[i] = ft_strdup("PWD=");
+			g_shell->export[i] = ft_strjoin(g_shell->export[i], new);
+		}
+		if (!ft_strncmp(g_shell->export[i], "OLDPWD", 5))
+		{
+			free(g_shell->export[i]);
+			g_shell->export[i] = ft_strdup("OLDPWD=");
+			g_shell->export[i] = ft_strjoin(g_shell->export[i], old);
+			buff = g_shell->export[i];
+			g_shell->export[i] = addquote(g_shell->export[i]);
+			free(buff);
+		}
+		i++;
+	}
+}
+
 void	pwdupdate(char *new, char *old)
 {
 	int		i;
@@ -59,6 +87,7 @@ void	pwdupdate(char *new, char *old)
 	i = 0;
 	while (g_shell->env[i])
 	{
+		exportpwdupdate(new, old);
 		if (!ft_strncmp(g_shell->env[i], "PWD=", 4))
 		{
 			free(g_shell->env[i]);

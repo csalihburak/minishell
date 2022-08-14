@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:33:50 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 17:09:15 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 17:32:14 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,14 @@ void	envcpy(char **env)
 	g_shell->env = ft_split(buff, ' ');
 	g_shell->export = ft_split(buff, ' ');
 	while (g_shell->export[i])
+	{
+		if (!ft_strncmp(g_shell->export[i], "OLDPWD=", 7))
+		{
+			free(g_shell->export[i]);
+			g_shell->export[i] = ft_strdup("OLDPWD");
+		}
 		i++;
+	}
 	free(g_shell->export[i - 1]);
 	g_shell->export[i - 1] = NULL;
 	free(buff);

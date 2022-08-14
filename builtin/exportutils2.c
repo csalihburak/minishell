@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 14:25:57 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 17:12:52 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 18:19:42 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,13 @@ char	*addquote(char *commandlist)
 	i = 0;
 	while (commandlist[i])
 		i++;
-	buff = malloc(sizeof(char) * (i + 2));
-	i = -1;
-	while (commandlist[++i] != '=')
+	buff = malloc(sizeof(char) * (i + 3));
+	i = 0;
+	while (commandlist[i] != '=' && commandlist[i])
+	{
 		buff[i] = commandlist[i];
+		i++;
+	}
 	buff[i] = '=';
 	buff[i + 1] = '"';
 	while (commandlist[i])
@@ -45,6 +48,7 @@ char	*addquote(char *commandlist)
 		buff[i + 2] = commandlist[i + 1];
 		i++;
 	}
+	buff[i + 1] = '"';
 	buff[i + 2] = '\0';
 	return (buff);
 }
