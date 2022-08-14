@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 16:04:49 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 16:47:39 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 19:52:17 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	dolar(void)
 	g_shell->freeflag = 0;
 	while (g_shell->commandlist[i])
 	{
-		if (commandsearch(g_shell->commandlist[i], "$_"))
+		if (!ft_strcmp(g_shell->commandlist[i], "$_"))
 		{
 			g_shell->freeflag = 1;
 			free(g_shell->commandlist[i]);

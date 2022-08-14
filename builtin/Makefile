@@ -9,6 +9,7 @@ SRCS = cd.c		\
 	echo.c			\
 	unset.c			\
 	export.c		\
+	cdutils.c		\
 	ft_builtin.c	\
 	exportutils.c	\
 	exportutils2.c	\

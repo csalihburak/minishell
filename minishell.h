@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 16:57:15 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 19:57:07 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,14 @@ void	run_pipes(void);
 void	ft_signal(void);
 void	ft_searchfor(char *arr);
 void	dbfree(char **arr);
-int		ft_commandsearch(void);
 int		ft_strcmp(char *arr, char *arr1);
 int		ft_builtinsearch_pipe(char *arr);
 int		envexe(void);
 int		dblen(char **array);
 int		dolar(void);
-int		commandsearch(char *s1, char *s2);
 void	op_handle(char *command);
 char	*ft_getenv(char *arr);
+void	notset(char *old);
+int		cdcheck(char *command, char *old);
 
 #endif

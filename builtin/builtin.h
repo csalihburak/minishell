@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 13:14:13 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 16:45:55 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 19:56:50 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ char	**sortexport(void);
 int		exportupdate(char *commandlist);
 int		findindex(char *arr, char c);
 int		unset(void);
+void	pwdupdate(char *new, char *old);
 #endif
