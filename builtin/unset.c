@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 10:56:28 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/13 21:18:58 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 16:39:25 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int	unset(void)
 		}
 		exportunset(g_shell->commandlist[i]);
 		envunset(g_shell->commandlist[i]);
+		free(buff);
 	}
 	return (1);
 }

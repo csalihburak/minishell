@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 02:23:09 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 16:57:15 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,6 @@ int		dblen(char **array);
 int		dolar(void);
 int		commandsearch(char *s1, char *s2);
 void	op_handle(char *command);
+char	*ft_getenv(char *arr);
 
 #endif

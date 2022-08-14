@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 13:14:13 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/13 21:35:44 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 16:45:55 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "unistd.h"
 
 void	ft_exit(void);
-void	envpwdupdate(char *old, char *new);
 int		ft_cd(char *command);
 int		ft_env(void);
 int		ft_builtinsearch(char *arr);

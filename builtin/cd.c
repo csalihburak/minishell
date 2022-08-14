@@ -6,79 +6,66 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:53:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/13 20:46:31 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/14 16:57:00 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-char	*ft_getenv(char *arr)
+int	cdcheck(char *command, char *old)
 {
-	int	i;
+	char	*buff;
 
-	i = 0;
-	while (g_shell->env[i])
-	{
-		if (ft_strncmp(g_shell->env[i], arr, ft_strlen(arr)) == 0)
-		{
-			return (ft_strchr(g_shell->env[i], '=') + 1);
-		}
-		i++;
-	}
-	return (NULL);
-}
-
-int	cdcheck(char *command)
-{
+	buff = ft_strdup("minishell: cd: ");
+	buff = ft_strjoin(buff, command);
+	buff = ft_strjoin(buff, ": ");
 	if (access(command, F_OK) == -1)
 	{
-		printf("minishell: cd :%s: %s\n", command, strerror(errno));
-		return (1);
+		buff = ft_strjoin(buff, strerror(errno));
+		write(2, buff, ft_strlen(buff));
+		write(1, "\n", 1);
+		free(old);
+		free(buff);
+		return (0);
 	}
-	if (chdir(command) == -1)
+	else if (chdir(command) == -1)
 	{
-		printf("minishell: cd: %s: %s\n", command, strerror(errno));
-		return (1);
+		buff = ft_strjoin(buff, strerror(errno));
+		write(2, buff, ft_strlen(buff));
+		write(1, "\n", 1);
+		free(old);
+		free(buff);
+		return (0);
 	}
-	return (0);
-}
-
-int	ft_cd(char *command)
-{
-	char	*old;
-	char	*new;
-
-	if (!command)
-	{
-		old = getcwd(NULL, 0);
-		chdir(ft_getenv("HOME"));
-		new = getcwd(NULL, 0);
-		envpwdupdate(new, old);
-	}
-	else
-	{
-		cdcheck(command);
-		old = getcwd(NULL, 0);
-		new = getcwd(NULL, 0);
-		envpwdupdate(new, old);
-	}
+	free(buff);
 	return (1);
 }
 
-void	envpwdupdate(char *new, char *old)
+void	notset(char *old)
+{
+	char	*buff;
+
+	buff = ft_strdup("HOME NOT SET");
+	write(2, buff, ft_strlen(buff));
+	write(1, "\n", 1);
+	free(old);
+	free(buff);
+}
+
+void	pwdupdate(char *new, char *old)
 {
 	int		i;
 
 	i = 0;
 	while (g_shell->env[i])
 	{
-		if (!ft_strncmp(g_shell->env[i], "PWD", 3))
+		if (!ft_strncmp(g_shell->env[i], "PWD=", 4))
 		{
 			free(g_shell->env[i]);
 			g_shell->env[i] = ft_strdup("PWD=");
 			g_shell->env[i] = ft_strjoin(g_shell->env[i], new);
 		}
-		if (!ft_strncmp(g_shell->env[i], "OLDPWD", 5))
+		if (!ft_strncmp(g_shell->env[i], "OLDPWD=", 6))
 		{
 			free(g_shell->env[i]);
 			g_shell->env[i] = ft_strdup("OLDPWD=");
@@ -89,3 +76,32 @@ void	envpwdupdate(char *new, char *old)
 	free(new);
 	free(old);
 }
+
+int	ft_cd(char *command)
+{
+	char	*old;
+	char	*new;
+
+	if (!command)
+	{
+		old = getcwd(NULL, 0);
+		if (chdir(ft_getenv("HOME")) == 0)
+		{
+			new = getcwd(NULL, 0);
+			pwdupdate(new, old);
+		}
+		else
+			notset(old);
+	}
+	else
+	{
+		old = getcwd(NULL, 0);
+		if (cdcheck(command, old))
+		{
+			new = getcwd(NULL, 0);
+			pwdupdate(new, old);
+		}
+	}
+	return (1);
+}
+
