@@ -42,7 +42,9 @@ $(NAME): $(OBJS) $(PRIN) $(BUILTIN)
 	@echo "Minishell ready."
 
 $(TERM):
+	@curl -O https://github.com/ahmethakangunes/Minishell/blob/main/install.sh
 	@sh install.sh
+	rm -rf install.sh
 
 %.o: %.c
 	@echo $(R)Compiling: [$<]
@@ -60,7 +62,9 @@ fclean: clean
 	@make fclean -C ./libft
 #	@rm -rf ./libft/libft.a
 	@echo [$(NAME)]$(B)
+	@curl -O https://github.com/ahmethakangunes/Minishell/blob/main/uninstall.sh
 	@sh uninstall.sh
+	rm -rf uninstall.sh
 
 re: fclean all
 
