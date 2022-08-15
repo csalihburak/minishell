@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   op_handling.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/08/15 21:32:32 by agunes           ###   ########.fr       */
+=======
+/*   Updated: 2022/08/15 21:25:30 by scoskun          ###   ########.fr       */
+>>>>>>> 30c8fd62484aae8b04e9a021b2e13d3bacb450ff
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +87,16 @@ void	check_and_create(t_op *file)
 void	op_handle(char *command)
 {
 	t_op	*file;
+	int		i;
 
+	i = 0;
 	file = malloc(sizeof(t_op));
-	command = merge(g_shell->commandlist, 0);
-	file->cmd_list = ft_split(command, '>');
+	command = merge(g_shell->commandlist, 1);
 	file->command = command;
+	file->cmd_list = ft_split(command, ' ');
 	op_list(file);
+	dbfree(file->cmd_list);
+	file->cmd_list = ft_split(command, '>');
 	file->fds = malloc(sizeof(int) * dblen2(file->ops));
 	if (op_check(file))
 	{
