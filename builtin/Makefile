@@ -2,15 +2,15 @@ NAME = builtin.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g 
 ARFLAGS = -rcs
-SRCS = cd.c		\
-	env.c 		\
+SRCS = cd.c			\
+	env.c 			\
 	pwd.c			\
 	exit.c			\
 	echo.c			\
 	unset.c			\
 	export.c		\
 	cdutils.c		\
-	ft_builtin.c	\
+	builtin.c		\
 	exportutils.c	\
 	exportutils2.c	\
 
