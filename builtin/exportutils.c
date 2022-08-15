@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:00:33 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 03:50:40 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 05:40:07 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	addexport(char *commandlist)
 		g_shell->export[i] = ft_strdup(commandlist);
 		g_shell->export[i + 1] = NULL;
 	}
+	free(commandlist);
 }
 
 void	addenv(char *commandlist)

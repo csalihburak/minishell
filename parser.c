@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parser.c                                        :+:      :+:    :+:   */
+/*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:06:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/13 17:08:12 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 05:28:06 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	**splt2(char *command)
 	return (cmd);
 }
 
-char	*merge(char **command)
+char	*merge(char **command, int status)
 {
 	char	*arr;
 	int		i;
@@ -81,8 +81,9 @@ char	*merge(char **command)
 		j = 0;
 		while (command[i][j])
 			arr[k++] = command[i][j++];
-		if (command[i + 1])
-			arr[k++] = ' ';
+		if (status == 1)
+			if (command[i + 1])
+				arr[k++] = ' ';
 		i++;
 	}
 	arr[k] = '\0';

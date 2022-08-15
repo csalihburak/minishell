@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 16:04:49 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 20:43:24 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 05:23:29 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,30 +24,6 @@ int	dolarfind(char *arr)
 		i++;
 	}
 	return (0);
-}
-
-char	*merge2(char **command)
-{
-	char	*arr;
-	int		i;
-	int		j;
-	int		k;
-
-	i = 0;
-	k = 0;
-	arr = malloc(sizeof(char) * dblen(command));
-	while (command[i])
-	{
-		j = 0;
-		if (command[i][0] == '1' && command[i][1] == '\0')
-			if (command[i + 1])
-				i++;
-		while (command[i][j])
-			arr[k++] = command[i][j++];
-		i++;
-	}
-	arr[k] = '\0';
-	return (arr);
 }
 
 char	*cmdlistup(char *command)
@@ -72,7 +48,7 @@ char	*cmdlistup(char *command)
 			buff[i] = ft_strdup("");
 		}
 	}
-	temp = merge2(buff);
+	temp = merge(buff, 0);
 	free(command);
 	dbfree(buff);
 	return (temp);

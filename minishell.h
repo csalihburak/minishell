@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 04:39:41 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 05:23:14 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	**spltnorm(char *command, int i, int k, int j);
 char	**splt2norm(char *command, int i, int k, int j);
 char	*ft_strjoin(char *s1, char *s2);
 char	*ft_prompt(void);
-char	*merge(char **command);
+char	*merge(char **command, int status);
 void	ft_parser(void);
 void	runcommand(char *arr);
 char	**path(char **path, char *command);
