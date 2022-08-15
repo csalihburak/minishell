@@ -10,6 +10,7 @@ SRCS = main.c \
 	parser2.c	\
 	execute.c	\
 	free.c		\
+	exportenv.c	\
 	./Pipe/token.c			\
 	./Pipe/run_pipes.c		\
 	./file_operators/op_handling.c	\

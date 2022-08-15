@@ -6,51 +6,11 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:33:50 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 05:26:18 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 19:44:27 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-char	*exportedit(char *export)
-{
-	char	*temp;
-
-	temp = NULL;
-	if (!ft_strncmp(export, "OLDPWD=", 7))
-	{
-		free(export);
-		export = ft_strdup("OLDPWD");
-		return (export);
-	}
-	else
-	{
-		if (equalcheck(export))
-		{
-			temp = export;
-			export = addquote(export, 0);
-			free(temp);
-			return (export);
-		}
-	}
-	return (export);
-}
-
-void	exportenvcpy(char **env)
-{
-	int		i;
-	char	*buff;
-
-	i = -1;
-	buff = merge(env, 1);
-	g_shell->env = ft_split(buff, ' ');
-	g_shell->export = ft_split(buff, ' ');
-	while (g_shell->export[++i])
-		g_shell->export[i] = exportedit(g_shell->export[i]);
-	free(g_shell->export[i - 1]);
-	g_shell->export[i - 1] = NULL;
-	free(buff);
-}
 
 void	prompt(void)
 {

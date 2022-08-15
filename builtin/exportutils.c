@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:00:33 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 05:40:07 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 21:29:40 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,14 @@ void	addexport(char *commandlist)
 		commandlist = addquote(commandlist, 0);
 		g_shell->export[i] = ft_strdup(commandlist);
 		g_shell->export[i + 1] = NULL;
+		free(commandlist);
 	}
 	else
 	{
 		g_shell->export[i] = ft_strdup(commandlist);
 		g_shell->export[i + 1] = NULL;
+		free(commandlist);
 	}
-	free(commandlist);
 }
 
 void	addenv(char *commandlist)
@@ -61,6 +62,7 @@ int	exportupdate(char *commandlist)
 	int	i;
 
 	i = g_shell->exportflag;
+	printf("%d\n", g_shell->exportflag);
 	if (g_shell->exportflag != 0)
 	{
 		if (equalcheck(commandlist))

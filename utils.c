@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 10:55:41 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 22:09:17 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 19:26:34 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,4 +99,3 @@ char	*deletechar(char *array, char c)
 	newarray[x] = '\0';
 	return (newarray);
 }
-

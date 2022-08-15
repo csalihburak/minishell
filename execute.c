@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:08:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 05:26:39 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 17:59:40 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,7 @@ int	exec(char **commandlist, char *path)
 		kill(getpid(), SIGTERM);
 	}
 	else
-	{
 		wait(NULL);
-	}
 	return (0);
 }
 
