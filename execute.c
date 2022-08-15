@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_execute.c                                       :+:      :+:    :+:   */
+/*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:08:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 02:50:40 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 03:05:05 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_path(char *command)
+void	path(char *command)
 {
 	int		i;
 
@@ -35,7 +35,7 @@ void	ft_path(char *command)
 	}
 }
 
-int	ft_execve(char *path)
+int	exec(char *path)
 {
 	int			pid;
 
@@ -53,7 +53,7 @@ int	ft_execve(char *path)
 	return (0);
 }
 
-void	ft_searchfor(char *command)
+void	searchfor(char *command)
 {
 	int	i;
 
@@ -63,13 +63,13 @@ void	ft_searchfor(char *command)
 	{
 		if (access(g_shell->path[i], F_OK) == 0)
 		{
-			ft_execve(g_shell->path[i]);
+			exec(g_shell->path[i]);
 			g_shell->exeflag = 1;
 		}
 		else if (ft_strchr(command, '/'))
 		{
 			if (access(command, X_OK) == 0)
-				ft_execve(command);
+				exec(command);
 			else
 				g_shell->exeflag = -1;
 		}
@@ -95,10 +95,10 @@ void	runcommand(char *command)
 		run_pipes();
 	else
 	{
-		ft_path(command);
+		path(command);
 		if (ft_builtinsearch(command) == 0)
 		{
-			ft_searchfor(command);
+			searchfor(command);
 			checkerror(command);
 		}
 	}

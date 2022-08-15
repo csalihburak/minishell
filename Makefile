@@ -6,10 +6,10 @@ SRCS = main.c \
 	dolar.c		\
 	utils.c		\
 	signal.c	\
-	ft_parser.c	\
-	ft_parser2.c	\
-	ft_execute.c	\
-	ft_free.c		\
+	parser.c	\
+	parser2.c	\
+	execute.c	\
+	free.c		\
 	./Pipe/token.c			\
 	./Pipe/create_pipes.c	\
 	./Pipe/run_pipes.c		\
