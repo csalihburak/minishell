@@ -6,13 +6,13 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:52:27 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/11 11:44:54 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 04:45:35 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-int	ft_env(void)
+int	env(void)
 {
 	int	i;
 

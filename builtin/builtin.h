@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 13:14:13 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 01:05:30 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 04:46:04 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@
 # include "../minishell.h"
 # include "unistd.h"
 
-void	ft_exit(void);
-int		ft_cd(char *command);
-int		ft_env(void);
-int		ft_builtinsearch(char *arr);
-int		ft_echo(char **command);
-int		ft_pwd(void);
+int		cd(char *command);
+int		env(void);
+int		builtinsearch(char *command);
+int		echo(char **command);
+int		pwd(void);
 int		export(void);
 int		equalcheck(char *commandlist);
 char	*ft_getenv(char *arr);

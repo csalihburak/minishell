@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:53:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 03:01:52 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 04:45:25 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	golastpwd(void)
 	free(old);
 }
 
-int	ft_cd(char *command)
+int	cd(char *command)
 {
 	if (!command)
 		gohome();

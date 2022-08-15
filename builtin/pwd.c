@@ -6,13 +6,13 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:31:24 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 03:24:04 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 04:45:49 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-int	ft_pwd(void)
+int	pwd(void)
 {
 	int		i;
 	char	*buff;

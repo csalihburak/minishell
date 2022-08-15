@@ -11,9 +11,7 @@ SRCS = main.c \
 	execute.c	\
 	free.c		\
 	./Pipe/token.c			\
-	./Pipe/create_pipes.c	\
 	./Pipe/run_pipes.c		\
-	./Pipe/pipe_builtin.c			\
 	./file_operators/op_handling.c	\
 	./file_operators/op_utils.c		\
 	./file_operators/operator.c		\

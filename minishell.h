@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 03:23:54 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 04:39:41 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_shell
 	int			echoflag;
 	int			pipe_flag;
 	int			envflag;
+	int			builtflag;
 	int			unsetflag;
 	int			exportflag;
 	int			freeflag;
@@ -69,17 +70,19 @@ char	*ft_prompt(void);
 char	*merge(char **command);
 void	ft_parser(void);
 void	runcommand(char *arr);
-void	path(char *arr);
+char	**path(char **path, char *command);
 void	ft_free(void);
 void	create_pipes(t_token *program);
+int		exec(char **commandlist, char *path);
 void	run_pipes(void);
 void	ft_signal(void);
-void	searchfor(char *command);
+void	searchfor(char **path, char **commandlist, char *command);
 void	dbfree(char **arr);
 int		ft_strcmp(char *arr, char *arr1);
 int		ft_builtinsearch_pipe(char *arr);
 int		dblen(char **array);
 int		dolar(void);
+void	checkerror(char *command);
 void	op_handle(char *command);
 char	*deletechar(char *array, char c);
 char	*ft_getenv(char *arr);

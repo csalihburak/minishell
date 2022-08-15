@@ -1,32 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_builtin.c                                       :+:      :+:    :+:   */
+/*   builtin.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:25:49 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 19:54:41 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 04:46:44 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-int	ft_builtinsearch(char *arr)
+char	*editcommand(char *command)
 {
-	if (!ft_strcmp(arr, "env"))
-		return (ft_env());
-	if (!ft_strcmp(arr, "cd"))
-		return (ft_cd(g_shell->commandlist[1]));
-	if (!ft_strcmp(arr, "echo"))
-		return (ft_echo(g_shell->commandlist));
-	if (!ft_strcmp(arr, "pwd"))
-		return (ft_pwd());
-	if (!ft_strcmp(arr, "exit"))
-		ft_exit();
-	if (!ft_strcmp(arr, "export"))
+	int	i;
+
+	i = 0;
+	while (command[i])
+	{
+		command[i] = ft_tolower(command[i]);
+		i++;
+	}
+	return (command);
+}
+
+int	builtinsearch(char *command)
+{
+	command = editcommand(command);
+	if (g_shell->builtflag == 1)
+	{
+		g_shell->path = g_shell->program->path;
+		g_shell->commandlist = g_shell->program->command;
+	}
+	if (!ft_strcmp(command, "env"))
+		return (env());
+	if (!ft_strcmp(command, "cd"))
+		return (cd(g_shell->commandlist[1]));
+	if (!ft_strcmp(command, "echo"))
+		return (echo(g_shell->commandlist));
+	if (!ft_strcmp(command, "pwd"))
+		return (pwd());
+	if (!ft_strcmp(command, "exit"))
+		exit(1);
+	if (!ft_strcmp(command, "export"))
 		return (export());
-	if (!ft_strcmp(arr, "unset"))
+	if (!ft_strcmp(command, "unset"))
 		return (unset());
 	return (0);
 }

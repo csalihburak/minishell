@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 12:48:17 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/13 15:58:54 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 04:45:31 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	echocheck(char **commandlist)
 	return (1);
 }
 
-int	ft_echo(char **commandlist)
+int	echo(char **commandlist)
 {
 	int	i;
 
