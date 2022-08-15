@@ -6,13 +6,13 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:08:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 00:36:28 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 02:50:40 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_path(char *arr)
+void	ft_path(char *command)
 {
 	int		i;
 
@@ -31,11 +31,11 @@ void	ft_path(char *arr)
 	{
 		g_shell->path[i] = ft_strjoin(g_shell->path[i], "/");
 		g_shell->path[i] = ft_strjoin(g_shell->path[i], \
-		arr);
+		command);
 	}
 }
 
-int	ft_execve(int i)
+int	ft_execve(char *path)
 {
 	int			pid;
 
@@ -43,7 +43,7 @@ int	ft_execve(int i)
 	pid = fork();
 	if (pid == 0)
 	{
-		execve(g_shell->path[i], g_shell->commandlist, g_shell->env);
+		execve(path, g_shell->commandlist, g_shell->env);
 		kill(getpid(), SIGTERM);
 	}
 	else
@@ -53,45 +53,41 @@ int	ft_execve(int i)
 	return (0);
 }
 
-void	ft_searchfor2(void)
+void	ft_searchfor(char *command)
 {
 	int	i;
 
 	i = -1;
+	g_shell->exeflag = 0;
 	while (g_shell->path[++i])
 	{
 		if (access(g_shell->path[i], F_OK) == 0)
 		{
-			g_shell->exeflag = 2;
-			ft_execve(i);
+			ft_execve(g_shell->path[i]);
+			g_shell->exeflag = 1;
 		}
-		if (ft_strchr(g_shell->commandlist[0], '/'))
+		else if (ft_strchr(command, '/'))
 		{
-			if (access(g_shell->commandlist[0], X_OK) == 0)
-			{
-				g_shell->exeflag = 2;
-				ft_execve(i);
-			}
-			else if (access(g_shell->commandlist[0], X_OK) == -1)
-				g_shell->exeflag = 1;
+			if (access(command, X_OK) == 0)
+				ft_execve(command);
+			else
+				g_shell->exeflag = -1;
 		}
 	}
 }
 
-void	ft_searchfor(char *arr)
+void	checkerror(char *command)
 {
-	g_shell->exeflag = 0;
-	ft_searchfor2();
 	if (g_shell->exeflag == 0)
 	{
 		printf("minishell: command not found: %s\n", \
 		(ft_strrchr(g_shell->path[0], '/') + 1));
 	}
-	if (g_shell->exeflag == 1)
-		printf("minishell: %s: %s\n", arr, strerror(errno));
+	if (g_shell->exeflag == -1)
+		printf("minishell: %s: %s\n", command, strerror(errno));
 }
 
-void	runcommand(char *arr)
+void	runcommand(char *command)
 {
 	if (g_shell->op_flag == 1)
 		op_handle(g_shell->command);
@@ -99,8 +95,11 @@ void	runcommand(char *arr)
 		run_pipes();
 	else
 	{
-		ft_path(arr);
-		if (ft_builtinsearch(arr) == 0)
-			ft_searchfor(arr);
+		ft_path(command);
+		if (ft_builtinsearch(command) == 0)
+		{
+			ft_searchfor(command);
+			checkerror(command);
+		}
 	}
 }

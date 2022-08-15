@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:53:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 01:09:14 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 03:01:52 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,19 +59,19 @@ void	golastpwd(void)
 	{
 		if (!ft_strcmp(g_shell->export[i], "OLDPWD"))
 			notset(2);
-		if (!ft_strncmp(g_shell->export[i], "OLDPWD=", 7))
+		else if (!ft_strncmp(g_shell->export[i], "OLDPWD=", 7))
 		{
 			new = deletechar(g_shell->export[i], '\"');
 			temp = new;
 			new = ft_strdup(new + findfirstindex(new, '=') + 1);
-			chdir(new);
+			cdcheck(new);
 			free(temp);
+			exportpwdupdate(new, old);
+			envpwdupdate(new, old);
+			free(new);
 		}
 		i++;
 	}
-	exportpwdupdate(new, old);
-	envpwdupdate(new, old);
-	free(new);
 	free(old);
 }
 

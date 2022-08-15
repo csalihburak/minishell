@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 21:01:09 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 02:35:10 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	ft_free(void);
 void	create_pipes(t_token *program);
 void	run_pipes(void);
 void	ft_signal(void);
-void	ft_searchfor(char *arr);
+void	ft_searchfor(char *command);
 void	dbfree(char **arr);
 int		ft_strcmp(char *arr, char *arr1);
 int		ft_builtinsearch_pipe(char *arr);

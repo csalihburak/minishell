@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 16:31:24 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 16:09:56 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 02:33:58 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	ft_pwd(void)
 {
 	int		i;
+	char	*buff;
 
 	i = 0;
 	while (g_shell->env[i++])
@@ -22,6 +23,9 @@ int	ft_pwd(void)
 		if (!ft_strncmp(g_shell->env[i], "PWD", 3))
 			break ;
 	}
-	printf("%s\n", g_shell->env[i]);
+	buff = ft_strdup("");
+	buff = ft_strjoin(buff, g_shell->env[i] + 4);
+	printf("%s\n", buff);
+	free(buff);
 	return (1);
 }
