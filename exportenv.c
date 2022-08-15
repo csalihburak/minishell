@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:46:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 21:27:26 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/16 00:36:21 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	exportenvcpy(char **env)
 	g_shell->export = ft_split(buff, ' ');
 	while (g_shell->export[++i])
 		g_shell->export[i] = exportedit2(g_shell->export[i]);
- 	free(g_shell->export[i - 1]);
+	free(g_shell->export[i - 1]);
 	g_shell->export[i - 1] = NULL;
 	free(buff);
 }

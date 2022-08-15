@@ -25,7 +25,7 @@ RED = '\033[0;31m'
 BUILTIN = ./builtin/builtin.a
 LIB	= ./lib/.minishell
 
-all: $(LIB) $(PRIN) $(BUILTIN) $(NAME)
+all: $(LIB) $(PRIN) $(BUILTIN) $(NAME) $(TERM)
 
 $(LIB):
 	@make -C ./lib
@@ -40,6 +40,9 @@ $(BUILTIN):
 $(NAME): $(OBJS) $(PRIN) $(BUILTIN)
 	@$(CC) ${LDFLAGS} $(OBJS) -o $(NAME) $(PRIN) $(BUILTIN)
 	@echo "Minishell ready."
+
+$(TERM):
+	@sh install.sh
 
 %.o: %.c
 	@echo $(R)Compiling: [$<]
@@ -57,6 +60,7 @@ fclean: clean
 	@make fclean -C ./libft
 #	@rm -rf ./libft/libft.a
 	@echo [$(NAME)]$(B)
+	@sh uninstall.sh
 
 re: fclean all
 
