@@ -5,8 +5,8 @@ cp -f ./minishell "$HOME"
 
 if grep "alias minishell='~/./minishell'" <"$shell_f" &>/dev/null && ls "$HOME"/./minishell &>/dev/null; then
 	echo "\033[33m\n -- Minishell already installed --\n\033[0m"
- 	exit 0
 
+    exit 0
 fi
 
 if ! grep "alias minishell='~/./minishell'" <"$shell_f" &>/dev/null; then
