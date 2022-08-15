@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 13:34:16 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/14 02:51:56 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/14 21:15:33 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ft_close2(int *arr)
 {
 	close(arr[1]);
 }
-
 
 void	run_ops(t_op *file, int i)
 {

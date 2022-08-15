@@ -6,13 +6,13 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 15:50:20 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/14 02:52:50 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/14 23:16:45 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_op.h"
 
-void	ft_path2(t_op *file)
+void	ft_path2(t_op *file, char *arr)
 {
 	int		i;
 
@@ -29,10 +29,8 @@ void	ft_path2(t_op *file)
 	while (file->path[++i])
 	{
 		file->path[i] = ft_strjoin(file->path[i], "/");
-		file->path[i] = ft_strjoin(file->path[i], \
-		file->pipe_command[0]);
+		file->path[i] = ft_strjoin(file->path[i], arr);
 	}
-	i = -1;
 }
 
 int	ft_execve3(char *arr, char **lst, char **env)
@@ -72,7 +70,7 @@ void	create_ops(t_op *file, char *command)
 
 	flag = 2;
 	file->pipe_command = ft_split(command, ' ');
-	ft_path2(file);
+	ft_path2(file, file->pipe_command[0]);
 	flag = ft_searchfor4(file, flag, -1);
 	if (flag == 1)
 		printf("minishell: %s: %s\n", strerror(errno), file->pipe_command[0]);

@@ -6,12 +6,11 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:54:53 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/14 05:58:42 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/14 22:25:22 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_op.h"
-
 
 int	operator_check(char *arr)
 {
@@ -26,26 +25,25 @@ int	operator_check(char *arr)
 	return (0);
 }
 
-
 void	op_list(t_op *file)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	char	**temp;
 
 	i = 0;
 	j = 0;
 	file->ops = malloc(sizeof(char *) * dblen(file->cmd_list));
-	while (file->cmd_list[i])
+	temp = ft_split(file->command, ' ');
+	while (temp[i])
 	{
-		if (operator_check(file->cmd_list[i]))
-			file->ops[j++] = ft_strdup(file->cmd_list[i]);
+		if (operator_check(temp[i]))
+			file->ops[j++] = ft_strdup(temp[i]);
 		i++;
 	}
 	file->ops[j] = NULL;
+	dbfree(temp);
 }
-
-
-
 
 int	op_check(t_op *file)
 {
