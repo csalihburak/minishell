@@ -5,7 +5,6 @@ ARFLAGS = -rcs
 SRCS = cd.c			\
 	env.c 			\
 	pwd.c			\
-	exit.c			\
 	echo.c			\
 	unset.c			\
 	export.c		\
