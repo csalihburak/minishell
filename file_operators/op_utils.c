@@ -6,11 +6,28 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:54:53 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/14 22:25:22 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/15 21:30:56 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_op.h"
+
+void	check_exec(t_op *file)
+{
+	int		i;
+	int		k;
+	char	**temp;
+
+	i = 0;
+	k = 0;
+	while (file->cmd_list[++i])
+	{
+		printf("'%s' %s\n", file->cmd_list[i], file->ops[i - 1]);
+		temp = ft_split(file->cmd_list[i], ' ');
+		file->fds[k++] = create_file(temp[0], file->ops[i - 1]);
+		printf("%d\n", file->fds[k - 1]);
+	}
+}
 
 int	operator_check(char *arr)
 {
@@ -35,8 +52,11 @@ void	op_list(t_op *file)
 	j = 0;
 	file->ops = malloc(sizeof(char *) * dblen(file->cmd_list));
 	temp = ft_split(file->command, ' ');
+	if (!temp)
+		return ;
 	while (temp[i])
 	{
+		printf("%s\n", temp[i]);
 		if (operator_check(temp[i]))
 			file->ops[j++] = ft_strdup(temp[i]);
 		i++;
