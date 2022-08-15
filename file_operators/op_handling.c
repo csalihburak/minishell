@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_handling.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/15 05:24:16 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/15 18:59:41 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	op_handle(char *command)
 	t_op	*file;
 
 	file = malloc(sizeof(t_op));
-	command = merge(g_shell->commandlist, 0);
+	command = merge(g_shell->commandlist, 1);
 	file->cmd_list = ft_split(command, '>');
 	file->command = command;
 	op_list(file);
