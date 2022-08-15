@@ -17,7 +17,6 @@ done
 if grep "alias minishell='~/./minishell'" <"$shell_f" &>/dev/null && ls "$HOME"/./minishell &>/dev/null; then
 	echo "\033[33m\n -- Minishell uninstall complete --\n\033[0m"
     sed -i '' -e '$ d' ~/.zshrc
-	sleep 1
     exit 0
 
 fi
@@ -25,7 +24,6 @@ fi
 if ! grep "alias minishell='~/./minishell'" <"$shell_f" &>/dev/null && ls "$HOME"/./minishell &>/dev/null; then
 	echo "\033[33m\n -- Minishell already uninstalled --\n\033[0m"
     sed -i '' -e '$ d' ~/.zshrc
-	sleep 1
     exit 0
 
 fi
