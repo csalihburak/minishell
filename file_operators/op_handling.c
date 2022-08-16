@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/16 18:03:31 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/16 18:28:03 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,11 @@ int	create_file(char *arr, char *op)
 		fd = open(a, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	else if (!ft_strcmp(op, ">>"))
 		fd = open(a, O_APPEND | O_RDWR, 0644);
+	free(a);
 	return (fd);
 }
 
-void	check_and_create(t_op *file)
+void	check_and_create(t_op *file, int flag)
 {
 	int		i;
 	int		fd;
@@ -43,11 +44,14 @@ void	check_and_create(t_op *file)
 		else
 			close(fd);
 	}
-	buff = ft_split(file->cmd_list[0], ' ');
-	file->path = path(file->path, buff[0]);
-	file_run(file, buff, buff[0]);
-	dbfree(buff);
-	dbfree(file->path);
+	if (flag == 1)
+	{
+		buff = ft_split(file->cmd_list[0], ' ');
+		file->path = path(file->path, buff[0]);
+		file_run(file, buff, buff[0]);
+		dbfree(buff);
+		dbfree(file->path);
+	}
 }
 
 void	op_handle(char *command)
@@ -67,7 +71,7 @@ void	op_handle(char *command)
 		dbfree(file->pipe_list);
 	}
 	else
-		check_and_create(file);
+		check_and_create(file, 1);
 	dbfree(g_shell->commandlist);
 	dbfree(file->cmd_list);
 	dbfree(file->ops);

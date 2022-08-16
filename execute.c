@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:08:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/16 17:59:41 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/16 18:18:56 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	exec(char **commandlist, char *path)
 {
 	int			pid;
 
-	pid = 0;
 	pid = fork();
 	if (pid == 0)
 	{
