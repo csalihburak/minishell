@@ -6,11 +6,43 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 13:35:33 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/16 01:04:29 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/16 17:04:45 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_op.h"
+
+int	dblen2(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
+}
+
+void	op_list(t_op *file)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	j = 0;
+	file->ops = malloc(sizeof(char *) * dblen(file->cmd_list));
+	while (file->command[++i])
+	{
+		if (file->command[i] == '>' && file->command[i + 1] != '>')
+			file->ops[j++] = ft_strdup(">");
+		else if (file->command[i] == '>' && file->command[i + 1] == '>')
+			file->ops[j++] = ft_strdup(">>");
+		else if (file->command[i] == '<' && file->command[i + 1] == '<')
+			file->ops[j++] = ft_strdup("<<");
+		else if (file->command[i] == '<' && file->command[i + 1] != '<')
+			file->ops[j++] = ft_strdup("<");
+	}
+	file->ops[j] = NULL;
+}
 
 void	op_setup(t_op *file)
 {

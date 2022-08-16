@@ -6,21 +6,11 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/16 16:22:10 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/16 17:50:14 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_op.h"
-
-int	dblen2(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-		i++;
-	return (i);
-}
 
 int	create_file(char *arr, char *op)
 {
@@ -50,10 +40,14 @@ void	check_and_create(t_op *file)
 		fd = create_file(file->cmd_list[i], file->ops[i - 1]);
 		if (!file->cmd_list[i + 1])
 			file->fd = fd;
-		close(file->fd);
+		else
+			close(fd);
 	}
-	buff = ft_split(file->cmd_list[i], ' ');
+	buff = ft_split(file->cmd_list[0], ' ');
 	file->path = path(file->path, buff[0]);
+	file_run(file, buff, buff[0]);
+	dbfree(buff);
+	dbfree(file->path);
 }
 
 void	op_handle(char *command)

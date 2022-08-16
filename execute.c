@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:08:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/16 05:28:14 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/16 17:44:19 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,11 @@ void	searchfor(char **path, char **commandlist, char *command)
 		else if (ft_strchr(command, '/'))
 		{
 			if (access(command, X_OK) == 0)
+			{
 				exec(commandlist, command);
+				g_shell->exeflag = 1;
+				break ;
+			}
 			else
 				g_shell->exeflag = -1;
 		}

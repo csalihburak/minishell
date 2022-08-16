@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 11:39:25 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/16 03:19:07 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/16 17:18:24 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_op
 	char	**pipe_list;
 	char	**pipe_command;
 	char	*command;
+	int		pid;
 	int		pipe_flag;
 	int		fd_rd;
 	int		**pipes;
@@ -35,6 +36,7 @@ typedef struct s_op
 int		operator_check(char *arr);
 int		op_check(t_op *file);
 int		dblen2(char **arr);
+int		file_run(t_op *file, char **cmd_list, char *command);
 int		create_file(char *arr, char *op);
 void	check_and_create(t_op *file);
 void	ft_path2(t_op *file, char *arr);
