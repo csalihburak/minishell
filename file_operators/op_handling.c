@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/16 18:28:03 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/17 01:50:44 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	op_handle(char *command)
 	op_list(file);
 	if (op_check(file))
 	{
+		for(i = 0; file->pipe_list[i]; i++)
+			printf("%d %s\n", i, file->pipe_list[i]);
 		op_setup(file);
 		dbfree(file->pipe_list);
 	}
