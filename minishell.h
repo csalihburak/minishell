@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/16 17:20:33 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/16 18:09:43 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int		dolar(void);
 void	checkerror(char *command);
 void	op_handle(char *command);
 char	*deletechar(char *array, char c);
-void	exportedit(char **export);
+char	**exportedit(char **export);
 void	exportenvcpy(char **env);
 
 #endif

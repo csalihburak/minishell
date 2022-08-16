@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 17:06:00 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/16 05:28:55 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/16 18:39:32 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,13 @@
 void	printexport(void)
 {
 	int		i;
+	char	**temp;
 
 	i = 0;
-	while (g_shell->export[i])
-		printf("declare -x %s\n", g_shell->export[i++]);
+	temp = exportedit(g_shell->export);
+	while (temp[i])
+		printf("declare -x %s\n", temp[i++]);
+	dbfree(temp);
 }
 
 int	exportequal(char *command)
