@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/16 05:29:38 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/16 17:20:33 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,5 @@ void	op_handle(char *command);
 char	*deletechar(char *array, char c);
 void	exportedit(char **export);
 void	exportenvcpy(char **env);
-char	*ft_getenv(char *arr);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 10:55:41 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/16 05:28:31 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/16 17:20:25 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,6 @@ int	dblen(char **array)
 		len++;
 	}
 	return (len);
-}
-
-char	*ft_getenv(char *arr)
-{
-	int	i;
-	int	len;
-
-	i = 0;
-	len = ft_strlen(arr);
-	while (g_shell->env[i])
-	{
-		if (ft_strncmp(g_shell->env[i], arr, len) == 0)
-			return (ft_strchr(g_shell->env[i], '=') + 1);
-		i++;
-	}
-	return (NULL);
 }
 
 char	*deletechar(char *array, char c)

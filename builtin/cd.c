@@ -6,28 +6,32 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:53:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 04:45:25 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/16 17:19:47 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "builtin.h"
 
-void	gohome(void)
+void    gohome(void)
 {
-	char	*old;
-	char	*new;
-
-	old = getcwd(NULL, 0);
-	if (chdir(ft_getenv("HOME")) == 0)
-	{
-		new = getcwd(NULL, 0);
-		exportpwdupdate(new, old);
-		envpwdupdate(new, old);
-		free(new);
-	}
-	else
-		notset(1);
-	free(old);
+    int     i;
+    char    *old;
+    char    *new;
+    i = -1;
+    while (g_shell->env[++i])
+        if (!ft_strncmp(g_shell->env[i], "HOME", 4))
+            break ;
+    old = getcwd(NULL, 0);
+    if (!chdir(g_shell->env[i] + findfirstindex(g_shell->env[i], '=') + 1))
+    {
+        new = getcwd(NULL, 0);
+        exportpwdupdate(new, old);
+        envpwdupdate(new, old);
+        free(new);
+    }
+    else
+        notset(1);
+    free(old);
 }
 
 void	changedirectory(char *command)
