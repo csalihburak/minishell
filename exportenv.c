@@ -6,13 +6,13 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:46:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/16 00:36:21 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/16 18:50:11 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*exportedit3(char *export)
+char	*exportedit4(char *export)
 {
 	int		i;
 	char	*buff;
@@ -33,12 +33,12 @@ char	*exportedit3(char *export)
 	return (export);
 }
 
-char	*exportedit2(char *export)
+char	*exportedit3(char *export)
 {
 	char	*temp;
 
 	temp = NULL;
-	export = exportedit3(export);
+	export = exportedit4(export);
 	if (!ft_strncmp(export, "OLDPWD=", 7))
 	{
 		free(export);
@@ -58,32 +58,48 @@ char	*exportedit2(char *export)
 	return (export);
 }
 
-void	exportedit(char **export)
+void	exportedit2(char *temp, char **buff2)
+{
+	int	i;
+	int	x;
+
+	i = -1;
+	x = -1;
+	while (buff2[++i])
+	{
+		x = -1;
+		while (buff2[++x + 1])
+		{	
+			if (buff2[x][0] > buff2[x + 1][0])
+			{
+				{
+					temp = ft_strdup(buff2[x]);
+					free(buff2[x]);
+					buff2[x] = ft_strdup(buff2[x + 1]);
+					free(buff2[x + 1]);
+					buff2[x + 1] = temp;
+				}
+			}
+		}
+	}
+}
+
+char	**exportedit(char **export)
 {
 	int		i;
 	int		x;
+	char	*buff;
+	char	**buff2;
 	char	*temp;
 
-	i = 0;
-	x = 0;
-	while (export[i])
-	{
-		x = 0;
-		while (export[x + 1])
-		{
-			if (export[x + 1][0] >= 65 && export[x + 1][0] <= 90)
-			{
-				if (export[x][0] > export[x + 1][0])
-				{
-					temp = export[x];
-					export[x] = export[x + 1];
-					export[x + 1] = temp;
-				}
-			}
-			x++;
-		}
-		i++;
-	}
+	i = -1;
+	x = -1;
+	temp = NULL;
+	buff = merge(export, 1);
+	buff2 = ft_split(buff, ' ');
+	exportedit2(temp, buff2);
+	free(buff);
+	return (buff2);
 }
 
 void	exportenvcpy(char **env)
@@ -96,7 +112,7 @@ void	exportenvcpy(char **env)
 	g_shell->env = ft_split(buff, ' ');
 	g_shell->export = ft_split(buff, ' ');
 	while (g_shell->export[++i])
-		g_shell->export[i] = exportedit2(g_shell->export[i]);
+		g_shell->export[i] = exportedit3(g_shell->export[i]);
 	free(g_shell->export[i - 1]);
 	g_shell->export[i - 1] = NULL;
 	free(buff);
