@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 11:39:25 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/15 19:40:58 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/16 03:19:07 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ typedef struct s_op
 {
 	char	**path;
 	char	**cmd_list;
-	char	**ops; // free
+	char	**ops;
 	char	**pipe_list;
 	char	**pipe_command;
 	char	*command;
@@ -36,6 +36,7 @@ int		operator_check(char *arr);
 int		op_check(t_op *file);
 int		dblen2(char **arr);
 int		create_file(char *arr, char *op);
+void	check_and_create(t_op *file);
 void	ft_path2(t_op *file, char *arr);
 void	run_ops(t_op *file, int i);
 void	create_ops(t_op *file, char *arr);

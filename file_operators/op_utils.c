@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:54:53 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/15 21:30:56 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/16 03:18:54 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@ void	check_exec(t_op *file)
 {
 	int		i;
 	int		k;
-	char	**temp;
+	int		fd;
 
-	i = 0;
+	i = 1;
 	k = 0;
-	while (file->cmd_list[++i])
+	while (file->cmd_list[i + 1])
 	{
-		printf("'%s' %s\n", file->cmd_list[i], file->ops[i - 1]);
-		temp = ft_split(file->cmd_list[i], ' ');
-		file->fds[k++] = create_file(temp[0], file->ops[i - 1]);
-		printf("%d\n", file->fds[k - 1]);
+		fd = create_file(file->cmd_list[i], file->ops[i - 1]);
+		printf("%d\n", fd);
+		close(fd);
+		i++;
 	}
 }
 
@@ -46,23 +46,22 @@ void	op_list(t_op *file)
 {
 	int		i;
 	int		j;
-	char	**temp;
 
-	i = 0;
+	i = -1;
 	j = 0;
 	file->ops = malloc(sizeof(char *) * dblen(file->cmd_list));
-	temp = ft_split(file->command, ' ');
-	if (!temp)
-		return ;
-	while (temp[i])
+	while (file->command[++i])
 	{
-		printf("%s\n", temp[i]);
-		if (operator_check(temp[i]))
-			file->ops[j++] = ft_strdup(temp[i]);
-		i++;
+		if (file->command[i] == '>' && file->command[i + 1] != '>')
+			file->ops[j++] = ft_strdup(">");
+		else if (file->command[i] == '>' && file->command[i + 1] == '>')
+			file->ops[j++] = ft_strdup(">>");
+		else if (file->command[i] == '<' && file->command[i + 1] == '<')
+			file->ops[j++] = ft_strdup("<<");
+		else if (file->command[i] == '<' && file->command[i + 1] != '<')
+			file->ops[j++] = ft_strdup("<");
 	}
 	file->ops[j] = NULL;
-	dbfree(temp);
 }
 
 int	op_check(t_op *file)
