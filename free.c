@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 10:26:44 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/16 16:18:13 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/16 17:13:31 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,20 @@ void	ft_free(void)
 	}
 }
 
-void	dbfree(char **arr)
+void	dbfree(char **array)
 {
 	int	i;
+	int	x;
 
 	i = 0;
-	while (arr[i])
-		free(arr[i++]);
-	free(arr);
-	arr = NULL;
+	x = 0;
+	while (array[i])
+	{
+		x = 0;
+		while (array[i][x])
+			array[i][x++] = '\0';
+		free(array[i]);
+	}
+	free(array);
+	array = NULL;
 }
