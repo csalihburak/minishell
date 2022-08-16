@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/16 03:10:10 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/16 16:22:10 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,20 @@ void	check_and_create(t_op *file)
 {
 	int		i;
 	int		fd;
+	char	**buff;
 
 	fd = 0;
-	i = 1;
-	while (file->cmd_list[i + 1])
+	i = 0;
+	buff = 0;
+	while (file->cmd_list[++i])
 	{
 		fd = create_file(file->cmd_list[i], file->ops[i - 1]);
-		close(fd);
-		i++;
+		if (!file->cmd_list[i + 1])
+			file->fd = fd;
+		close(file->fd);
 	}
+	buff = ft_split(file->cmd_list[i], ' ');
+	file->path = path(file->path, buff[0]);
 }
 
 void	op_handle(char *command)
@@ -67,6 +72,8 @@ void	op_handle(char *command)
 		op_setup(file);
 		dbfree(file->pipe_list);
 	}
+	else
+		check_and_create(file);
 	dbfree(g_shell->commandlist);
 	dbfree(file->cmd_list);
 	dbfree(file->ops);

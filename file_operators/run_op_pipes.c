@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 13:34:16 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/16 03:18:32 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/16 15:22:11 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,11 @@ void	run_run(t_op *file, int i)
 		close(file->pipes[i][1]);
 	}
 	else
-		norm_run(file, i);
+	{
+		dup2(file->pipes[i][0], 0);
+		dup2(file->pipes[i + 1][1], 1);
+		close(file->pipes[i][1]);
+	}
 }
 
 void	run_ops(t_op *file, int i)

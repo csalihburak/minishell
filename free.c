@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 10:26:44 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/16 05:28:22 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/16 16:18:13 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,5 @@ void	dbfree(char **arr)
 	while (arr[i])
 		free(arr[i++]);
 	free(arr);
+	arr = NULL;
 }

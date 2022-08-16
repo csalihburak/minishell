@@ -6,11 +6,28 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:54:53 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/16 03:18:54 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/16 16:23:59 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "file_op.h"
+
+int	file_run(t_op *file, char **cmd_list)
+{
+	int	i;
+
+	i = -1;
+	while (file->path[++i])
+	{
+		if (!access(file->path[i], X_OK))
+		{
+			dup2(file->fd, 1);
+			exec(cmd_list, file->path[i]);
+			close(file->fd);
+		}
+	}
+	return (1);
+}
 
 void	check_exec(t_op *file)
 {
