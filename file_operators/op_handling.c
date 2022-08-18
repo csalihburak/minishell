@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/17 01:52:53 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/18 13:58:16 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	create_file(char *arr, char *op)
 	if (!ft_strcmp(op, ">"))
 		fd = open(a, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	else if (!ft_strcmp(op, ">>"))
-		fd = open(a, O_APPEND | O_RDWR, 0644);
+		fd = open(a, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	free(a);
 	return (fd);
 }
@@ -36,18 +36,15 @@ void	check_and_create(t_op *file, int flag)
 	fd = 0;
 	i = 0;
 	buff = 0;
-	while (file->cmd_list[++i])
+	if (flag == 0)
 	{
-		fd = create_file(file->cmd_list[i], file->ops[i - 1]);
-		if (!file->cmd_list[i + 1])
-			file->fd = fd;
-		else
-			close(fd);
+		check_exec(file);
 	}
 	if (flag == 1)
 	{
 		buff = ft_split(file->cmd_list[0], ' ');
 		file->path = path(file->path, buff[0]);
+		check_exec(file);
 		file_run(file, buff, buff[0]);
 		dbfree(buff);
 		dbfree(file->path);
@@ -57,22 +54,21 @@ void	check_and_create(t_op *file, int flag)
 void	op_handle(char *command)
 {
 	t_op	*file;
-	int		i;
 
-	i = 0;
 	file = malloc(sizeof(t_op));
 	command = merge(g_shell->commandlist, 1);
 	file->command = command;
-	file->cmd_list = ft_split(command, '>');
+	if (ft_strchr(command, '>'))
+		file->cmd_list = ft_split(command, '>');
+	if (ft_strchr(command, '<'))
+		file->cmd_list = ft_split(command, '<');
 	op_list(file);
-	if (op_check(file))
+/* 	if (op_check(file))
 	{
-		for(i = 0; file->pipe_list[i]; i++)
-			printf("%d %s\n", i, file->pipe_list[i]);
 		op_setup(file);
 		dbfree(file->pipe_list);
 	}
-	else
+	else */
 		check_and_create(file, 1);
 	dbfree(g_shell->commandlist);
 	dbfree(file->cmd_list);

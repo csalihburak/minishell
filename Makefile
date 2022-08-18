@@ -18,6 +18,7 @@ SRCS = main.c \
 	./file_operators/operator.c		\
 	./file_operators/run_op_pipes.c		\
 	./file_operators/setup_op_pipe.c		\
+	./file_operators/pipe_handling.c		\
 
 OBJS= $(SRCS:.c=.o)
 PRIN = ./libft/libft.a

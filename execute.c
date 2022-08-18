@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:08:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/16 18:18:56 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/18 14:19:29 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	checkerror(char *command)
 void	runcommand(char *command)
 {
 	g_shell->builtflag = 0;
-	if (g_shell->op_flag == 1)
+	if (g_shell->op_flag == 1 && g_shell->pipe_flag == 0)
 		op_handle(g_shell->command);
 	else if (g_shell->pipe_flag > 0)
 		run_pipes();
