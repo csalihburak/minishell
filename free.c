@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 10:26:44 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/18 14:14:18 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/19 15:43:20 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	dbfree(char **array)
 
 	i = 0;
 	x = 0;
-	while (array[i])
+	while (array && array[i])
 	{
 		x = 0;
 		while (array[i][x])

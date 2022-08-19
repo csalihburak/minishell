@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 11:39:25 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/17 17:14:17 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/19 15:55:23 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int		operator_check(char *arr);
 int		op_check(t_op *file);
 int		dblen2(char **arr);
 int		file_run(t_op *file, char **cmd_list, char *command);
+int		file_creater(t_op *file);
 int		create_file(char *arr, char *op);
 char	*pipe_handling(t_op *file, char *command);
 void	check_and_create(t_op *file, int flag);

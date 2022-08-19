@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:33:50 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/19 14:39:30 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/19 14:58:12 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	start(void)
 	{
 		if (g_shell->command[0] > 0)
 		{
+			add_history(g_shell->command);
 			ft_free();
 			ft_parser();
 			dolar();
 			if (g_shell->commandlist[0])
 				runcommand(g_shell->commandlist[0]);
-			add_history(g_shell->command);
 			free(g_shell->command);
 		}
 		else

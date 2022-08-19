@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:49:03 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/19 14:40:22 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/19 15:26:57 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ char	*pipe_handling(t_op *file, char *command)
 	temp = ft_split(command, '|');
 	file->fd_rd = -1;
 	g_shell->command = ft_strdup((ft_strchr(command, '|') + 1));
-	dprintf(2, "gcmd %s\n", g_shell->command);
 	free(command);
 	command = ft_strdup(temp[0]);
 	dbfree(g_shell->commandlist);

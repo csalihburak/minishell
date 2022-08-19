@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/19 14:38:03 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/19 16:15:01 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,25 @@ void	check_and_create(t_op *file, int flag)
 {
 	int		i;
 	int		fd;
-	char	**buff;
+	char	**temp;
 
 	fd = 0;
 	i = 0;
-	buff = 0;
+	temp = 0;
 	if (flag == 0)
-		check_exec(file);
 	{
 		check_exec(file);
 	}
 	if (flag == 1)
 	{
-		buff = ft_split(file->cmd_list[0], ' ');
-		file->path = path(file->path, buff[0]);
-		check_exec(file);
-		file_run(file, buff, buff[0]);
-		dbfree(buff);
-		dbfree(file->path);
+		while (file->cmd_list[i + 1])
+			i++;
+		if (ft_strchr(file->cmd_list[i], '|'))
+			file->cmd_list[i] = pipe_handling(file, file->cmd_list[i]);
+		file->fd = create_file(file->cmd_list[i], file->ops[i - 1]);
+		temp = ft_split(file->cmd_list[0], ' ');
+		file->path = path(file->path, temp[0]);
+		file_run(file, temp, temp[0]);
 	}
 }
 
@@ -64,14 +65,15 @@ void	op_handle(char *command)
 	if (ft_strchr(command, '<'))
 		file->cmd_list = ft_split(command, '<');
 	op_list(file);
-	if (op_check(file))
+	if (!ft_strchr(file->cmd_list[0], '|'))
+		check_and_create(file, 1);
+	else
 	{
+		op_check(file);
 		op_setup(file);
 		dbfree(file->pipe_list);
 	}
-	else
-		check_and_create(file, 1);
-	dbfree(g_shell->commandlist);
+	//dbfree(g_shell->commandlist);
 	dbfree(file->cmd_list);
 	dbfree(file->ops);
 	g_shell->op_flag = 1;
