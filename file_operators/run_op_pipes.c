@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/12 13:34:16 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/18 13:43:05 by scoskun          ###   ########.fr       */
+/*   Created: 2022/08/19 14:37:00 by scoskun           #+#    #+#             */
+/*   Updated: 2022/08/19 14:37:03 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	run_run(t_op *file, int i)
 		dup2(file->pipes[i][0], 0);
 		dup2(file_creater(file), 1);
 		close(file->pipes[i][1]);
+		close(file->pipes[i][0]);
 	}
 	else
 	{
@@ -52,6 +53,7 @@ void	run_run(t_op *file, int i)
 
 void	run_ops(t_op *file, int i)
 {
+	printf("pipe_flag = %d\n", file->pipe_flag);
 	while (++i < file->pipe_flag)
 	{
 		file->pids[i] = fork();
@@ -61,6 +63,7 @@ void	run_ops(t_op *file, int i)
 			create_ops(file, file->pipe_list[i]);
 			kill(getpid(), SIGTERM);
 		}
+		printf("%s\n", file->pipe_list[i]);
 		close(file->pipes[i][1]);
 		close(file->pipes[i][0]);
 	}

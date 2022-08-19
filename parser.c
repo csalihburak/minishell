@@ -6,65 +6,11 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:06:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 05:28:06 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/19 14:41:38 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	ft_check(void)
-{
-	int	i;
-	int	d;
-	int	s;
-
-	d = 0;
-	s = 0;
-	i = 0;
-	while (g_shell->command && g_shell->command[i])
-	{
-		if (g_shell->command[i] == '\"')
-			d++;
-		else if (g_shell->command[i] == '\'')
-			s++;
-		i++;
-	}
-	if (d % 2 != 0 || s % 2 != 0)
-		return (-1);
-	if (d != 0)
-		return (0);
-	return (0);
-}
-
-char	**splt(char *command)
-{
-	int		i;
-	int		j;
-	int		k;
-	char	**cmd;
-
-	i = -1;
-	k = 0;
-	j = 0;
-	cmd = spltnorm(command, i, k, j);
-	free(command);
-	return (cmd);
-}
-
-char	**splt2(char *command)
-{
-	int		i;
-	int		j;
-	int		k;
-	char	**cmd;
-
-	i = 0;
-	k = 0;
-	j = 0;
-	cmd = splt2norm(command, i, k, j);
-	free(command);
-	return (cmd);
-}
 
 char	*merge(char **command, int status)
 {
@@ -93,7 +39,18 @@ char	*merge(char **command, int status)
 void	ft_parser(void)
 {
 	int		i;
+	char	*temp;
 
+	i = -1;
+	g_shell->commandlist = ft_implt_split(g_shell->command, ' ');
+	while (g_shell->commandlist[++i])
+	{
+		temp = g_shell->commandlist[i];
+		g_shell->commandlist[i] = deletechar(g_shell->commandlist[i], '"');
+		free(temp);
+	}
+	free(g_shell->command);
+	g_shell->command = merge(g_shell->commandlist, 1);
 	i = 0;
 	if (ft_strchr(g_shell->command, '>'))
 	{
@@ -108,7 +65,7 @@ void	ft_parser(void)
 		while (g_shell->commandlist[++i])
 			g_shell->pipe_flag++;
 	}
-	else if (ft_check() == 0)
+	else
 	{
 		g_shell->commandlist = ft_split(g_shell->command, ' ');
 		g_shell->pipe_flag = 0;

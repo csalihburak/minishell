@@ -86,14 +86,10 @@ void	exportedit2(char *temp, char **buff2)
 
 char	**exportedit(char **export)
 {
-	int		i;
-	int		x;
 	char	*buff;
 	char	**buff2;
 	char	*temp;
 
-	i = -1;
-	x = -1;
 	temp = NULL;
 	buff = merge(export, 1);
 	buff2 = ft_split(buff, ' ');

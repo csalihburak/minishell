@@ -87,5 +87,6 @@ void	op_handle(char *command);
 char	*deletechar(char *array, char c);
 char	**exportedit(char **export);
 void	exportenvcpy(char **env);
+char    **ft_implt_split(char *s, char c);
 
 #endif

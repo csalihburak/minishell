@@ -1,16 +1,16 @@
 NAME = minishell
-CC = clang
-CFLAGS = -Wall -Wextra -Werror -I ./lib/readline/include -g
+CC = gcc
+CFLAGS = -I ./lib/readline/include -g
 LDFLAGS = -L ./lib/readline/lib -lreadline
 SRCS = main.c \
 	dolar.c		\
 	utils.c		\
 	signal.c	\
 	parser.c	\
-	parser2.c	\
 	execute.c	\
 	free.c		\
 	exportenv.c	\
+	quoteparser.c \
 	./Pipe/token.c			\
 	./Pipe/run_pipes.c		\
 	./file_operators/op_handling.c	\
@@ -48,7 +48,7 @@ $(TERM):
 
 %.o: %.c
 	@echo $(R)Compiling: [$<]
-	@${CC} $(CFLAGS) -c $^ -o $@ -Wall -Werror -Wextra
+	@${CC} $(CFLAGS) -c $^ -o $@
 
 clean:
 	@rm -rf ${OBJS}

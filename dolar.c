@@ -29,29 +29,48 @@ int	dolarfind(char *arr)
 char	*cmdlistup(char *command)
 {
 	int		i;
-	char	*temp;
+	int		x;
+	int		y;
+	int		len;
+	char	*first;
 	char	**buff;
 
-	i = -1;
+	i = 0;
+	x = 0;
+	y = 0;
 	buff = ft_split(command, '$');
-	while (buff[++i])
+ 	while (g_shell->env[i])
 	{
-		if (!envsearch(buff[i]))
+		x = 0;
+		y = 0;
+		first = malloc(100);
+		if (ft_strchr(g_shell->env[i], '='))
 		{
-			free(buff[i]);
-			buff[i] = ft_strdup(g_shell->env[g_shell->envflag] + \
-			findfirstindex(g_shell->env[g_shell->envflag], '=') + 1);
+			while(g_shell->env[i][x] && g_shell->env[i][x] != '=')
+			{
+				first[x] = g_shell->env[i][x];
+				x++;
+			}
+			first[x] = '\0';
 		}
-		else
+		while (buff[y])
 		{
-			free(buff[i]);
-			buff[i] = ft_strdup("");
-		}
+			len = ft_strlen(first);
+			if (!ft_strncmp(buff[y], first, len))
+			{
+				if (buff[y][len])
+					buff[y] = ft_strdup(" ");
+				else
+					buff[y] = ft_strdup(g_shell->env[i] + findfirstindex(g_shell->env[i], '=') + 1);
+			}
+			y++;
+ 		}
+		free(first);
+		i++;
 	}
-	temp = merge(buff, 0);
-	free(command);
-	dbfree(buff);
-	return (temp);
+	first = merge(buff, 0);
+	free(buff);
+	return (first);
 }
 
 char	*lastexe(void)
@@ -61,6 +80,21 @@ char	*lastexe(void)
 	buff = ft_strdup(g_shell->lastexe);
 	free(g_shell->lastexe);
 	return (buff);
+}
+
+int	testfind(char *command)
+{
+	int	i;
+
+	i = 0;
+	if(command[i] == '\'')
+	{
+		while(command[i])
+			i++;
+		if (command[i - 1] == '\'')
+			return (0);
+	}
+	return (1);
 }
 
 int	dolar(void)
@@ -78,7 +112,7 @@ int	dolar(void)
 			free(g_shell->commandlist[i]);
 			g_shell->commandlist[i] = lastexe();
 		}
-		else if (dolarfind(g_shell->commandlist[i]))
+		else if (testfind(g_shell->commandlist[i]) && dolarfind(g_shell->commandlist[i]))
 			g_shell->commandlist[i] = cmdlistup(g_shell->commandlist[i]);
 		i++;
 	}
