@@ -12,29 +12,27 @@
 
 #include "builtin.h"
 
-void	addexport(char *commandlist)
+void	addexport(char *command)
 {
 	int		i;
 
 	i = 0;
 	while (g_shell->export[i])
 		i++;
-	if (equalcheck(commandlist) == 1)
+	if (equalcheck(command) == 1)
 	{
-		commandlist = addquote(commandlist, 0);
-		g_shell->export[i] = ft_strdup(commandlist);
+		command = addquote(command, 0);
+		g_shell->export[i] = ft_strdup(command);
 		g_shell->export[i + 1] = NULL;
-		//free(commandlist);
 	}
 	else
 	{
-		g_shell->export[i] = ft_strdup(commandlist);
+		g_shell->export[i] = ft_strdup(command);
 		g_shell->export[i + 1] = NULL;
-		//free(commandlist);
 	}
 }
 
-void	addenv(char *commandlist)
+void	addenv(char *command)
 {
 	int		i;
 	char	*temp;
@@ -44,30 +42,30 @@ void	addenv(char *commandlist)
 		i++;
 	temp = g_shell->env[i - 1];
 	g_shell->env[i] = temp;
-	g_shell->env[i - 1] = ft_strdup(commandlist);
+	g_shell->env[i - 1] = ft_strdup(command);
 	g_shell->env[i + 1] = NULL;
 }
 
-void	envupdate(char *commandlist)
+void	envupdate(char *command)
 {
 	int	i;
 
 	i = g_shell->envflag;
 	free(g_shell->env[i]);
-	g_shell->env[i] = ft_strdup(commandlist);
+	g_shell->env[i] = ft_strdup(command);
 }
 
-int	exportupdate(char *commandlist)
+int	exportupdate(char *command)
 {
 	int	i;
 
 	i = g_shell->exportflag;
 	if (g_shell->exportflag != 0)
 	{
-		if (equalcheck(commandlist))
+		if (equalcheck(command))
 		{
 			free(g_shell->export[i]);
-			g_shell->export[i] = addquote(commandlist, 0);
+			g_shell->export[i] = addquote(command, 0);
 		}
 		return (1);
 	}
