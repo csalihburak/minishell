@@ -39,7 +39,8 @@ int	exportequal(char *command)
 		free(buff);
 		return (1);
 	}
-	if (!ft_isalpha(command[0]) && command[0] != '_')
+	if ((!ft_isalpha(command[0]) && command[0] != '_') || \
+	(command[0] == '_' && !ft_isalpha(command[1])))
 	{
 		buff = ft_strdup("bash: export: `");
 		buff = ft_strjoin(buff, command);

@@ -24,13 +24,13 @@ void	addexport(char *commandlist)
 		commandlist = addquote(commandlist, 0);
 		g_shell->export[i] = ft_strdup(commandlist);
 		g_shell->export[i + 1] = NULL;
-		free(commandlist);
+		//free(commandlist);
 	}
 	else
 	{
 		g_shell->export[i] = ft_strdup(commandlist);
 		g_shell->export[i + 1] = NULL;
-		free(commandlist);
+		//free(commandlist);
 	}
 }
 

@@ -51,6 +51,7 @@ void	ft_parser(void)
 	}
 	free(g_shell->command);
 	g_shell->command = merge(g_shell->commandlist, 1);
+	dbfree(g_shell->commandlist);
 	i = 0;
 	if (ft_strchr(g_shell->command, '>') || ft_strchr(g_shell->command, '<'))
 	{
@@ -67,7 +68,6 @@ void	ft_parser(void)
 	}
 	else
 	{
-		dbfree(g_shell->commandlist);
 		g_shell->commandlist = ft_split(g_shell->command, ' ');
 		g_shell->pipe_flag = 0;
 		g_shell->op_flag = 0;
