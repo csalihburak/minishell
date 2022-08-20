@@ -3,42 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/08 12:16:05 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 13:34:11 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/04 16:25:32 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/06 11:24:32 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+size_t	ft_strlcat(char *dst, const char *src, size_t n)
 {
 	size_t	i;
-	size_t	dest_len;
-	size_t	src_len;
+	size_t	j;
 
-	dest_len = ft_strlen(dest);
-	src_len = ft_strlen(src);
-	if (dest_len >= size)
+	if (n <= (size_t)ft_strlen(dst))
+		return (n + ft_strlen(src));
+	i = ft_strlen(dst);
+	j = 0;
+	while ((i + 1 < n) && (src[j] != '\0'))
 	{
-		return ((size + src_len));
-	}
-	i = 0;
-	while (src[i] != '\0' && dest_len + i + 1 < size)
-	{
-		dest[i + dest_len] = src[i];
+		dst[i] = src[j];
 		i++;
+		j++;
 	}
-	dest[i + dest_len] = '\0';
-	return (ft_strlen(dest) + ft_strlen(&src[i]));
+	dst[i] = '\0';
+	return (ft_strlen(dst) + ft_strlen(&src[j]));
 }
 /*
-int	main(void)
+#include <stdio.h>
+#include <string.h>
+int main()
 {
-	char dizi[] = "ahmet";
-	char dizi2[] = "hakan";
+	char a[] = "salih";
+	char b[] = "Coskun";
 
-	printf("%zu", ft_strlcat(dizi, dizi2, 4));
-}
-*/
+	printf("%lu\n",strlcat(a,b,6));
+	//printf("%lu",ft_strlcat(a,b,12));
+	printf("%s",a);
+}*/

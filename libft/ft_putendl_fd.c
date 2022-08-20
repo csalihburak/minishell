@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 17:05:37 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 12:52:41 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/08 17:46:15 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/12 14:17:42 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 void	ft_putendl_fd(char *s, int fd)
@@ -17,7 +16,7 @@ void	ft_putendl_fd(char *s, int fd)
 	int	i;
 
 	i = 0;
-	if (s != NULL)
+	if (s)
 	{
 		while (s[i] != '\0')
 		{
@@ -28,9 +27,8 @@ void	ft_putendl_fd(char *s, int fd)
 	}
 }
 /*
-int	main(void)
+int main()
 {
-	char dizi[] = "ahmet";
-	ft_putendl_fd(dizi, 1);
-}
-*/
+	char *a = "salih burak coskun";
+	ft_putendl_fd(a,1);
+}*/

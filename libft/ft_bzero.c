@@ -3,41 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 15:27:13 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 12:19:26 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/04 09:49:42 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/04 21:03:16 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {
-	size_t	i;
-	char	*a;
+	char	*src;
+	int		i;
 
-	a = (char *)s;
 	i = 0;
+	src = (char *)s;
 	while (n > 0)
 	{
-		a[i] = 0;
+		src[i] = 0;
 		i++;
 		n--;
 	}
 }
 /*
-int main(void)
+int main()
 {
-	int	i;
-
-	i = 0;
-	char dizi[] = "123456";
-	ft_bzero(dizi,4);
-	while (dizi[i] <= '6')
-	{
-		write(1, &dizi[i], 1);
-		i++;
-	}
-}
-*/
+	char a[] = "selam ben Burak";
+	ft_bzero(a, 5);
+	int j;
+	for (j = 0; j < 15;j++)
+		printf("%c", a[j]);
+}*/

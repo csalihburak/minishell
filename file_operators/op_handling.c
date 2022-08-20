@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/19 16:15:01 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/20 19:02:28 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ int	create_file(char *arr, char *op)
 void	check_and_create(t_op *file, int flag)
 {
 	int		i;
-	int		fd;
 	char	**temp;
 
-	fd = 0;
 	i = 0;
 	temp = 0;
 	if (flag == 0)
@@ -43,6 +41,7 @@ void	check_and_create(t_op *file, int flag)
 	}
 	if (flag == 1)
 	{
+		check_exec(file);
 		while (file->cmd_list[i + 1])
 			i++;
 		if (ft_strchr(file->cmd_list[i], '|'))
@@ -51,6 +50,8 @@ void	check_and_create(t_op *file, int flag)
 		temp = ft_split(file->cmd_list[0], ' ');
 		file->path = path(file->path, temp[0]);
 		file_run(file, temp, temp[0]);
+		dbfree(file->path);
+		dbfree(temp);
 	}
 }
 
@@ -60,12 +61,15 @@ void	op_handle(char *command)
 
 	file = malloc(sizeof(t_op));
 	file->command = command;
+	op_list(file);
 	if (ft_strchr(command, '>'))
 		file->cmd_list = ft_split(command, '>');
 	if (ft_strchr(command, '<'))
+	{
 		file->cmd_list = ft_split(command, '<');
-	op_list(file);
-	if (!ft_strchr(file->cmd_list[0], '|'))
+		less_op_handling(file);
+	}
+	else if (!ft_strchr(file->cmd_list[0], '|'))
 		check_and_create(file, 1);
 	else
 	{
@@ -73,7 +77,6 @@ void	op_handle(char *command)
 		op_setup(file);
 		dbfree(file->pipe_list);
 	}
-	//dbfree(g_shell->commandlist);
 	dbfree(file->cmd_list);
 	dbfree(file->ops);
 	g_shell->op_flag = 1;

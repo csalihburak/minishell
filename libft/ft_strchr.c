@@ -3,36 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 16:29:38 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 13:29:13 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/04 16:24:47 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/10 19:01:04 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
-#include <string.h>
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(const char *str, int c)
 {
-	int		i;
-
-	i = 0;
-	while (s[i] != c)
+	while (*str)
 	{
-		if (s[i] == '\0')
-		{
-			return (NULL);
-		}
-		i++;
+		if (*str == (char)c)
+			return ((char *)str);
+		str++;
 	}
-	return ((char *)&s[i]);
+	if (*str == (char)c)
+		return ((char *)str);
+	return (NULL);
 }
 /*
-int	main(void)
-{
-	char dizi[] = "ahmet";
+#include <stdio.h>
 
-	printf("%s", ft_strchr(dizi, 'm'));
-}
-*/
+int main()
+{
+	char a[] = "eyupgulercan";
+	char b = 'u';
+	
+	printf("%s",ft_strchr(a,b));
+}*/

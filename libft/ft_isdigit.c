@@ -3,26 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 16:11:23 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 12:24:34 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/04 09:55:33 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/04 09:55:51 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 int	ft_isdigit(int c)
 {
-	if (c > 47 && c < 58)
-	{
+	if (c >= '0' && c <= '9')
 		return (1);
-	}
 	return (0);
 }
 /*
-int	main(void)
+#include <stdio.h>
+int main()
 {
-	printf("%d", ft_isdigit('4'));
+	char a = 'a';
+	printf("%d", ft_isdigit(a));
 }
 */

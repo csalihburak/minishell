@@ -3,22 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 16:50:53 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 12:51:39 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/08 16:08:50 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/08 17:43:27 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 void	ft_putchar_fd(char c, int fd)
 {
-	write (fd, &c, 1);
+	write(fd, &c, 1);
 }
 /*
-int	main(void)
+int main()
 {
-	ft_putchar_fd('a', 1);
-}
-*/
+	int i;
+	i = 123;
+    while (i <= 127)
+    {
+        ft_putchar_fd(i, 1);
+        i++;
+     }
+    return(0);
+}*/

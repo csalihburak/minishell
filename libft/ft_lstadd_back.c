@@ -3,40 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/12 13:25:18 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/21 14:29:30 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/09 19:09:42 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/12 16:55:48 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	if (*lst == NULL)
-	{
-		*lst = new;
-		(*lst)->next = NULL;
-		return ;
-	}
-	ft_lstlast(*lst)->next = new;
-}
-/*
-int	main(void)
-{
-	t_list	**test;
-	t_list	*a;
-	t_list	*b;
-	t_list	*c;
+	t_list	*last;
 
-	a = (t_list *)malloc(sizeof(t_list));
-	b = (t_list *)malloc(sizeof(t_list));
-	c = (t_list *)malloc(sizeof(t_list));
-	test = &a;
-	a->next = b;
-	c->content = "eklendi mi?";
-	ft_lstadd_back(test, c);
-	printf("%s", a->next->next->content);
+	if (new)
+	{
+		if (!*lst)
+		{
+			*lst = new;
+			return ;
+		}
+		last = ft_lstlast(*lst);
+		last->next = new;
+	}
 }
-*/

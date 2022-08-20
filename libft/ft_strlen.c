@@ -3,32 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 15:25:01 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/01 14:02:26 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/04 16:28:01 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/11 10:59:20 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_strlen(const char *str)
 {
-	size_t	len;
+	int	i;
 
-	len = 0;
-	if (!s)
-		return (0);
-	while (s[len] != '\0')
+	i = 0;
+	while (str[i] != '\0')
 	{
-		len++;
+		i++;
 	}
-	return (len);
+	return (i);
 }
 /*
-int	main(void)
+#include <stdio.h>
+int main()
 {
-	char dizi[] = "saygardas";
-	printf("%zu", ft_strlen(dizi));
-}
-*/
+	char *a = "selam ben burak";
+
+	printf("%d",ft_strlen(a));
+}*/

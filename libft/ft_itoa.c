@@ -3,63 +3,79 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 13:27:28 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 12:27:05 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/07 15:09:44 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/13 13:16:16 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-static int	digit_len(int n)
+static int	nbrlen(long nbr)
 {
-	int	digit;
+	int	i;
 
-	digit = 0;
-	if (n <= 0)
-		digit++;
-	while (n != 0)
+	i = 1;
+	if (nbr < 0)
 	{
-		n /= 10;
-		digit++;
+		i++;
+		nbr = (long)nbr * -1;
 	}
-	return (digit);
+	while (nbr > 9)
+	{
+		nbr = nbr / 10;
+		i++;
+	}
+	return (i);
+}
+
+static int	ft_div(int len)
+{
+	int	i;
+
+	i = 1;
+	if (len == 1)
+		return (1);
+	while (len > 1)
+	{
+		i *= 10;
+		len--;
+	}
+	return (i);
 }
 
 char	*ft_itoa(int n)
 {
-	unsigned int	nb;
-	char			*str;
-	int				len;
+	char		*res;
+	int			i;
+	int			len;
+	int			len2;
+	long int	n2;
 
-	len = digit_len(n);
-	str = (char *)malloc((len + 1) * sizeof(char));
-	if (str == NULL)
-		return (NULL);
-	nb = n;
-	if (n < 0)
+	i = 0;
+	n2 = n;
+	len = nbrlen(n2);
+	len2 = nbrlen(n2);
+	res = (char *)malloc(sizeof(char) * (len + 1));
+	if (!res)
+		return (0);
+	if (n2 < 0)
 	{
-		nb = -n;
-		str[0] = '-';
-	}
-	str[len--] = '\0';
-	if (nb == 0)
-		str[0] = '0';
-	while (len >= 0 && nb != 0)
-	{
-		str[len] = (nb % 10) + '0';
-		nb /= 10;
+		n2 *= -1;
+		res[0] = '-';
+		i++;
 		len--;
 	}
-	return (str);
+	while (i < len2)
+		res[i++] = (((n2 / (ft_div(len--)) % 10) + 48));
+	res[i] = '\0';
+	return (res);
 }
 /*
-int	main(void)
-{
-	int	a;
+#include <stdio.h>
 
-	a = 123456789;
+int main()
+{
+	int	a = -623;
 	printf("%s", ft_itoa(a));
-}
-*/
+}*/

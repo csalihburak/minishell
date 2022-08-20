@@ -3,44 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 16:34:10 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 17:03:22 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/05 09:56:24 by scoskun           #+#    #+#             */
+/*   Updated: 2022/08/20 15:21:05 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char	const *s, unsigned int start, size_t len)
 {
-	size_t	i;
-	char	*array;
+	char	*dest;
+	size_t	s_len;
+	size_t	end;
 
-	i = 0;
-	if (s != NULL)
-	{
-		array = (char *)malloc(sizeof(char) * (len + 1));
-		if (array == NULL)
-		{
-			return (NULL);
-		}
-		while (start < ft_strlen(s) && i < len)
-		{
-			array[i] = s[start];
-			i++;
-			start++;
-		}
-		array[i] = '\0';
-		return (array);
-	}
-	return (0);
+	if (!s)
+		return (NULL);
+	end = 0;
+	s_len = ft_strlen(s);
+	if (start < s_len)
+		end = s_len - start;
+	if (end > len)
+		end = len;
+	dest = (char *)malloc(sizeof(char) * end + 1);
+	if (!dest)
+		return (NULL);
+	ft_strlcpy(dest, s + start, end + 1);
+	return (dest);
 }
 /*
+#include <stdio.h>
 int main(void)
 {
-	char dizi[] = "ahmethakan";
-
-	printf("%s", ft_substr(dizi, 0, 9));
-}
-*/
+    char dizi[] = "lorem ipsum dolor sit amet";
+    printf("%s",ft_substr(dizi,7,10));
+}*/

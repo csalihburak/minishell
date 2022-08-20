@@ -3,35 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/08 15:01:57 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 15:32:31 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/05 12:46:31 by scoskun           #+#    #+#             */
+/*   Updated: 2022/08/20 15:20:54 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
 	size_t	i;
+	size_t	j;
+	size_t	k;
+	char	*p;
 
 	if (!s1 || !set)
 		return (0);
-	while (*s1 && ft_strchr(set, *s1))
-		s1++;
-	i = ft_strlen(s1);
-	while (i && ft_strchr(set, s1[i]))
-		i--;
-	return (ft_substr(s1, 0, i + 1));
+	i = 0;
+	j = ft_strlen(s1);
+	k = 0;
+	while (s1[i] != '\0' && ft_strchr(set, s1[i]))
+		i++;
+	while (j > i && ft_strchr(set, s1[j - 1]))
+		j--;
+	p = (char *)malloc(sizeof(char) * (j - i + 1));
+	if (!p)
+		return (0);
+	while (i < j)
+	{
+		p[k] = s1[i];
+		k++;
+		i++;
+	}
+	p[k] = '\0';
+	return (p);
 }
 /*
-int	main(void)
-{
-	char dizi[] = "ahmethakangunes";
-	char dizi2[] = "setlebakalım";
+#include <stdio.h>
 
-	printf("%s", ft_strtrim(dizi, dizi2));
-}
-*/
+int main()
+{
+	char a[] = "Lorem ipsum sa camet";
+	char b[] = "Lo re imat";
+	printf("%s",ft_strtrim(a,b));
+}*/

@@ -3,27 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/12 14:42:43 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/22 13:30:17 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/10 16:14:58 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/10 17:39:32 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+void	ft_lstdelone(t_list *lst, void (*del) (void *))
 {
+	if (!lst || !del)
+		return ;
 	del(lst->content);
 	free(lst);
 }
-/*
-int	main(void)
-{
-	t_list	*a;
-
-	a = (t_list *)malloc(sizeof(t_list));
-	a->content = "ahmet";
-	ft_lstdelone(a, del);
-}
-*/

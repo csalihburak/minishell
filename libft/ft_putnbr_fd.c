@@ -3,51 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 17:08:38 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 13:03:52 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/08 18:15:12 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/12 14:19:45 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-void	ft_putnbr_fd(int nb, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
-	if (nb == -2147483648)
+	long	n2;
+	char	a;
+
+	n2 = n;
+	if (n2 < 0)
 	{
-		ft_putchar_fd('-', fd);
-		ft_putchar_fd('2', fd);
-		nb = 147483648;
+		write(fd, "-", 1);
+		n2 *= -1;
 	}
-	if (nb < 0)
+	if (n2 >= 0 && n2 <= 9)
 	{
-		ft_putchar_fd('-', fd);
-		nb = -nb;
-	}
-	if (nb < 10)
-	{
-		ft_putchar_fd(nb + 48, fd);
+		a = n2 + 48;
+		write(fd, &a, 1);
+		return ;
 	}
 	else
-	{
-		ft_putnbr_fd(nb / 10, fd);
-		ft_putnbr_fd(nb % 10, fd);
-	}
+		ft_putnbr_fd(n2 / 10, fd);
+	ft_putnbr_fd(n2 % 10, fd);
 }
 /*
-int	main(void)
+int main()
 {
-	int	a;
-	int	i;
-
-	i = 1;
-	a = 0;
-	while (a <= 9)
-	{
-		ft_putnbr_fd(a, i);
-		printf("\n");
-		a++;
-	}
-}
-*/
+	ft_putnbr_fd(256223,1);
+}*/

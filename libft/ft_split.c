@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 12:22:09 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/04 12:39:26 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/06 16:42:19 by scoskun           #+#    #+#             */
+/*   Updated: 2022/08/20 16:36:10 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	yenidizisayi(char const *s, char c)
+static int	howmany(const char *s, char c)
 {
 	int	i;
-	int	count;
+	int	count ;
 
 	count = 0;
 	i = 0;
@@ -26,70 +26,89 @@ static int	yenidizisayi(char const *s, char c)
 		else
 		{
 			count++;
-			while (s[i] != '\0' && s[i] != c)
+			while (s[i] && s[i] != c)
 				i++;
 		}
 	}
 	return (count);
 }
 
-static char	*kopyala(char *array, const char *s, int i, int len)
+static char	*print_it(char *p, const char *s, int i, int k)
 {
-	int	j;
+	int	x;
 
-	j = 0;
-	while (len > 0)
+	x = 0;
+	while (k > 0)
 	{
-		array[j] = s[i - len];
-		len--;
-		j++;
+		p[x] = s[i - k];
+		x++;
+		k--;
 	}
-	array[j] = '\0';
-	return (array);
+	p[x] = '\0';
+	return (p);
 }
 
-static void	*splitit(char **array, char const *s, char c, int mallocsayi)
+static char	*word_split(char **p, const char *s, char c, int howmny)
 {
 	int	i;
 	int	j;
-	int	len;
+	int	k;
 
 	i = 0;
 	j = 0;
-	len = 0;
-	while (j < mallocsayi)
+	k = 0;
+	while (j < howmny)
 	{
 		while (s[i] != '\0' && s[i] == c)
 			i++;
 		while (s[i] != '\0' && s[i] != c)
 		{
 			i++;
-			len++;
+			k++;
 		}
-		array[j] = (char *)malloc(sizeof(char) * (len + 1));
-		if (!array[j])
-			return (NULL);
-		kopyala(array[j], s, i, len);
+		p[j] = (char *)malloc(sizeof(char) * (k + 1));
+		if (!p)
+			return (0);
+		print_it(p[j], s, i, k);
 		j++;
-		len = 0;
+		k = 0;
 	}
-	array[j] = NULL;
-	return (array[j]);
+	p[j] = 0;
+	return (p[j]);
 }
 
-char	**ft_split(char *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	int		mallocsayi;
-	char	**array;
+	char	**p;
+	int		howmny;
 
-	if (s != NULL)
+	if (s)
 	{
-		mallocsayi = yenidizisayi(s, c);
-		array = (char **)malloc(sizeof(char *) * (mallocsayi + 1));
-		if (!array)
-			return (NULL);
-		splitit(array, s, c, mallocsayi);
-		return (array);
+		howmny = howmany(s, c);
+		p = (char **)malloc(sizeof(char *) * (howmny + 1));
+		if (!p)
+			return (0);
+		word_split(p, s, c, howmny);
+		return (p);
 	}
 	return (0);
 }
+/*
+#include <stdio.h>
+
+int main()
+{
+	char *a = "Salih Burak Coskun Eyup Guler";
+	char b = 'u';
+	char **c;
+	int i;
+
+	i = 0;
+	c = ft_split(a,b);
+
+	while(i <= 2)
+	{	
+		printf("%s\n",c[i]);
+		i++;
+	}
+}*/

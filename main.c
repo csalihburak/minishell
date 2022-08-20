@@ -6,11 +6,12 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:33:50 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/19 14:58:12 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/20 16:37:47 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
 void	prompt(void)
 {
 	g_shell->prompt = ft_prompt();

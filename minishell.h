@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/16 18:09:43 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/20 14:43:07 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,6 @@ void	op_handle(char *command);
 char	*deletechar(char *array, char c);
 char	**exportedit(char **export);
 void	exportenvcpy(char **env);
-char    **ft_implt_split(char *s, char c);
+char	**ft_implt_split(char *s, char c);
 
 #endif

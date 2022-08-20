@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/14 02:56:46 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/14 02:57:25 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/05 11:13:12 by scoskun           #+#    #+#             */
+/*   Updated: 2022/08/20 15:20:27 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,12 @@ char	*ft_strjoin(char *s1, char *s2)
 	}
 	return (0);
 }
+/*
+#include <stdio.h>
+
+int main()
+{
+	char a[] = "salih";
+	char b[] = "burakcoskun";
+	printf("%s",ft_strjoin(a,b));
+}*/

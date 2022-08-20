@@ -3,34 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 15:29:11 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 12:21:02 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/04 20:09:17 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/06 11:22:35 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void	*a;
+	void	*ca;
 
-	a = malloc(count * size);
-	if (a == NULL)
-	{
-		return (NULL);
-	}
-	return (ft_memset(a, 0, size * count));
+	ca = malloc(count * size);
+	if (ca == 0)
+		return (ca);
+	ft_bzero(ca, count * size);
+	return (ca);
 }
 /*
-int	main(void)
+#include <stdio.h>
+int main()
 {
-	int	a;
-	int	b;
+	void	*deneme;
+	deneme = ft_calloc(5,5);
+	printf("%s",deneme);
 
-	a = 5;
-	b = 2;
-	ft_calloc(a, b);
-}
-*/
+}*/

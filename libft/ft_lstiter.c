@@ -3,41 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/12 15:11:40 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/22 13:50:47 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/10 17:11:27 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/10 17:35:57 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
-/*
-void	f(void *b)
-{
-	char	*a;
 
-	a = (char *)b;
-	if (a == NULL)
-	{
-		printf("BELLEK SERBEST BIRAKILDI.");
-		free(b);
-	}
-}
-*/
-void	ft_lstiter(t_list *lst, void (*f)(void *))
+void	ft_lstiter(t_list *lst, void (*f) (void *))
 {
-	while (lst != NULL)
+	while (lst)
 	{
 		f(lst->content);
 		lst = lst->next;
 	}
 }
-/*
-int main(void)
-{
-	t_list	*a;
-
-	a = (t_list *)malloc(sizeof(t_list));
-	ft_lstiter(a, f);
-}
-*/

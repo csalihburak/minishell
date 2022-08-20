@@ -3,50 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 16:09:26 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 15:04:45 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/08 15:09:34 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/12 17:51:50 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char *))
+void	ft_striteri(char *s, void (*f) (unsigned int, char*))
 {
 	unsigned int	i;
 
-	i = 0;
-	if (s != NULL)
-	{	
-		while (s[i] != '\0')
+	if (s != 0 && f != 0)
+	{
+		i = 0;
+		while (s[i])
 		{
-			f(i, &s[i]);
+			f(i, s + i);
 			i++;
 		}
 	}
 }
-
-void	f(unsigned int a, char *b)
-{
-	int	i ;
-
-	i = 0;
-	if (b[i] != '\0')
-	{
-		b[i] = b[i + a];
-		i++;
-	}
-}
-/*
-int	main(void)
-{
-	char dizi[] = "hakan";
-
-	ft_striteri(dizi, f);
-
-	printf("%s",dizi);
-
-	
-}
-*/

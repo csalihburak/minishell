@@ -3,42 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 16:19:37 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 12:37:25 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/04 10:00:57 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/04 10:02:16 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
+	char		*src_t;
+	char		*dest_t;
 	int			i;
-	char		*a;
-	const char	*b;
 
-	a = (char *)dest;
-	b = (const char *)src;
 	i = 0;
-	if (a == NULL && b == NULL)
-	{
-		return (NULL);
-	}
+	src_t = (char *)src;
+	dest_t = (char *)dest;
+	if (!dest_t && !src_t)
+		return (0);
 	while (n > 0)
 	{
-		a[i] = b[i];
+		dest_t[i] = src_t[i];
 		i++;
 		n--;
 	}
-	return (dest);
+	return (dest_t);
 }
 /*
-int main(void)
-{
-	char kaynak[] = "ahmethakan";
-	char hedef[] = "gunes";
+#include <stdio.h>
 
-	printf("%s", ft_memcpy(hedef, kaynak, 3));
+int main()
+{
+	char cp[] = "Bilgisayar&Proglamlama";
+	char dest[] = "Selam Ben Burak";
+	printf("%s",ft_memcpy(dest, cp, 10));
 }
 */

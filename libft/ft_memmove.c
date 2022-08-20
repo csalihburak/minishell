@@ -3,40 +3,51 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/20 12:49:02 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 12:49:04 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/04 10:02:25 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/05 17:09:23 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t len)
+void	*ft_memmove(void *dest, const void *src, size_t len)
 {
-	char	*a;
-	char	*b;
+	int			i;
 
-	a = (char *)src;
-	b = (char *)dst;
-	if (a < b)
+	i = 0;
+	if (!dest && !src)
+		return (0);
+	if ((size_t) dest - (size_t) src < len)
 	{
-		while (len--)
+		i = len - 1 ;
+		while (i >= 0)
 		{
-			b[len] = a[len];
+			((char *)dest)[i] = ((const char *)src)[i];
+			i--;
 		}
 	}
 	else
-		ft_memcpy(b, a, len);
-	return (dst);
+	{
+		while ((size_t)i < len)
+		{
+			((char *) dest)[i] = ((const char *) src)[i];
+			i++;
+		}
+	}
+	return (dest);
 }
-
 /*
-int	main(void)
+#include <string.h>
+#include <stdio.h>
+int main()
 {
-	char dizi[] = "helloworldandearth";
-	char dizi2[] = "helloworld";
-
-	printf("%s", ft_memmove(dizi2, dizi, 12));
+	char dest[] = "";
+	char src[] = "";
+	ft_memmove(dest,src,1);
+	printf("%s",dest);
+	printf("\n");
+	memmove(dest,src,1);
+	printf("%s",dest);
 }
 */

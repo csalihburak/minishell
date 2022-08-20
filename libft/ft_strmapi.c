@@ -3,48 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/10 14:51:59 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 14:52:34 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/08 13:06:08 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/13 13:16:29 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
-#include <stdio.h>
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f) (unsigned int, char))
 {
-	char			*array;
-	unsigned int	i;
+	char	*str;
+	int		len;
+	int		i;
 
-	if (s == NULL)
-		return (NULL);
-	array = (char *)malloc(ft_strlen(s) + 1);
-	if (array == NULL)
-		return (NULL);
 	i = 0;
-	while (s[i] != '\0')
+	if (!s)
+		return (0);
+	len = ft_strlen(s);
+	str = (char *)malloc(sizeof(char) * len + 1);
+	if (!str)
+		return (0);
+	while (i < len)
 	{
-		array[i] = f(i, s[i]);
+		str[i] = f(i, s[i]);
 		i++;
 	}
-	array[i] = '\0';
-	return (array);
+	str[i] = '\0';
+	return (str);
 }
 /*
-char	f(unsigned int a, char b)
+int main()
 {
-	return (b + a);
-}
-
-int	main(void)
-{
-	char dizi[] = "ahmet1";
-
-	char *test;
-
-	test = ft_strmapi(dizi, f);
-	printf("%s",test);
-}
-*/
+	char *a = "salih BuRak CoskuN";
+	printf("%s", ft_Strmapi(a, f));
+}*/

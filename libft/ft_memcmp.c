@@ -3,40 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 16:15:53 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 12:31:55 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/04 09:58:40 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/12 13:50:54 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-int	ft_memcmp(const void *str1, const void *str2, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t len)
 {
-	size_t			i;
-	unsigned char	*s1;
-	unsigned char	*s2;
+	size_t	x;
 
-	i = 0;
-	s1 = (unsigned char *)str1;
-	s2 = (unsigned char *)str2;
-	while (i < n)
+	x = 0;
+	while (x < len)
 	{
-		if (s1[i] != s2[i])
-		{
-			return (s1[i] - s2[i]);
-		}
-		i++;
+		if (((unsigned char *)s1)[x] != (((unsigned char *)s2)[x]))
+			return (((unsigned char *)s1)[x] - (((unsigned char *)s2)[x]));
+		x++;
 	}
 	return (0);
 }
 /*
-int	main(void)
+#include <stdio.h>
+#include <string.h>
+int main()
 {
-	char dizi[] = "deneme";
-	char dizi2[] = "hakan";
-
-	printf("%d", ft_memcmp(dizi, dizi2, (size_t) 4));
+	char a[] = "selAm";
+	char b[] = "selam";
+	printf("%d\n", ft_memcmp(a,b,3));
+	printf("%d\n", memcmp(a,b,3));
 }
 */

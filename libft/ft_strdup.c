@@ -3,43 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 16:30:30 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/08 17:33:18 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/04 18:42:46 by scoskun           #+#    #+#             */
+/*   Updated: 2022/08/20 15:20:13 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(char *src)
+char	*ft_strdup(const char *s1)
 {
-	int		i;
-	int		len;
-	char	*str;
+	size_t	len;
+	char	*new;
+	size_t	i;
 
-	len = 0;
 	i = 0;
-	len = ft_strlen(src);
-	str = (char *)malloc(sizeof(char) * (ft_strlen(src) + 1));
-	if (!str)
-	{
+	len = ft_strlen(s1) + 1;
+	new = (char *) malloc((sizeof(char) * len));
+	if (!new)
 		return (0);
-	}
-	i = 0;
-	while (i < len)
+	while (s1[i] != '\0')
 	{
-		str[i] = src[i];
+		new[i] = s1[i];
 		i++;
 	}
-	str[i] = '\0';
-	return (str);
+	new[i] = '\0';
+	return (new);
 }
 /*
-int	main(void)
-{
-	char dizi[] = "ahmet";
+#include <stdio.h>
 
-	printf("%s", ft_strdup(dizi));
-}
-*/
+int main()
+{
+	char a[] = "seawdwadawdlan";
+	char *b = ft_strdup(a);
+
+	printf("%s",b);
+}*/

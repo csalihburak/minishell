@@ -3,26 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/03 12:04:18 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 12:22:31 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/04 09:53:16 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/04 09:54:45 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 int	ft_isalnum(int c)
 {
-	if ((c > 47 && c < 58) || (c > 64 && c < 91) || (c > 96 && c < 123))
+	if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z')
+		|| (c >= 48 && c <= 57))
 	{
 		return (1);
 	}
 	return (0);
 }
-/*
-int	main(void)
-{
-	printf("%d", ft_isalnum('c'));
-}
-*/

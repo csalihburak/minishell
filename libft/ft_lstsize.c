@@ -3,39 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/12 12:57:40 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/21 14:42:03 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/09 14:53:38 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/10 17:41:18 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 int	ft_lstsize(t_list *lst)
 {
-	int	r;
+	int	i;
 
-	r = 0;
+	i = 0;
 	while (lst != NULL)
 	{
+		i++;
 		lst = lst->next;
-		r++;
 	}
-	return (r);
+	return (i);
 }
-/*
-int	main(void)
-{
-	t_list	*a;
-	t_list	*b;
-	t_list	*c;
-
-	a = (t_list *)malloc(sizeof(t_list));
-	b = (t_list *)malloc(sizeof(t_list));
-	c = (t_list *)malloc(sizeof(t_list));
-	a->next = b;
-	b->next = c;
-	printf("%d", ft_lstsize(a));
-}
-*/

@@ -3,47 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/04 14:41:27 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 15:16:05 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/04 11:31:02 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/11 10:39:38 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-char	*ft_strnstr(const char *src, const char *dst, size_t len)
+char	*ft_strnstr(const char *big, const char *little, size_t n)
 {
 	size_t	i;
-	int		b;
+	int		len;
 
-	i = 0;
-	b = 0;
-	if (dst[i] == '\0')
+	if (!*little)
+		return ((char *)big);
+	len = ft_strlen(little);
+	while ((*big) && n-- >= (size_t)len)
 	{
-		return ((char *)src);
-	}	
-	while (src[i] && i < len)
-	{
-		b = 0;
-		while (dst[b] && src[i + b] == dst[b] && i + b < len)
+		i = 0;
+		while ((big[i] == little[i]))
 		{
-			b++;
+			i++;
+			if (little[i] == '\0')
+				return ((char *)(big));
 		}
-		if (dst[b] == '\0')
-		{
-			return ((char *)(src + i));
-		}
-		i++;
+		big++;
 	}
-	return (NULL);
+	return (0);
 }
 /*
-int main(void)
+#include <stdio.h>
+#include <string.h>
+int main()
 {
-	char kaynak[] = "ahmet";
-	char hedef[] = "ahmet";
-
-	printf("%s", ft_strnstr(kaynak, hedef, 3));
-}
-*/
+	char a[] = "a";
+	printf("%s\n",ft_strnstr(a,a,2));
+	printf("%s",strnstr(a,a,12));
+}*/

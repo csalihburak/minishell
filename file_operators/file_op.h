@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 11:39:25 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/19 15:55:23 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/20 16:16:55 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ void	create_ops(t_op *file, char *arr);
 void	op_setup(t_op *file);
 void	op_list(t_op *file);
 void	check_exec(t_op *file);
+void	less_op_handling(t_op *file);
 
 #endif

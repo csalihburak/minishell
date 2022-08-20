@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 13:35:33 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/16 17:04:45 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/20 17:21:24 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	op_list(t_op *file)
 
 	i = -1;
 	j = 0;
-	file->ops = malloc(sizeof(char *) * dblen(file->cmd_list));
+	file->ops = malloc(sizeof(char *) * 100);
 	while (file->command[++i])
 	{
 		if (file->command[i] == '>' && file->command[i + 1] != '>')

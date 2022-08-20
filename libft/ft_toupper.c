@@ -3,29 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 16:36:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 17:05:22 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/04 17:29:31 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/05 16:27:01 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 int	ft_toupper(int c)
 {
-	if (c > 96 && c < 123)
-	{
-		c -= 32;
-	}
+	if (c >= 'a' && c <= 'z')
+		return (c - 32);
 	return (c);
 }
 /*
-int main (void)
+#include <stdio.h>
+int main()
 {
-	int c;
+	printf("%c",ft_toupper('a'));
 
-	c = 'a';
-	printf("%c", ft_toupper(c));
-}
-*/
+}*/

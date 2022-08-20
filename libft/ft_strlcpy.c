@@ -3,41 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 16:31:43 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 14:42:03 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/04 16:27:11 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/12 13:35:49 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dest, char *src, size_t n)
+size_t	ft_strlcpy(char *dst, const char *src, size_t n)
 {
-	unsigned int	i;
+	size_t	i;
 
-	i = 0;
+	i = ft_strlen(src);
+	if (!dst || !src)
+		return (0);
 	if (n != 0)
 	{
-		while (src[i] != '\0' && (i < (n - 1)))
+		while (*src && n - 1 > 0)
 		{
-			dest[i] = src[i];
-			i++;
+			*dst++ = *src++;
+			n--;
 		}
-		dest[i] = '\0';
-	}
-	while (src[i] != '\0')
-	{
-		i++;
+		*dst = 0;
 	}
 	return (i);
 }
 /*
-int	main(void)
-{
-	char dizi[] = "ahmet";
-	char dizi2[] = "hakan";
+#include <stdio.h>
+#include <string.h>
 
-	printf("%zu", ft_strlcpy(dizi2, dizi, 6));
-}
-*/
+int main()
+{
+
+	printf("%lu\n",ft_strlcpy((void *)0,(void *)0,10));
+	//printf("%lu\n",strlcpy(a,b,16));
+}*/

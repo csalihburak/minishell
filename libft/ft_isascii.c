@@ -3,26 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 16:05:47 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 12:23:50 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/04 09:54:58 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/04 09:55:24 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 int	ft_isascii(int c)
 {
 	if (c >= 0 && c <= 127)
-	{
 		return (1);
-	}
 	return (0);
 }
 /*
-int	main(void)
+#include <stdio.h>
+int main()
 {
-	printf("%d", ft_isascii('5'));
+	char a = 'a';
+	printf("%d",ft_isascii(a));
 }
 */

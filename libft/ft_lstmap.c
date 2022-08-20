@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/14 17:03:48 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/24 13:19:59 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/12 11:59:05 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/13 15:48:14 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 t_list	*ft_lstmap(t_list *lst, void *(*f) (void *), void (*del) (void *))
@@ -20,10 +19,10 @@ t_list	*ft_lstmap(t_list *lst, void *(*f) (void *), void (*del) (void *))
 	if (!lst || !f)
 		return (NULL);
 	res = 0;
-	while (lst != NULL)
+	while (lst)
 	{
 		new = ft_lstnew(f(lst->content));
-		if (new == NULL)
+		if (!new)
 		{
 			ft_lstclear(&res, del);
 			return (0);

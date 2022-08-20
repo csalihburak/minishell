@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/20 13:27:56 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 13:28:51 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/08 17:23:19 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/11 10:42:16 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 void	ft_putstr_fd(char *s, int fd)
@@ -17,21 +16,12 @@ void	ft_putstr_fd(char *s, int fd)
 	int	i;
 
 	i = 0;
-	if (s != NULL)
+	if (s)
 	{
 		while (s[i] != '\0')
 		{
-			write (fd, &s[i], 1);
+			write(fd, &s[i], 1);
 			i++;
 		}
 	}
 }
-
-/*
-int	main(void)
-{
-	char dizi[] = "ahmet123";
-
-	ft_putstr_fd(dizi, 1);
-}
-*/

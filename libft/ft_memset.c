@@ -3,34 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/03 12:29:20 by agunes            #+#    #+#             */
-/*   Updated: 2022/01/20 12:48:12 by agunes           ###   ########.fr       */
+/*   Created: 2022/01/04 16:23:12 by scoskun           #+#    #+#             */
+/*   Updated: 2022/01/04 16:24:33 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
 void	*ft_memset(void *s, int c, size_t n)
 {
-	size_t			i;
-	unsigned char	*a;
+	char	*src;
+	int		i;
 
 	i = 0;
-	a = (unsigned char *)s;
-	while (i < n)
+	src = (char *) s;
+	while (n > 0)
 	{
-		a[i] = c;
+		src[i] = c;
 		i++;
+		n--;
 	}
-	return (s);
+	return (src);
 }
 /*
-int main(void)
+int main()
 {
-	char dizi [] = "ahmet";
+	char a[] = "Selam ben burak";
 
-	printf("%s", ft_memset(dizi, 'h', 4));
+	printf("%s",ft_memset(a, 'x', 12));
 }
 */
