@@ -61,12 +61,10 @@ void	ft_parser(void)
 			i = 0;
 			while (g_shell->commandlist[++i])
 			{
-			temp = g_shell->commandlist[i];
-			g_shell->commandlist[i] = deletechar(g_shell->commandlist[i], '"');
-			free(temp);
+				temp = g_shell->commandlist[i];
+				g_shell->commandlist[i] = deletechar(g_shell->commandlist[i], '"');
+				free(temp);
 			}
-			free(g_shell->command);
-			g_shell->command = merge(g_shell->commandlist, 1);
 			g_shell->pipe_flag = 0;
 			g_shell->op_flag = 0;
 	}
