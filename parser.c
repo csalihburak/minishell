@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:06:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/21 19:52:41 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/21 21:05:55 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,17 @@ char	*merge(char **command, int status)
 void	ft_parser(void)
 {
 	int		i;
+	int		j;
 	char	*temp;
 
 	i = 0;
-	int	j;
 	if (ft_strchr(g_shell->command, '>'))
 	{
 		g_shell->commandlist = ft_split_quote(g_shell->command, ' ');
 		while (g_shell->commandlist[i])
 		{
-			if (g_shell->commandlist[i][0] != '"' && ft_strchr(g_shell->commandlist[i], '>'))
+			if (g_shell->commandlist[i][0] != '"' && \
+			ft_strchr(g_shell->commandlist[i], '>'))
 				g_shell->op_flag = 1;
 			i++;
 		}
@@ -59,7 +60,8 @@ void	ft_parser(void)
 		g_shell->commandlist = ft_split_quote(g_shell->command, ' ');
 		while (g_shell->commandlist[i])
 		{
-			if (g_shell->commandlist[i][0] != '"' && ft_strchr(g_shell->commandlist[i], '<'))
+			if (g_shell->commandlist[i][0] != '"' && \
+			ft_strchr(g_shell->commandlist[i], '<'))
 				g_shell->op_flag = 1;
 			i++;
 		}
@@ -74,15 +76,16 @@ void	ft_parser(void)
 	}
 	else
 	{
-			g_shell->commandlist = ft_split_quote(g_shell->command, ' ');
-			i = 0;
-			while (g_shell->commandlist[++i])
-			{
-				temp = g_shell->commandlist[i];
-				g_shell->commandlist[i] = deletechar(g_shell->commandlist[i], '"');
-				free(temp);
-			}
-			g_shell->pipe_flag = 0;
-			g_shell->op_flag = 0;
+		g_shell->commandlist = ft_split_quote(g_shell->command, ' ');
+		i = 0;
+		while (g_shell->commandlist[++i])
+		{
+			temp = g_shell->commandlist[i];
+			g_shell->commandlist[i] = deletechar\
+			(g_shell->commandlist[i], '"');
+			free(temp);
+		}
+		g_shell->pipe_flag = 0;
+		g_shell->op_flag = 0;
 	}
 }

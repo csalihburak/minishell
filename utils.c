@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 10:55:41 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/20 16:01:31 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/21 20:43:10 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,6 @@ char	*ft_prompt(void)
 	cwd = ft_strjoin(cwd, " % ");
 	free(a);
 	return (cwd);
-}
-
-int	dblen(char **array)
-{
-	int	i;
-	int	y;
-	int	len;
-
-	i = 0;
-	y = 0;
-	len = 0;
-	while (array && array[i])
-	{
-		y = 0;
-		while (array[i][y++])
-			len++;
-		i++;
-		len++;
-	}
-	return (len);
 }
 
 char	*deletechar(char *array, char c)
@@ -82,4 +62,34 @@ char	*deletechar(char *array, char c)
 	}
 	newarray[x] = '\0';
 	return (newarray);
+}
+
+int	arraylen(char *array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+		i++;
+	return (i);
+}
+
+int	dblen(char **array)
+{
+	int	i;
+	int	y;
+	int	len;
+
+	i = 0;
+	y = 0;
+	len = 0;
+	while (array && array[i])
+	{
+		y = 0;
+		while (array[i][y++])
+			len++;
+		i++;
+		len++;
+	}
+	return (len);
 }

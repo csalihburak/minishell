@@ -6,13 +6,13 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:46:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/16 18:50:11 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/21 20:34:21 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	*exportedit4(char *export)
+char	*exportedit2(char *export)
 {
 	int		i;
 	char	*buff;
@@ -33,12 +33,12 @@ char	*exportedit4(char *export)
 	return (export);
 }
 
-char	*exportedit3(char *export)
+char	*exportedit1(char *export)
 {
 	char	*temp;
 
 	temp = NULL;
-	export = exportedit4(export);
+	export = exportedit2(export);
 	if (!ft_strncmp(export, "OLDPWD=", 7))
 	{
 		free(export);
@@ -58,58 +58,31 @@ char	*exportedit3(char *export)
 	return (export);
 }
 
-void	exportedit2(char *temp, char **buff2)
-{
-	int	i;
-	int	x;
-
-	i = -1;
-	x = -1;
-	while (buff2[++i])
-	{
-		x = -1;
-		while (buff2[++x + 1])
-		{	
-			if (buff2[x][0] > buff2[x + 1][0])
-			{
-				{
-					temp = ft_strdup(buff2[x]);
-					free(buff2[x]);
-					buff2[x] = ft_strdup(buff2[x + 1]);
-					free(buff2[x + 1]);
-					buff2[x + 1] = temp;
-				}
-			}
-		}
-	}
-}
-
-char	**exportedit(char **export)
-{
-	char	*buff;
-	char	**buff2;
-	char	*temp;
-
-	temp = NULL;
-	buff = merge(export, 1);
-	buff2 = ft_split(buff, ' ');
-	exportedit2(temp, buff2);
-	free(buff);
-	return (buff2);
-}
-
 void	exportenvcpy(char **env)
 {
 	int		i;
-	char	*buff;
+	int		j;
 
+	i = 0;
+	j = 0;
+	g_shell->env = malloc(sizeof(char *) * dblen(env));
+	g_shell->export = malloc(sizeof(char *) * dblen(env));
+	while (env[i])
+	{
+		g_shell->env[i] = malloc(sizeof(char) * arraylen(env[i]));
+		g_shell->export[i] = malloc(sizeof(char) * arraylen(env[i]));
+		j = 0;
+		while (env[i][j])
+		{
+			g_shell->env[i][j] = env[i][j];
+			g_shell->export[i][j] = env[i][j];
+			j++;
+		}
+		i++;
+	}
 	i = -1;
-	buff = merge(env, 1);
-	g_shell->env = ft_split(buff, ' ');
-	g_shell->export = ft_split(buff, ' ');
 	while (g_shell->export[++i])
-		g_shell->export[i] = exportedit3(g_shell->export[i]);
+		g_shell->export[i] = exportedit1(g_shell->export[i]);
 	free(g_shell->export[i - 1]);
 	g_shell->export[i - 1] = NULL;
-	free(buff);
 }

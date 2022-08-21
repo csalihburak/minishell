@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 16:04:49 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 05:23:29 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/21 21:03:33 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ char	*cmdlistup(char *command)
 	x = 0;
 	y = 0;
 	buff = ft_split(command, '$');
- 	while (g_shell->env[i])
+	while (g_shell->env[i])
 	{
 		x = 0;
 		y = 0;
 		first = malloc(100);
 		if (ft_strchr(g_shell->env[i], '='))
 		{
-			while(g_shell->env[i][x] && g_shell->env[i][x] != '=')
+			while (g_shell->env[i][x] && g_shell->env[i][x] != '=')
 			{
 				first[x] = g_shell->env[i][x];
 				x++;
@@ -61,10 +61,11 @@ char	*cmdlistup(char *command)
 				if (buff[y][len])
 					buff[y] = ft_strdup(" ");
 				else
-					buff[y] = ft_strdup(g_shell->env[i] + findfirstindex(g_shell->env[i], '=') + 1);
+					buff[y] = ft_strdup(g_shell->env[i] + \
+					findfirstindex(g_shell->env[i], '=') + 1);
 			}
 			y++;
- 		}
+		}
 		free(first);
 		i++;
 	}
@@ -87,9 +88,9 @@ int	testfind(char *command)
 	int	i;
 
 	i = 0;
-	if(command[i] == '\'')
+	if (command[i] == '\'')
 	{
-		while(command[i])
+		while (command[i])
 			i++;
 		if (command[i - 1] == '\'')
 			return (0);
@@ -112,7 +113,8 @@ int	dolar(void)
 			free(g_shell->commandlist[i]);
 			g_shell->commandlist[i] = lastexe();
 		}
-		else if (testfind(g_shell->commandlist[i]) && dolarfind(g_shell->commandlist[i]))
+		else if (testfind(g_shell->commandlist[i]) && \
+		dolarfind(g_shell->commandlist[i]))
 			g_shell->commandlist[i] = cmdlistup(g_shell->commandlist[i]);
 		i++;
 	}
