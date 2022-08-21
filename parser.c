@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:06:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/21 21:05:55 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/21 21:10:01 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ void	ft_parser(void)
 		while (g_shell->commandlist[++i])
 		{
 			temp = g_shell->commandlist[i];
-			g_shell->commandlist[i] = deletechar\
-			(g_shell->commandlist[i], '"');
+			g_shell->commandlist[i] = \
+			deletechar(g_shell->commandlist[i], '"');
 			free(temp);
 		}
 		g_shell->pipe_flag = 0;
