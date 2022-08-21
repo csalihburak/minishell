@@ -6,10 +6,9 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/20 19:02:28 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/21 18:32:49 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "file_op.h"
 
@@ -64,12 +63,12 @@ void	op_handle(char *command)
 	op_list(file);
 	if (ft_strchr(command, '>'))
 		file->cmd_list = ft_split(command, '>');
-	if (ft_strchr(command, '<'))
+	else if (ft_strchr(command, '<'))
 	{
 		file->cmd_list = ft_split(command, '<');
 		less_op_handling(file);
 	}
-	else if (!ft_strchr(file->cmd_list[0], '|'))
+	if (!ft_strchr(file->cmd_list[0], '|'))
 		check_and_create(file, 1);
 	else
 	{

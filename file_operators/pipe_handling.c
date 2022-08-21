@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:49:03 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/20 17:19:03 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/21 17:57:52 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	less_op_handling(t_op *file)
 			file->cmd_list[0] = ft_strjoin(file->cmd_list[0], " ");
 			file->cmd_list[0] = ft_strjoin(file->cmd_list[0], temp[0]);
 			create_ops(file, file->cmd_list[0]);
+			dbfree(temp);
 			return ;
 		}
 	}

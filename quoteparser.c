@@ -99,6 +99,3 @@ char    **ft_implt_split(char *s, char c)
     return (res);
 }
 
-
-
-
