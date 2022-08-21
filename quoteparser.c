@@ -1,101 +1,105 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parse_quotes.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: malasaha <malasaha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/19 18:35:21 by malasaha          #+#    #+#             */
+/*   Updated: 2022/08/19 18:40:57 by malasaha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-static  size_t  word_count(char const *s, char c) // Ayıracak olacağı her argümanın sayısı Örnek("aa "bbb" cccc") -> 2, 3, 4
+int	in_char(const char *str, int index, char c)
 {
-    size_t  cnt;
-    cnt = 0;
-    if(s[cnt] == 34 && s[cnt] != 0)
-    {
-        cnt++;
-        while (s[cnt] != 34 && s[cnt] != 0)
-            cnt++;
-        if(s[cnt] != 0)
-            cnt++;
-    }
-    else if(s[cnt] == 39 && s[cnt] != 0)
-    {
-        cnt++;
-        while (s[cnt] != 39 && s[cnt] != 0)
-            cnt++;
-        if(s[cnt] != 0)
-            cnt++;
-    }
-    while (s[cnt] != '\0' && s[cnt] != c)
-        cnt++;
-    return (cnt);
-}
-static  size_t  len_word(char const *s, char c) // Girilen karakter(char c) haricinde ki karakter sayısı.
-{
-    size_t  len;
-    len = 0;
-    while (*s != '\0')
-    {
-        if(*s == 34 && *s != 0)
-        {
-            len++;
-            s++;
-            while(*s != 34 && *s != 0)
-            {
-                len++;
-                s++;
-            }
-            if(*s != 0)
-                len++;
-        }
-        else if(*s == 39 && *s != 0)
-        {
-            len++;
-            s++;
-            while(*s != 39 && *s != 0)
-            {
-                len += 1;
-                s++;
-            }
-            if(*s != 0)
-                len += 1;
-        }
-        else if (*s != c)
-            len++;
-        s++;
-    }
-    return (len);
-}
-char    **ft_implt_split(char *s, char c)
-{
-    size_t  two_index;
-    char    **res;
-    int     index;
-    int     word_len;
-    word_len = len_word(s, c);
-    res = (char **)calloc(sizeof(char *), word_len + 1);
-    index = -1;
-    while (++index < word_len && *s != 0)
-    {
-        while (*s == c && *s != '\0')
-            s++;
-        res[index] = (char *)calloc(sizeof(char), word_count(s, c) + 1);
-        two_index = 0;
-        if(*s == 34 && *s != 0)
-        {
-            res[index][two_index++] = *s++;
-            while (*s != 34 && *s != '\0')
-                res[index][two_index++] = *s++;
-            if(*s != '\0')
-                res[index][two_index++] = *s++;
-        }
-        else if(*s == 39 && *s != 0)
-        {
-            res[index][two_index++] = *s++;
-            while (*s != 39 && *s != '\0')
-                res[index][two_index++] = *s++;
-            if(*s != '\0')
-                res[index][two_index++] = *s++;
-        }
-        while (*s != c && *s != '\0')
-            res[index][two_index++] = *s++;
-        res[index][two_index] = '\0';
-    }
-    res[index] = 0;
-    return (res);
+	int	in;
+	int	i;
+
+	in = 0;
+	i = 0;
+	if (str[index] == c)
+		return (-1);
+	while (str[i])
+	{
+		if (i == index)
+		{
+			if (in)
+				return (1);
+			return (0);
+		}
+		if (str[i] == c)
+		{
+			in = !in;
+		}
+		i++;
+	}
+	return (0);
 }
 
+int	in_quotes(const char *s, int i)
+{
+	return (in_char(s, i, '\'') || in_char(s, i, '"'));
+}
+
+int	in_single_quotes(const char *s, int i)
+{
+	return (in_char(s, i, '\''));
+}
+
+size_t	w_l(char const *s, char c)
+{
+	size_t	r;
+
+	r = 0;
+	while (s[r] != '\0' && (s[r] != c || in_quotes(s, r)))
+		r++;
+	return (r);
+}
+
+size_t	w_c(char const *s, char c)
+{
+	size_t	r;
+	size_t	i;
+
+	r = 0;
+	i = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] != c && (s[i + 1] == '\0' \
+		|| (s[i + 1] == c && !in_quotes(s, i + 1))))
+			r++;
+		i++;
+	}
+	return (r);
+}
+
+char	**ft_split_quote(char const *s, char c)
+{
+	char		**r;
+	size_t		i;
+	size_t		l;
+	size_t		w_i;
+	char const	*sf;
+
+	sf = s;
+	if (!s)
+		return (NULL);
+	l = w_c(s, c);
+	r = (char **)malloc(sizeof(char *) * l + 1);
+	i = 0;
+	while (i < l)
+	{
+		while ((*s == c && !in_quotes(sf, s - sf)) && *s != '\0')
+			s++;
+		r[i] = (char *)malloc(sizeof(char) * w_l(s, c) + 1);
+		w_i = 0;
+		while ((*s != c || in_quotes(sf, s - sf)) && *s != '\0')
+			r[i][w_i++] = *s++;
+		r[i][w_i] = '\0';
+		i++;
+	}
+	r[i] = NULL;
+	return (r);
+}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_handling.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/21 18:32:49 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/21 19:48:10 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ void	op_handle(char *command)
 	file->command = command;
 	op_list(file);
 	if (ft_strchr(command, '>'))
-		file->cmd_list = ft_split(command, '>');
+		file->cmd_list = ft_split_quote(command, '>');
 	else if (ft_strchr(command, '<'))
 	{
-		file->cmd_list = ft_split(command, '<');
+		file->cmd_list = ft_split_quote(command, '<');
 		less_op_handling(file);
 	}
 	if (!ft_strchr(file->cmd_list[0], '|'))
