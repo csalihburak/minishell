@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:06:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/22 10:36:51 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/22 13:56:09 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,49 +41,24 @@ void	ft_parser(void)
 	int		i;
 	int		j;
 
-	i = 0;
-	if (ft_strchr(g_shell->command, '>'))
+	i = -1;
+	g_shell->commandlist = ft_split_quote(g_shell->command, ' ');
+	g_shell->op_flag = 0;
+	g_shell->pipe_flag = 1;
+	while (g_shell->commandlist[++i])
 	{
-		g_shell->commandlist = ft_split_quote(g_shell->command, ' ');
-		while (g_shell->commandlist[i])
-		{
-			if (g_shell->commandlist[i][0] != '"' && \
-			ft_strchr(g_shell->commandlist[i], '>'))
+		if (g_shell->commandlist[i][0] != '"' && \
+			(ft_strchr(g_shell->commandlist[i], '>') || \
+			ft_strchr(g_shell->commandlist[i], '<')))
 				g_shell->op_flag = 1;
-			i++;
-		}
-		g_shell->pipe_flag = 0;
-		printf("%d\n", g_shell->op_flag);
+		else if (g_shell->commandlist[i][0] != '"' && \
+			ft_strchr(g_shell->commandlist[i], '|'))
+				g_shell->pipe_flag += 1;
 	}
-	else if (ft_strchr(g_shell->command, '<'))
+	i = -1;
+	while (g_shell->commandlist[++i])
 	{
-		g_shell->commandlist = ft_split_quote(g_shell->command, ' ');
-		while (g_shell->commandlist[i])
-		{
-			if (g_shell->commandlist[i][0] != '"' && \
-			ft_strchr(g_shell->commandlist[i], '<'))
-				g_shell->op_flag = 1;
-			i++;
-		}
-		g_shell->pipe_flag = 0;
-	}
-	else if (ft_strchr(g_shell->command, '|'))
-	{
-		g_shell->pipe_flag = 1;
-		g_shell->commandlist = ft_split_quote(g_shell->command, '|');
-		while (g_shell->commandlist[++i])
-			g_shell->pipe_flag++;
-	}
-	else
-	{
-		g_shell->commandlist = ft_split_quote(g_shell->command, ' ');
-		i = 0;
-		while (g_shell->commandlist[++i])
-		{
-			g_shell->commandlist[i] = \
-			deletechar(g_shell->commandlist[i], '"');
-		}
-		g_shell->pipe_flag = 0;
-		g_shell->op_flag = 0;
+		g_shell->commandlist[i] = \
+		deletechar(g_shell->commandlist[i], '"');
 	}
 }

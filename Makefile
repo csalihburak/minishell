@@ -59,7 +59,7 @@ clean:
 fclean: clean
 	@rm -rf ${NAME}
 	@make fclean -C ./builtin
-	@make fclean -C ./libft
+#	@make fclean -C ./libft
 #	@rm -rf ./libft/libft.a
 	@echo [$(NAME)]$(B)
 #	@curl -O https://raw.githubusercontent.com/ahmethakangunes/Minishell/main/uninstall.sh

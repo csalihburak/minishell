@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:54:53 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/22 11:42:20 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/22 13:02:04 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ void	check_exec(t_op *file)
 	fd = 0;
 	while (file->cmd_list && file->cmd_list[++i])
 	{
-		if (ft_strchr(file->cmd_list[i], '|'))
-			file->cmd_list[i] = pipe_handling(file, file->cmd_list[i]);
 		fd = create_file(file->cmd_list[i], file->ops[i - 1]);
 		if (!file->cmd_list[i + 1])
 			file->fd = fd;

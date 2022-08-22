@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/22 11:45:28 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/22 13:15:05 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,8 @@ void	check_and_create(t_op *file, int flag)
 		check_exec(file);
 		while (file->cmd_list[i + 1])
 			i++;
-		if (ft_strchr(file->cmd_list[i], '|'))
-			file->cmd_list[i] = pipe_handling(file, file->cmd_list[i]);
 		file->fd = create_file(file->cmd_list[i], file->ops[i - 1]);
 		temp = ft_split_quote(file->cmd_list[0], ' ');
-		printf("fd = %d\n", file->fd);
 		file->path = path(file->path, temp[0]);
 		file_run(file, temp, temp[0]);
 		dbfree(file->path);
@@ -64,6 +61,7 @@ void	op_handle(char *command)
 	i = -1;
 	file = malloc(sizeof(t_op));
 	file->command = command;
+	dbfree(g_shell->commandlist);
 	op_list(file);
 	file->cmd_list = ft_split_quote(command, ' ');
 	while (file->cmd_list[++i])
@@ -71,6 +69,8 @@ void	op_handle(char *command)
 		if (file->cmd_list[i][0] != '"' && \
 		ft_strchr(g_shell->commandlist[i], '>'))
 			flag = 1;
+		if (file->cmd_list[i][0] != '"' && ft_strchr(file->cmd_list[i], '|'))
+			file->pipe_flag = 1;
 	}
 	i = -1;
 	if (flag == 1)
@@ -86,7 +86,7 @@ void	op_handle(char *command)
 			file->cmd_list[i] = deletechar(file->cmd_list[i], '"');
 		less_op_handling(file);
 	}
-	if (!ft_strchr(file->cmd_list[0], '|'))
+	if (file->pipe_flag != 1)
 		check_and_create(file, 1);
 	else
 	{
