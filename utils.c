@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 10:55:41 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/21 20:43:10 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/22 10:32:23 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,13 @@ int	ft_strcmp(char *s1, char *s2)
 	int	i;
 
 	i = 0;
-	while ((s1 && s2) && s1[i] == s2[i] && s2[i])
-		i++;
-	return (s1[i] - s2[i]);
+	if (s1 || s2)
+	{
+		while ((s1 && s2) && s1[i] == s2[i] && s2[i])
+			i++;
+		return (s1[i] - s2[i]);
+	}
+	return (0);
 }
 
 char	*ft_prompt(void)
@@ -55,12 +59,10 @@ char	*deletechar(char *array, char c)
 	while (array[++i])
 	{
 		if (array[i] != c)
-		{
-			newarray[x] = array[i];
-			x++;
-		}
+			newarray[x++] = array[i];
 	}
 	newarray[x] = '\0';
+	free(array);
 	return (newarray);
 }
 

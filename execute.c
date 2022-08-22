@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:08:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/18 14:19:29 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/22 11:42:04 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	**path(char **path, char *command)
 		g_shell->env[i][4] == '=')
 			break ;
 	}
-	path = ft_split(ft_strchr(g_shell->env[i], '=') + 1, ':');
+	path = ft_split_quote(ft_strchr(g_shell->env[i], '=') + 1, ':');
 	i = -1;
 	while (path[++i])
 	{

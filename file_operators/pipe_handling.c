@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:49:03 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/21 17:57:52 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/22 11:41:43 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*pipe_handling(t_op *file, char *command)
 
 	k = 0;
 	i = 0;
-	temp = ft_split(command, '|');
+	temp = ft_split_quote(command, '|');
 	file->fd_rd = -1;
 	g_shell->command = ft_strdup((ft_strchr(command, '|') + 1));
 	free(command);
@@ -43,7 +43,7 @@ void	less_op_handling(t_op *file)
 	{
 		if (!ft_strcmp(file->ops[i], "<"))
 		{
-			temp = ft_split(file->cmd_list[len - 1], ' ');
+			temp = ft_split_quote(file->cmd_list[len - 1], ' ');
 			file->cmd_list[0] = ft_strjoin(file->cmd_list[0], " ");
 			file->cmd_list[0] = ft_strjoin(file->cmd_list[0], temp[0]);
 			create_ops(file, file->cmd_list[0]);

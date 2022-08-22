@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_quotes.c                                  :+:      :+:    :+:   */
+/*   quoteparser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: malasaha <malasaha@student.42.fr>          +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 18:35:21 by malasaha          #+#    #+#             */
-/*   Updated: 2022/08/19 18:40:57 by malasaha         ###   ########.fr       */
+/*   Updated: 2022/08/22 10:26:53 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,8 @@ char	**ft_split_quote(char const *s, char c)
 		return (NULL);
 	l = w_c(s, c);
 	r = (char **)malloc(sizeof(char *) * l + 1);
-	i = 0;
-	while (i < l)
+	i = -1;
+	while (++i < l)
 	{
 		while ((*s == c && !in_quotes(sf, s - sf)) && *s != '\0')
 			s++;
@@ -98,7 +98,6 @@ char	**ft_split_quote(char const *s, char c)
 		while ((*s != c || in_quotes(sf, s - sf)) && *s != '\0')
 			r[i][w_i++] = *s++;
 		r[i][w_i] = '\0';
-		i++;
 	}
 	r[i] = NULL;
 	return (r);

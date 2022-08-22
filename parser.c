@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:06:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/21 21:10:01 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/22 10:36:51 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	ft_parser(void)
 {
 	int		i;
 	int		j;
-	char	*temp;
 
 	i = 0;
 	if (ft_strchr(g_shell->command, '>'))
@@ -54,6 +53,7 @@ void	ft_parser(void)
 			i++;
 		}
 		g_shell->pipe_flag = 0;
+		printf("%d\n", g_shell->op_flag);
 	}
 	else if (ft_strchr(g_shell->command, '<'))
 	{
@@ -80,10 +80,8 @@ void	ft_parser(void)
 		i = 0;
 		while (g_shell->commandlist[++i])
 		{
-			temp = g_shell->commandlist[i];
 			g_shell->commandlist[i] = \
 			deletechar(g_shell->commandlist[i], '"');
-			free(temp);
 		}
 		g_shell->pipe_flag = 0;
 		g_shell->op_flag = 0;

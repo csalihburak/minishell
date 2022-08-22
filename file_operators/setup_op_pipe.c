@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 13:35:33 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/20 17:21:24 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/22 11:35:39 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,19 @@ void	op_list(t_op *file)
 	i = -1;
 	j = 0;
 	file->ops = malloc(sizeof(char *) * 100);
-	while (file->command[++i])
+	file->cmd_list = ft_split_quote(file->command, ' ');
+	while (file->cmd_list [++i])
 	{
-		if (file->command[i] == '>' && file->command[i + 1] != '>')
-			file->ops[j++] = ft_strdup(">");
-		else if (file->command[i] == '>' && file->command[i + 1] == '>')
-			file->ops[j++] = ft_strdup(">>");
-		else if (file->command[i] == '<' && file->command[i + 1] == '<')
-			file->ops[j++] = ft_strdup("<<");
-		else if (file->command[i] == '<' && file->command[i + 1] != '<')
-			file->ops[j++] = ft_strdup("<");
+		if (file->cmd_list[i][0] != '"' && ft_strcmp(file->cmd_list[i], ">"))
+			file->ops[j++] = ft_strdup(file->cmd_list[i]);
+		if (file->cmd_list[i][0] != '"' && ft_strcmp(file->cmd_list[i], ">>"))
+			file->ops[j++] = ft_strdup(file->cmd_list[i]);
+		if (file->cmd_list[i][0] != '"' && ft_strcmp(file->cmd_list[i], "<"))
+			file->ops[j++] = ft_strdup(file->cmd_list[i]);
+		if (file->cmd_list[i][0] != '"' && ft_strcmp(file->cmd_list[i], "<<"))
+			file->ops[j++] = ft_strdup(file->cmd_list[i]);
 	}
+	dbfree(file->cmd_list);
 	file->ops[j] = NULL;
 }
 

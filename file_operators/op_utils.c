@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:54:53 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/21 20:37:43 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/22 11:42:20 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	op_check(t_op *file)
 		if (ft_strchr(file->cmd_list[i], '|'))
 		{
 			file->pipe_flag = 0;
-			file->pipe_list = ft_split(file->cmd_list[i], '|');
+			file->pipe_list = ft_split_quote(file->cmd_list[i], '|');
 			while (file->pipe_list[i++])
 				file->pipe_flag++;
 			return (1);

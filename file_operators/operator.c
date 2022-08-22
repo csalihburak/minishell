@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 15:50:20 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/20 15:34:55 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/22 11:42:28 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	create_ops(t_op *file, char *command)
 {
-	file->pipe_command = ft_split(command, ' ');
+	file->pipe_command = ft_split_quote(command, ' ');
 	file->path = path(file->path, file->pipe_command[0]);
 	if (builtinsearch(file->pipe_command[0]) == 0)
 	{

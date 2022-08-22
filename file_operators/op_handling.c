@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op_handling.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/21 19:48:10 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/22 11:45:28 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ void	check_and_create(t_op *file, int flag)
 		if (ft_strchr(file->cmd_list[i], '|'))
 			file->cmd_list[i] = pipe_handling(file, file->cmd_list[i]);
 		file->fd = create_file(file->cmd_list[i], file->ops[i - 1]);
-		temp = ft_split(file->cmd_list[0], ' ');
+		temp = ft_split_quote(file->cmd_list[0], ' ');
+		printf("fd = %d\n", file->fd);
 		file->path = path(file->path, temp[0]);
 		file_run(file, temp, temp[0]);
 		dbfree(file->path);
@@ -57,15 +58,32 @@ void	check_and_create(t_op *file, int flag)
 void	op_handle(char *command)
 {
 	t_op	*file;
+	int		i;
+	int		flag;
 
+	i = -1;
 	file = malloc(sizeof(t_op));
 	file->command = command;
 	op_list(file);
-	if (ft_strchr(command, '>'))
+	file->cmd_list = ft_split_quote(command, ' ');
+	while (file->cmd_list[++i])
+	{
+		if (file->cmd_list[i][0] != '"' && \
+		ft_strchr(g_shell->commandlist[i], '>'))
+			flag = 1;
+	}
+	i = -1;
+	if (flag == 1)
+	{
 		file->cmd_list = ft_split_quote(command, '>');
-	else if (ft_strchr(command, '<'))
+		while (file->cmd_list[++i])
+			file->cmd_list[i] = deletechar(file->cmd_list[i], '"');
+	}
+	else
 	{
 		file->cmd_list = ft_split_quote(command, '<');
+		while (file->cmd_list[++i])
+			file->cmd_list[i] = deletechar(file->cmd_list[i], '"');
 		less_op_handling(file);
 	}
 	if (!ft_strchr(file->cmd_list[0], '|'))
