@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/22 13:15:05 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/22 16:53:41 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,12 +75,14 @@ void	op_handle(char *command)
 	i = -1;
 	if (flag == 1)
 	{
+		dbfree(file->cmd_list);
 		file->cmd_list = ft_split_quote(command, '>');
 		while (file->cmd_list[++i])
 			file->cmd_list[i] = deletechar(file->cmd_list[i], '"');
 	}
 	else
 	{
+		dbfree(file->cmd_list);
 		file->cmd_list = ft_split_quote(command, '<');
 		while (file->cmd_list[++i])
 			file->cmd_list[i] = deletechar(file->cmd_list[i], '"');

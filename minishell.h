@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/21 21:02:39 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/22 17:32:41 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ char	*deletechar(char *array, char c);
 void	exportenvcpy(char **env);
 char	**ft_split_quote(char const *s, char c);
 int		arraylen(char *array);
+int		quote_strchr(char *arr, int c);
 
 #endif

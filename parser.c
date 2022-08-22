@@ -6,11 +6,43 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:06:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/22 13:56:09 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/22 17:34:32 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	**dbl_deletechar(char **arr, int c)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		arr[i] = deletechar(arr[i], c);
+		i++;
+	}
+	return (arr);
+}
+
+int	quote_strchr(char *arr, int c)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+	{
+		if (arr[i] == '"')
+		{
+			while (arr[i] && arr[i] != '"')
+				i++;
+		}
+		if (arr[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 char	*merge(char **command, int status)
 {
@@ -39,21 +71,29 @@ char	*merge(char **command, int status)
 void	ft_parser(void)
 {
 	int		i;
-	int		j;
 
 	i = -1;
 	g_shell->commandlist = ft_split_quote(g_shell->command, ' ');
 	g_shell->op_flag = 0;
-	g_shell->pipe_flag = 1;
+	g_shell->pipe_flag = 0;
 	while (g_shell->commandlist[++i])
 	{
-		if (g_shell->commandlist[i][0] != '"' && \
-			(ft_strchr(g_shell->commandlist[i], '>') || \
-			ft_strchr(g_shell->commandlist[i], '<')))
+		if (quote_strchr(g_shell->commandlist[i], '<') || \
+		quote_strchr(g_shell->commandlist[i], '<'))
 				g_shell->op_flag = 1;
-		else if (g_shell->commandlist[i][0] != '"' && \
-			ft_strchr(g_shell->commandlist[i], '|'))
-				g_shell->pipe_flag += 1;
+		else if (quote_strchr(g_shell->commandlist[i], '|'))
+		{
+			dbfree(g_shell->commandlist);
+			g_shell->commandlist = ft_split_quote(g_shell->command, '|');
+			i = -1;
+			while (g_shell->commandlist[++i])
+			{
+				g_shell->commandlist[i] = \
+				deletechar(g_shell->commandlist[i], '"');
+				g_shell->pipe_flag++;
+			}
+			return ;
+		}
 	}
 	i = -1;
 	while (g_shell->commandlist[++i])

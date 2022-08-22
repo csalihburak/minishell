@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:33:50 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/20 16:37:47 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/22 17:21:59 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ void	start(void)
 			free(g_shell->command);
 	}
 	if (g_shell->command == NULL)
+	{
+		printf("exit\n");
 		exit(0);
+	}
 }
 
 int	main(int argc, char **argv, char **env)
