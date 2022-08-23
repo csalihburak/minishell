@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/23 14:31:26 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/23 17:34:51 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,23 +64,22 @@ void	op_handle(char *command)
 	file->command = command;
 	dbfree(g_shell->commandlist);
 	op_list(file);
-	//file->cmd_list = ft_split_quote(command, ' ');
 	if (quote_strchr(command, '>'))
 	{
 		file->cmd_list = ft_split_quote(command, '>');
 		while (file->cmd_list[++i])
 			file->cmd_list[i] = deletechar(file->cmd_list[i], '"');
 	}
-	else if (quote_strchr(command, '>'))
+	else if (quote_strchr(command, '<'))
 	{
 		file->cmd_list = ft_split_quote(command, '<');
 		while (file->cmd_list[++i])
 			file->cmd_list[i] = deletechar(file->cmd_list[i], '"');
 		less_op_handling(file);
 	}
-	else if (!quote_strchr(command, '|'))
+	if (!quote_strchr(command, '|') && !quote_strchr(command, '<') && quote_strchr(command, '>'))
 		check_and_create(file, 1);
-	else
+	else if (!quote_strchr(command, '<') && quote_strchr(command, '>'))
 	{
 		op_check(file);
 		op_setup(file);

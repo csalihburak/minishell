@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:49:03 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/22 12:47:57 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/23 17:48:54 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char	*pipe_handling(t_op *file, char *command)
 void	less_op_handling(t_op *file)
 {
 	int		i;
+	int		pid;
 	int		len;
 	char	**temp;
 
@@ -41,9 +42,15 @@ void	less_op_handling(t_op *file)
 		if (!ft_strcmp(file->ops[i], "<"))
 		{
 			temp = ft_split_quote(file->cmd_list[len - 1], ' ');
-			file->cmd_list[0] = ft_strjoin(file->cmd_list[0], " ");
-			file->cmd_list[0] = ft_strjoin(file->cmd_list[0], temp[0]);
-			create_ops(file, file->cmd_list[0]);
+			pid = fork();
+			if (pid == 0)
+			{
+				file->fd = open(temp[dblen2(temp) - 1], O_WRONLY);
+				dup2(file->fd, 0);
+				create_ops(file, file->cmd_list[0]);
+			}
+			else
+				wait(NULL);
 			dbfree(temp);
 			return ;
 		}
