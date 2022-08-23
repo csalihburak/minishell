@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 11:00:33 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/21 20:12:01 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/23 13:09:44 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	addexport(char *command)
 		command = addquote(command, 0);
 		g_shell->export[i] = ft_strdup(command);
 		g_shell->export[i + 1] = NULL;
+		free(command);
 	}
 	else
 	{

@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:53:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/21 20:42:50 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/23 14:23:59 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void	golastpwd(void)
 	char	*new;
 	char	*temp;
 
-	i = 0;
+	i = -1;
 	old = getcwd(NULL, 0);
-	while (g_shell->export[i])
+	while (g_shell->export[++i])
 	{
 		if (!ft_strcmp(g_shell->export[i], "OLDPWD"))
 			notset(2);
@@ -75,9 +75,9 @@ void	golastpwd(void)
 			envpwdupdate(new, old);
 			free(new);
 		}
-		i++;
 	}
-	free(old);
+	if (old != NULL)
+		free(old);
 }
 
 int	cd(char *command)

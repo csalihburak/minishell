@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:06:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/22 17:34:32 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/23 13:00:05 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ char	*merge(char **command, int status)
 void	ft_parser(void)
 {
 	int		i;
+	char	*temp;
 
 	i = -1;
 	g_shell->commandlist = ft_split_quote(g_shell->command, ' ');
@@ -79,7 +80,7 @@ void	ft_parser(void)
 	while (g_shell->commandlist[++i])
 	{
 		if (quote_strchr(g_shell->commandlist[i], '<') || \
-		quote_strchr(g_shell->commandlist[i], '<'))
+		quote_strchr(g_shell->commandlist[i], '>'))
 				g_shell->op_flag = 1;
 		else if (quote_strchr(g_shell->commandlist[i], '|'))
 		{
