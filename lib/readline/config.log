@@ -30,8 +30,8 @@ Kernel configured for up to 12 processors.
 Processor type: x86_64h (Intel x86-64h Haswell)
 Processors active: 0 1 2 3 4 5 6 7 8 9 10 11
 Primary memory available: 8.00 gigabytes
-Default processor set: 344 tasks, 1656 threads, 12 processors
-Load average: 2.80, Mach factor: 9.18
+Default processor set: 341 tasks, 1575 threads, 12 processors
+Load average: 1.97, Mach factor: 10.02
 /bin/machine           = unknown
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
@@ -1934,7 +1934,7 @@ configure:7074: checking for tgetent
 configure:7074: gcc -o conftest -g -O2   conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "_tgetent", referenced from:
-      _main in conftest-9e258b.o
+      _main in conftest-0a9a47.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:7074: $? = 1
@@ -2229,7 +2229,7 @@ configure:7421: checking for mbscasecmp
 configure:7421: gcc -o conftest -g -O2   conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "_mbscasecmp", referenced from:
-      _main in conftest-590a2c.o
+      _main in conftest-19c0a2.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:7421: $? = 1
@@ -2369,7 +2369,7 @@ configure:7428: checking for mbscmp
 configure:7428: gcc -o conftest -g -O2   conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "_mbscmp", referenced from:
-      _main in conftest-02a571.o
+      _main in conftest-619f0f.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:7428: $? = 1
@@ -2517,7 +2517,7 @@ configure:7450: checking for mbschr
 configure:7450: gcc -o conftest -g -O2   conftest.c  >&5
 Undefined symbols for architecture x86_64:
   "_mbschr", referenced from:
-      _main in conftest-6fc89b.o
+      _main in conftest-3d0783.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
 configure:7450: $? = 1
@@ -2892,7 +2892,6 @@ config.status:951: creating shlib/Makefile
 config.status:951: creating readline.pc
 config.status:951: creating history.pc
 config.status:951: creating config.h
-config.status:1126: config.h is unchanged
 config.status:1140: executing stamp-h commands
 
 ## ---------------- ##
