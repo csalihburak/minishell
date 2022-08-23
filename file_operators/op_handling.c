@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/22 16:53:41 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/23 14:31:26 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	check_and_create(t_op *file, int flag)
 	temp = 0;
 	if (flag == 0)
 	{
+		printf("selam\n");
 		check_exec(file);
 	}
 	if (flag == 1)
@@ -63,32 +64,21 @@ void	op_handle(char *command)
 	file->command = command;
 	dbfree(g_shell->commandlist);
 	op_list(file);
-	file->cmd_list = ft_split_quote(command, ' ');
-	while (file->cmd_list[++i])
+	//file->cmd_list = ft_split_quote(command, ' ');
+	if (quote_strchr(command, '>'))
 	{
-		if (file->cmd_list[i][0] != '"' && \
-		ft_strchr(g_shell->commandlist[i], '>'))
-			flag = 1;
-		if (file->cmd_list[i][0] != '"' && ft_strchr(file->cmd_list[i], '|'))
-			file->pipe_flag = 1;
-	}
-	i = -1;
-	if (flag == 1)
-	{
-		dbfree(file->cmd_list);
 		file->cmd_list = ft_split_quote(command, '>');
 		while (file->cmd_list[++i])
 			file->cmd_list[i] = deletechar(file->cmd_list[i], '"');
 	}
-	else
+	else if (quote_strchr(command, '>'))
 	{
-		dbfree(file->cmd_list);
 		file->cmd_list = ft_split_quote(command, '<');
 		while (file->cmd_list[++i])
 			file->cmd_list[i] = deletechar(file->cmd_list[i], '"');
 		less_op_handling(file);
 	}
-	if (file->pipe_flag != 1)
+	else if (!quote_strchr(command, '|'))
 		check_and_create(file, 1);
 	else
 	{
