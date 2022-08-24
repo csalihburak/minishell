@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:49:03 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/24 11:02:20 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/24 14:32:59 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ char	*pipe_handling(t_op *file, char *command)
 void	less_op_handling(t_op *file)
 {
 	int		i;
-	int		pid;
 	char	**temp;
 
 	i = -1;
@@ -40,9 +39,10 @@ void	less_op_handling(t_op *file)
 		if (!ft_strcmp(file->ops[i], "<"))
 		{
 			temp = ft_split_quote(file->command, ' ');
-			pid = fork();
-			if (pid == 0)
+			file->pid = fork();
+			if (file->pid == 0)
 			{
+			printf("selam\n");
 				file->fd = open(temp[dblen2(temp) - 1], O_RDONLY);
 				dup2(file->fd, 0);
 				close(file->fd);
@@ -52,7 +52,30 @@ void	less_op_handling(t_op *file)
 			else
 				wait(NULL);
 			dbfree(temp);
-			return ;
 		}
+		else if (!ft_strcmp(file->ops[i], "<<"))
+			dbl_less(file);
 	}
+}
+
+void	dbl_less(t_op *file)
+{
+	int		i;
+	char	*temp;
+	char	*dlmtr;
+
+	i = -1;
+	file->fds = malloc(sizeof(int) * 2);
+	pipe(file->fds);
+	dlmtr = file->cmd_list[dblen2(file->cmd_list) - 1];
+	temp = ft_strdup("evet");
+	while (ft_strcmp(temp,dlmtr) != 0)
+	{
+		temp = readline(">");
+		write(file->fds[1], temp, ft_strlen(temp));
+	}
+	dup2(file->fds[0], 0);
+	dup2(file->fd, 0);
+	close(file->fd);
+	create_ops(file, file->cmd_list[0]);
 }

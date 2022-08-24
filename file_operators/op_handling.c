@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/23 17:34:51 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/24 14:30:54 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	op_handle(char *command)
 {
 	t_op	*file;
 	int		i;
-	int		flag;
 
 	i = -1;
 	file = malloc(sizeof(t_op));
@@ -79,7 +78,7 @@ void	op_handle(char *command)
 	}
 	if (!quote_strchr(command, '|') && !quote_strchr(command, '<') && quote_strchr(command, '>'))
 		check_and_create(file, 1);
-	else if (!quote_strchr(command, '<') && quote_strchr(command, '>'))
+	else 	
 	{
 		op_check(file);
 		op_setup(file);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quoteparser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 18:35:21 by malasaha          #+#    #+#             */
-/*   Updated: 2022/08/22 10:26:53 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/24 12:00:07 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,6 @@ int	in_char(const char *str, int index, char c)
 int	in_quotes(const char *s, int i)
 {
 	return (in_char(s, i, '\'') || in_char(s, i, '"'));
-}
-
-int	in_single_quotes(const char *s, int i)
-{
-	return (in_char(s, i, '\''));
 }
 
 size_t	w_l(char const *s, char c)
