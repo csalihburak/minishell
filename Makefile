@@ -10,6 +10,7 @@ SRCS = main.c \
 	execute.c	\
 	free.c		\
 	exportenv.c	\
+	dolarutils.c	\
 	quoteparser.c \
 	./Pipe/token.c			\
 	./Pipe/run_pipes.c		\
@@ -53,15 +54,16 @@ $(TERM):
 clean:
 	@rm -rf ${OBJS}
 	@make clean -C ./builtin
-#	@make clean -C ./libft
+	@make clean -C ./libft
 	@echo [$(OBJS)]$(B)
 
 fclean: clean
 	@rm -rf ${NAME}
 	@make fclean -C ./builtin
-#	@make fclean -C ./libft
-#	@rm -rf ./libft/libft.a
+	@make fclean -C ./libft
+	@rm -rf ./libft/libft.a
 	@echo [$(NAME)]$(B)
+	@rm -rf ./lib/readline
 #	@curl -O https://raw.githubusercontent.com/ahmethakangunes/Minishell/main/uninstall.sh
 #	@bash uninstall.sh
 #	@rm -rf ~/./minishell

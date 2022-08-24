@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/23 15:22:52 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/24 13:11:47 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_shell
 	char		**env;
 	char		**export;
 	char		**path;
+	char		**buff;
 	char		*lastexe;
 	char		*command;
 	char		*prompt;
@@ -90,5 +91,9 @@ void	exportenvcpy(char **env);
 char	**ft_split_quote(char const *s, char c);
 int		arraylen(char *array);
 int		quote_strchr(char *arr, int c);
+char	*cmdlistup(char *command);
+int		singlequo(char *command);
+char	*lastexe(void);
+int		dolarfind(char *arr);
 
 #endif
