@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:08:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/24 12:16:03 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/24 14:42:46 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	searchfor(char **path, char **commandlist, char *command)
 	g_shell->exeflag = 0;
 	while (path[++i])
 	{
- 	 	if (access(path[i], X_OK) == 0)
+		if (access(path[i], X_OK) == 0)
 		{
 			exec(commandlist, path[i]);
 			g_shell->exeflag = 1;

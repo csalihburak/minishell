@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_handling.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:49:03 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/24 14:32:59 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/24 14:42:07 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*pipe_handling(t_op *file, char *command)
 	temp = ft_split_quote(command, '|');
 	file->fd_rd = -1;
 	dbfree(g_shell->commandlist);
-	ft_parser();
+	parser();
 	runcommand(g_shell->commandlist[0]);
 	return (command);
 }

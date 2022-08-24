@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:06:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/24 14:27:54 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/24 14:41:02 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,22 @@ char	*merge(char **command, int status)
 	return (arr);
 }
 
-void	ft_parser(void)
+void	parser2(void)
+{
+	int	i;
+
+	i = -1;
+	dbfree(g_shell->commandlist);
+	g_shell->commandlist = ft_split_quote(g_shell->command, '|');
+	while (g_shell->commandlist[++i])
+	{
+		g_shell->commandlist[i] = \
+		deletechar(g_shell->commandlist[i], '"');
+		g_shell->pipe_flag++;
+	}
+}
+
+void	parser(void)
 {
 	int		i;
 
@@ -82,20 +97,12 @@ void	ft_parser(void)
 	if (quote_strchr(g_shell->command, '<') || \
 	quote_strchr(g_shell->command, '>'))
 	{
-			g_shell->op_flag = 1;
-			return ;
+		g_shell->op_flag = 1;
+		return ;
 	}
 	else if (quote_strchr(g_shell->command, '|'))
 	{
-		dbfree(g_shell->commandlist);
-		g_shell->commandlist = ft_split_quote(g_shell->command, '|');
-		i = -1;
-		while (g_shell->commandlist[++i])
-		{
-			g_shell->commandlist[i] = \
-			deletechar(g_shell->commandlist[i], '"');
-			g_shell->pipe_flag++;
-		}
+		parser2();
 		return ;
 	}
 	i = -1;
@@ -104,6 +111,4 @@ void	ft_parser(void)
 		g_shell->commandlist[i] = \
 		deletechar(g_shell->commandlist[i], '"');
 	}
-/* 	temp = merge(g_shell->commandlist, 1);
-	g_shell->commandlist = ft_split_quote(temp, ' '); */
 }

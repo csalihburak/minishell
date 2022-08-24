@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:33:50 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/23 15:37:04 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/24 14:39:59 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	start(void)
 		{
 			add_history(g_shell->command);
 			ft_free();
-			ft_parser();
+			parser();
 			dolar();
 			if (g_shell->commandlist[0])
 				runcommand(g_shell->commandlist[0]);
