@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe_handling.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:49:03 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/24 14:42:07 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/25 17:33:56 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,18 @@ char	*pipe_handling(t_op *file, char *command)
 
 	k = 0;
 	i = 0;
-	temp = ft_split_quote(command, '|');
+	temp = ft_split(command, '|');
 	file->fd_rd = -1;
+	free(g_shell->command);
+	g_shell->command = ft_strdup((ft_strchr(command, '|') + 1));
+	free(command);
+	command = ft_strdup(temp[0]);
 	dbfree(g_shell->commandlist);
 	parser();
 	runcommand(g_shell->commandlist[0]);
+	dbfree(g_shell->commandlist);
+	dbfree(temp);
+	g_shell->op_flag = 1;
 	return (command);
 }
 
@@ -42,7 +49,6 @@ void	less_op_handling(t_op *file)
 			file->pid = fork();
 			if (file->pid == 0)
 			{
-			printf("selam\n");
 				file->fd = open(temp[dblen2(temp) - 1], O_RDONLY);
 				dup2(file->fd, 0);
 				close(file->fd);
@@ -61,21 +67,41 @@ void	less_op_handling(t_op *file)
 void	dbl_less(t_op *file)
 {
 	int		i;
+	int		pid;
 	char	*temp;
 	char	*dlmtr;
 
 	i = -1;
 	file->fds = malloc(sizeof(int) * 2);
+	dlmtr = ft_strdup(file->cmd_list[dblen2(file->cmd_list) - 1]);
+	dlmtr = ft_strtrim(dlmtr, " ");
 	pipe(file->fds);
-	dlmtr = file->cmd_list[dblen2(file->cmd_list) - 1];
-	temp = ft_strdup("evet");
-	while (ft_strcmp(temp,dlmtr) != 0)
+	temp = NULL;
+	pid = fork();
+	if (pid == 0)
 	{
-		temp = readline(">");
-		write(file->fds[1], temp, ft_strlen(temp));
+		while (ft_strcmp(temp, dlmtr) != 0)
+		{
+			temp = readline("> ");
+			if (temp != NULL && ft_strcmp(temp, dlmtr) != 0)
+			{
+				write(file->fds[1], temp, ft_strlen(temp));
+				write(file->fds[1], "\n", 1);
+			}
+			else if (temp != NULL)
+				free(temp);
+		}
+		close(file->fds[1]);
+		dup2(file->fds[0], 0);
+		close(file->fds[0]);
+		create_ops(file, file->cmd_list[0]);
+		kill(getpid(), SIGTERM);
 	}
-	dup2(file->fds[0], 0);
-	dup2(file->fd, 0);
-	close(file->fd);
-	create_ops(file, file->cmd_list[0]);
+	else
+	{
+		close(file->fds[0]);
+		close(file->fds[1]);
+		wait(NULL);
+	}
+	free(file->fds);
 }

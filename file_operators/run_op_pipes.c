@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:37:00 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/19 15:28:27 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/25 11:41:00 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	file_creater(t_op *file)
 	while (file->cmd_list[i + 1])
 		i++;
 	check_and_create(file, 0);
+	if (ft_strchr(file->cmd_list[i], '|'))
+		pipe_handling(file, file->cmd_list[i]);
 	a = ft_strtrim(file->cmd_list[i], " ");
 	if (!ft_strcmp(file->ops[i - 1], ">"))
 		return (open(a, O_WRONLY | O_CREAT | O_TRUNC, 0644));

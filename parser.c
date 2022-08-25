@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:06:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/24 14:41:02 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/25 17:20:42 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,16 @@ int	quote_strchr(char *arr, int c)
 	{
 		while (arr[i])
 		{
-			if (arr[i] == '"')
+			if (arr[i] == '\"')
 			{
-				while (arr[i] && arr[i] != '"')
+				i++;
+				while (arr[i] && arr[i] != '\"')
 					i++;
 			}
 			if (arr[i] == c)
 				return (1);
+			else if (arr[i] == 0)
+				return (0);
 			i++;
 		}
 	}

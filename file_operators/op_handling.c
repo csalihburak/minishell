@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/24 14:30:54 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/25 17:26:31 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	check_and_create(t_op *file, int flag)
 	temp = 0;
 	if (flag == 0)
 	{
-		printf("selam\n");
 		check_exec(file);
 	}
 	if (flag == 1)
@@ -44,6 +43,9 @@ void	check_and_create(t_op *file, int flag)
 		check_exec(file);
 		while (file->cmd_list[i + 1])
 			i++;
+		printf("cmd %s\n", file->cmd_list[i]);
+		if (quote_strchr(file->cmd_list[i], '|'))
+			file->cmd_list[i] = pipe_handling(file, file->cmd_list[i]);
 		file->fd = create_file(file->cmd_list[i], file->ops[i - 1]);
 		temp = ft_split_quote(file->cmd_list[0], ' ');
 		file->path = path(file->path, temp[0]);
@@ -61,13 +63,14 @@ void	op_handle(char *command)
 	i = -1;
 	file = malloc(sizeof(t_op));
 	file->command = command;
-	dbfree(g_shell->commandlist);
 	op_list(file);
 	if (quote_strchr(command, '>'))
 	{
 		file->cmd_list = ft_split_quote(command, '>');
 		while (file->cmd_list[++i])
 			file->cmd_list[i] = deletechar(file->cmd_list[i], '"');
+		if (!quote_strchr(file->cmd_list[0], '<') && !quote_strchr(file->cmd_list[0], '|'))
+			check_and_create(file, 1);
 	}
 	else if (quote_strchr(command, '<'))
 	{
@@ -76,9 +79,7 @@ void	op_handle(char *command)
 			file->cmd_list[i] = deletechar(file->cmd_list[i], '"');
 		less_op_handling(file);
 	}
-	if (!quote_strchr(command, '|') && !quote_strchr(command, '<') && quote_strchr(command, '>'))
-		check_and_create(file, 1);
-	else 	
+	else
 	{
 		op_check(file);
 		op_setup(file);
@@ -86,6 +87,5 @@ void	op_handle(char *command)
 	}
 	dbfree(file->cmd_list);
 	dbfree(file->ops);
-	g_shell->op_flag = 1;
 	free(file);
 }
