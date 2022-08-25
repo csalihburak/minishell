@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:25:49 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/25 12:33:58 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/25 16:19:11 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,6 @@ int	builtinsearch(char *command)
 	{
 		g_shell->path = g_shell->program->path;
 		g_shell->commandlist = g_shell->program->command;
-	}
-	if (!ft_strcmp(command, "$?"))
-	{
-		free(command);
-		command = ft_itoa(g_shell->status / 256);
-		return (0);
 	}
 	if (!ft_strcmp(command, "env"))
 		return (env());

@@ -27,7 +27,7 @@ RED = '\033[0;31m'
 BUILTIN = ./builtin/builtin.a
 LIB	= ./lib/.minishell
 
-all: $(LIB) $(PRIN) $(BUILTIN) $(NAME) $(TERM)
+all: $(LIB) $(PRIN) $(BUILTIN) $(NAME)
 
 $(LIB):
 	@make -C ./lib
@@ -42,11 +42,6 @@ $(BUILTIN):
 $(NAME): $(OBJS) $(PRIN) $(BUILTIN)
 	@$(CC) ${LDFLAGS} $(OBJS) -o $(NAME) $(PRIN) $(BUILTIN)
 	@echo "Minishell ready."
-
-$(TERM):
-	@curl -O https://raw.githubusercontent.com/ahmethakangunes/Minishell/main/install.sh
-	@bash install.sh
-	@rm -rf install.sh
 
 %.o: %.c
 	@echo $(R)Compiling: [$<]
@@ -66,10 +61,6 @@ fclean: clean
 	@echo [$(NAME)]$(B)
 	@rm -rf ./lib/readline
 	@rm -rf ./lib/.minishell
-	@curl -O https://raw.githubusercontent.com/ahmethakangunes/Minishell/main/uninstall.sh
-	@bash uninstall.sh
-	@rm -rf ~/./minishell
-	@rm -rf uninstall.sh
 
 
 
