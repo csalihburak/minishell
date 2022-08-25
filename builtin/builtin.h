@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 13:14:13 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 04:46:04 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/25 17:35:40 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,5 @@ void	notset(int status);
 void	envpwdupdate(char *new, char *old);
 void	exportpwdupdate(char *new, char *old);
 int		cdcheck(char *command);
+void	exitfunc(void);
 #endif

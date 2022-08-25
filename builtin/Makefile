@@ -6,6 +6,7 @@ SRCS = cd.c			\
 	env.c 			\
 	pwd.c			\
 	echo.c			\
+	exit.c			\
 	unset.c			\
 	export.c		\
 	cdutils.c		\

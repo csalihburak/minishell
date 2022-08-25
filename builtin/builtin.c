@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:25:49 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/25 16:19:11 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/25 17:08:38 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	builtinsearch(char *command)
 	if (!ft_strcmp(command, "pwd"))
 		return (pwd());
 	if (!ft_strcmp(command, "exit"))
-		exit(1);
+		exitfunc();
 	if (!ft_strcmp(command, "export"))
 		return (export());
 	if (!ft_strcmp(command, "unset"))
