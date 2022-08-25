@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/24 14:40:10 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/24 15:49:00 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct s_shell
 	int			unsetflag;
 	int			exportflag;
 	int			freeflag;
+	int			status;
 	int			op_flag;
 	t_token		*program;
 }		t_shell;

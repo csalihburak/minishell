@@ -64,6 +64,7 @@ fclean: clean
 	@rm -rf ./libft/libft.a
 	@echo [$(NAME)]$(B)
 	@rm -rf ./lib/readline
+	@rm -rf ./lib/.minishell
 #	@curl -O https://raw.githubusercontent.com/ahmethakangunes/Minishell/main/uninstall.sh
 #	@bash uninstall.sh
 #	@rm -rf ~/./minishell

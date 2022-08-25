@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:08:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/24 14:42:46 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/25 12:37:26 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	exec(char **commandlist, char *path)
 		kill(getpid(), SIGTERM);
 	}
 	else
-		wait(NULL);
+		waitpid(pid, &g_shell->status, 0);
 	return (0);
 }
 
@@ -55,6 +55,7 @@ void	searchfor(char **path, char **commandlist, char *command)
 
 	i = -1;
 	g_shell->exeflag = 0;
+	g_shell->status = 0;
 	while (path[++i])
 	{
 		if (access(path[i], X_OK) == 0)
@@ -78,10 +79,11 @@ void	searchfor(char **path, char **commandlist, char *command)
 
 void	checkerror(char *command)
 {
+	if (g_shell->exeflag == 0 || g_shell->exeflag == -1)
+		g_shell->status = 32512;
 	if (g_shell->exeflag == 0)
 	{
-		printf("minishell: command not found: %s\n", \
-		(ft_strrchr(g_shell->path[0], '/') + 1));
+		printf("minishell: command not found: %s\n", command);
 	}
 	if (g_shell->exeflag == -1)
 		printf("minishell: %s: %s\n", command, strerror(errno));
