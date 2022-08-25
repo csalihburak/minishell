@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/25 17:08:10 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/25 17:43:49 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/25 17:59:23 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	exitfunc(void)
 			}
 			i++;
 		}
-		exit(ft_atoi(g_shell->commandlist[1]));
+		exit(ft_atoi(g_shell->commandlist[1]) % 256);
 	}
 	else
 		exit(0);
