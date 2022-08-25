@@ -1,6 +1,6 @@
 NAME = minishell
 CC = gcc
-CFLAGS = -I ./lib/readline/include -g
+CFLAGS = -I ./lib/readline/include -Wall -Wextra -Werror -g
 LDFLAGS = -L ./lib/readline/lib -lreadline
 SRCS = main.c \
 	dolar.c		\
@@ -44,12 +44,13 @@ $(NAME): $(OBJS) $(PRIN) $(BUILTIN)
 	@echo "Minishell ready."
 
 $(TERM):
-#	@curl -O https://raw.githubusercontent.com/ahmethakangunes/Minishell/main/install.sh
-#	@bash install.sh
+	@curl -O https://raw.githubusercontent.com/ahmethakangunes/Minishell/main/install.sh
+	@bash install.sh
+	@rm -rf install.sh
 
 %.o: %.c
 	@echo $(R)Compiling: [$<]
-	@${CC} $(CFLAGS) -c $^ -o $@
+	@${CC} $(CFLAGS) -c $^ -o $@ -Wall -Wextra -Werror
 
 clean:
 	@rm -rf ${OBJS}
@@ -65,9 +66,10 @@ fclean: clean
 	@echo [$(NAME)]$(B)
 	@rm -rf ./lib/readline
 	@rm -rf ./lib/.minishell
-#	@curl -O https://raw.githubusercontent.com/ahmethakangunes/Minishell/main/uninstall.sh
-#	@bash uninstall.sh
-#	@rm -rf ~/./minishell
+	@curl -O https://raw.githubusercontent.com/ahmethakangunes/Minishell/main/uninstall.sh
+	@bash uninstall.sh
+	@rm -rf ~/./minishell
+	@rm -rf uninstall.sh
 
 
 
