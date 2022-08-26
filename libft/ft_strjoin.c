@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 11:13:12 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/20 15:20:27 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 13:31:28 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	if (s1 != NULL)
 	{
 		len = ft_strlen(s1) + ft_strlen(s2) + 1;
-		array = (char *)malloc(sizeof(char) * (len));
+		array = (char *)ft_calloc(sizeof(char), (len));
 		if (!array)
 			return (0);
 		if (array == NULL)

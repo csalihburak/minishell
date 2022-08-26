@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:33:50 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/26 12:31:48 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 13:28:48 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	main(int argc, char **argv, char **env)
 {
 	(void)argc;
 	(void)argv;
-	g_shell = malloc(sizeof(t_shell));
+	g_shell = ft_calloc(sizeof(t_shell), 1);
 	exportenvcpy(env);
 	while (1)
 		start();

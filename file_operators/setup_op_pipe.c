@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 13:35:33 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/22 11:52:05 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 13:35:47 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	op_list(t_op *file)
 
 	i = -1;
 	j = 0;
-	file->ops = malloc(sizeof(char *) * 100);
+	file->ops = ft_calloc(sizeof(char *), 100);
 	file->cmd_list = ft_split_quote(file->command, ' ');
 	while (file->cmd_list [++i])
 	{
@@ -51,11 +51,11 @@ void	op_setup(t_op *file)
 	int	i;
 
 	i = -1;
-	file->pids = malloc(sizeof(int) * file->pipe_flag);
-	file->pipes = malloc(sizeof(int *) * (file->pipe_flag));
+	file->pids = ft_calloc(sizeof(int), file->pipe_flag);
+	file->pipes = ft_calloc(sizeof(int *), (file->pipe_flag));
 	while (++i < (file->pipe_flag))
 	{
-		file->pipes[i] = malloc(sizeof(int) * 2);
+		file->pipes[i] = ft_calloc(sizeof(int), 2);
 		pipe(file->pipes[i]);
 	}
 	run_ops(file, -1);

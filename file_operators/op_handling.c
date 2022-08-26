@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/26 12:55:07 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 13:29:34 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	op_handle(char *command)
 	int		i;
 
 	i = -1;
-	file = malloc(sizeof(t_op));
+	file = ft_calloc(sizeof(t_op), 1);
 	file->command = command;
 	op_list(file);
 	if (quote_strchr(command, '>'))

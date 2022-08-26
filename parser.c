@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:06:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/26 10:53:17 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 13:36:37 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	*merge(char **command, int status)
 
 	i = 0;
 	k = 0;
-	arr = malloc(sizeof(char) * dblen(command));
+	arr = ft_calloc(sizeof(char), dblen(command));
 	while (command[i])
 	{
 		j = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exportenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 17:46:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/21 20:34:21 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/26 13:36:48 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,12 +65,12 @@ void	exportenvcpy(char **env)
 
 	i = 0;
 	j = 0;
-	g_shell->env = malloc(sizeof(char *) * dblen(env));
-	g_shell->export = malloc(sizeof(char *) * dblen(env));
+	g_shell->env = ft_calloc(sizeof(char *), dblen(env));
+	g_shell->export = ft_calloc(sizeof(char *), dblen(env));
 	while (env[i])
 	{
-		g_shell->env[i] = malloc(sizeof(char) * arraylen(env[i]));
-		g_shell->export[i] = malloc(sizeof(char) * arraylen(env[i]));
+		g_shell->env[i] = ft_calloc(sizeof(char), arraylen(env[i]));
+		g_shell->export[i] = ft_calloc(sizeof(char), arraylen(env[i]));
 		j = 0;
 		while (env[i][j])
 		{

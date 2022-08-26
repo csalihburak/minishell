@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 12:43:23 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/18 14:18:47 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 13:33:36 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@ void	run_pipes(void)
 	int	j;
 
 	j = 0;
-	g_shell->pids = malloc(sizeof(int) * g_shell->pipe_flag);
-	g_shell->pipes = malloc(sizeof(int *) * (g_shell->pipe_flag + 1));
+	g_shell->pids = ft_calloc(sizeof(int), g_shell->pipe_flag);
+	g_shell->pipes = ft_calloc(sizeof(int *), (g_shell->pipe_flag + 1));
 	while (j < (g_shell->pipe_flag))
 	{
-		g_shell->pipes[j] = malloc(sizeof(int) * 2);
+		g_shell->pipes[j] = ft_calloc(sizeof(int), 2);
 		pipe(g_shell->pipes[j++]);
 	}
 	j = -1;

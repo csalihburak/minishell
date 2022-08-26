@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 16:42:19 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/20 16:36:10 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 13:35:25 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static char	*word_split(char **p, const char *s, char c, int howmny)
 			i++;
 			k++;
 		}
-		p[j] = (char *)malloc(sizeof(char) * (k + 1));
+		p[j] = (char *)ft_calloc(sizeof(char), (k + 1));
 		if (!p)
 			return (0);
 		print_it(p[j], s, i, k);
@@ -85,7 +85,7 @@ char	**ft_split(char const *s, char c)
 	if (s)
 	{
 		howmny = howmany(s, c);
-		p = (char **)malloc(sizeof(char *) * (howmny + 1));
+		p = (char **)ft_calloc(sizeof(char *), (howmny + 1));
 		if (!p)
 			return (0);
 		word_split(p, s, c, howmny);

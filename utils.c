@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/27 10:55:41 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/25 16:53:16 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 13:36:16 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	*deletechar(char *array, char c)
 		if (array[i] == c)
 			len++;
 	}
-	newarray = malloc(sizeof(char) * ft_strlen(array) - (len - 1));
+	newarray = ft_calloc(sizeof(char), (ft_strlen(array) - (len - 1)));
 	i = -1;
 	while (array[++i])
 	{

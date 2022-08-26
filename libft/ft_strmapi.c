@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 13:06:08 by scoskun           #+#    #+#             */
-/*   Updated: 2022/01/13 13:16:29 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 13:34:53 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 char	*ft_strmapi(char const *s, char (*f) (unsigned int, char))
@@ -21,7 +22,7 @@ char	*ft_strmapi(char const *s, char (*f) (unsigned int, char))
 	if (!s)
 		return (0);
 	len = ft_strlen(s);
-	str = (char *)malloc(sizeof(char) * len + 1);
+	str = (char *)ft_calloc(sizeof(char), (len + 1));
 	if (!str)
 		return (0);
 	while (i < len)

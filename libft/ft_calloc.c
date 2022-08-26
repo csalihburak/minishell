@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 20:09:17 by scoskun           #+#    #+#             */
-/*   Updated: 2022/01/06 11:22:35 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 13:30:14 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*ca;
 
-	ca = malloc(count * size);
+	ca = ft_calloc(count * size);
 	if (ca == 0)
 		return (ca);
 	ft_bzero(ca, count * size);

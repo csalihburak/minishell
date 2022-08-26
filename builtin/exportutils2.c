@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exportutils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 14:25:57 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/26 12:16:22 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/26 13:36:07 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*addquote(char *commandlist, int status)
 	i = 0;
 	while (commandlist[i])
 		i++;
-	buff = malloc(sizeof(char) * (i + 3));
+	buff = ft_calloc(sizeof(char), (i + 3));
 	i = 0;
 	while (commandlist[i] != '=' && commandlist[i])
 	{

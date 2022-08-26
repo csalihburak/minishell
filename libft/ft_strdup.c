@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 18:42:46 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/20 15:20:13 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 13:31:23 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strdup(const char *s1)
 
 	i = 0;
 	len = ft_strlen(s1) + 1;
-	new = (char *) malloc((sizeof(char) * len));
+	new = (char *) ft_calloc((sizeof(char), len));
 	if (!new)
 		return (0);
 	while (s1[i] != '\0')

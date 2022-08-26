@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 09:56:24 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/20 15:21:05 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 13:31:51 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ft_substr(char	const *s, unsigned int start, size_t len)
 		end = s_len - start;
 	if (end > len)
 		end = len;
-	dest = (char *)malloc(sizeof(char) * end + 1);
+	dest = (char *)ft_calloc(sizeof(char), end + 1);
 	if (!dest)
 		return (NULL);
 	ft_strlcpy(dest, s + start, end + 1);

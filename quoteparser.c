@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quoteparser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 18:35:21 by malasaha          #+#    #+#             */
-/*   Updated: 2022/08/24 12:00:07 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/26 13:36:29 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,13 +82,13 @@ char	**ft_split_quote(char const *s, char c)
 	if (!s)
 		return (NULL);
 	l = w_c(s, c);
-	r = (char **)malloc(sizeof(char *) * l + 1);
+	r = (char **)ft_calloc(sizeof(char *), (l + 1));
 	i = -1;
 	while (++i < l)
 	{
 		while ((*s == c && !in_quotes(sf, s - sf)) && *s != '\0')
 			s++;
-		r[i] = (char *)malloc(sizeof(char) * w_l(s, c) + 1);
+		r[i] = (char *)ft_calloc(sizeof(char), (w_l(s, c) + 1));
 		w_i = 0;
 		while ((*s != c || in_quotes(sf, s - sf)) && *s != '\0')
 			r[i][w_i++] = *s++;

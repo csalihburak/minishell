@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/07 15:09:44 by scoskun           #+#    #+#             */
-/*   Updated: 2022/01/13 13:16:16 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 13:35:39 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 static int	nbrlen(long nbr)
@@ -56,7 +57,7 @@ char	*ft_itoa(int n)
 	n2 = n;
 	len = nbrlen(n2);
 	len2 = nbrlen(n2);
-	res = (char *)malloc(sizeof(char) * (len + 1));
+	res = (char *)ft_calloc(sizeof(char), (len + 1));
 	if (!res)
 		return (0);
 	if (n2 < 0)

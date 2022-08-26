@@ -3,19 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoskun <42istanbul.com.tr>                +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 14:00:37 by scoskun           #+#    #+#             */
-/*   Updated: 2022/01/10 15:07:40 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 13:30:45 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "libft.h"
 
 t_list	*ft_lstnew(void *content)
 {
 	t_list	*nod;
 
-	nod = (t_list *)malloc(sizeof(t_list));
+	nod = (t_list *)ft_calloc(sizeof(t_list), 1);
 	if (!nod)
 		return (0);
 	nod->content = content;

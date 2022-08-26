@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 15:49:29 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/23 15:41:22 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/26 13:33:17 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_token	*create_tokens(char *commandlist)
 {
 	t_token	*program;
 
-	program = malloc(sizeof(t_token));
+	program = ft_calloc(sizeof(t_token), 1);
 	g_shell->program = program;
 	program->command = ft_split_quote(commandlist, ' ');
 	program->path = path(program->path, program->command[0]);

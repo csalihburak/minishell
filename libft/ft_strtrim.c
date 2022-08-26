@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 12:46:31 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/20 15:20:54 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 13:31:46 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		i++;
 	while (j > i && ft_strchr(set, s1[j - 1]))
 		j--;
-	p = (char *)malloc(sizeof(char) * (j - i + 1));
+	p = (char *)ft_calloc(sizeof(char), (j - i + 1));
 	if (!p)
 		return (0);
 	while (i < j)

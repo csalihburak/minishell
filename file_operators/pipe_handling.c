@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:49:03 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/26 10:45:31 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 13:35:57 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	dbl_less(t_op *file)
 	int		pid;
 
 	i = -1;
-	file->fds = malloc(sizeof(int) * 2);
+	file->fds = ft_calloc(sizeof(int), 2);
 	pipe(file->fds);
 	pid = fork();
 	if (pid == 0)
