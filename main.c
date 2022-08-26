@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 16:33:50 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/25 12:15:27 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/26 11:04:31 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,26 @@ void	prompt(void)
 	free(g_shell->prompt);
 }
 
+int	is_valid(char *arr)
+{
+	int	i;
+
+	i = -1;
+	while (arr[++i])
+	{
+		if (ft_isprint(arr[i]))
+			return (1);
+	}
+	return (0);
+}
+
 void	start(void)
 {
 	ft_signal();
 	prompt();
 	if (g_shell->command != NULL)
 	{
-		if (g_shell->command[0] > 0)
+		if (is_valid(g_shell->command))
 		{
 			add_history(g_shell->command);
 			ft_free();

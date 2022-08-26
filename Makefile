@@ -59,8 +59,8 @@ fclean: clean
 	@make fclean -C ./libft
 	@rm -rf ./libft/libft.a
 	@echo [$(NAME)]$(B)
-	@rm -rf ./lib/readline
-	@rm -rf ./lib/.minishell
+#	@rm -rf ./lib/readline
+#	@rm -rf ./lib/.minishell
 
 
 

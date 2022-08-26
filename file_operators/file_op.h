@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 11:39:25 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/24 14:25:58 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 10:52:01 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_op
 	int		fd;
 	int		*fds;
 	int		fdlen;
+	int		flag;
 }	t_op;
 
 int		operator_check(char *arr);

@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:54:53 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/25 13:32:46 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 10:40:37 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ int	operator_check(char *arr)
 		return (1);
 	return (0);
 }
-	
+
 int	op_check(t_op *file)
 {
 	int	i;

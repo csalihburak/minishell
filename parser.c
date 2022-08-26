@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:06:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/25 17:20:42 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 10:53:17 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	parser(void)
 	if (quote_strchr(g_shell->command, '<') || \
 	quote_strchr(g_shell->command, '>'))
 	{
+		dbfree(g_shell->commandlist);
 		g_shell->op_flag = 1;
 		return ;
 	}

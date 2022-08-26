@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/25 17:26:31 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 10:53:00 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,23 @@ void	check_and_create(t_op *file, int flag)
 	}
 }
 
+void	norm_handle(t_op *file)
+{
+	int	i;
+
+	i = -1;
+	file->flag = 0;
+	printf("selam\n");
+	file->cmd_list = ft_split_quote(file->command, '>');
+	while (file->cmd_list[++i])
+		file->cmd_list[i] = deletechar(file->cmd_list[i], '"');
+	if (!quote_strchr(file->cmd_list[0], '<') && \
+	!quote_strchr(file->cmd_list[0], '|'))
+		check_and_create(file, 1);
+	else
+		file->flag = 1;
+}
+
 void	op_handle(char *command)
 {
 	t_op	*file;
@@ -65,13 +82,7 @@ void	op_handle(char *command)
 	file->command = command;
 	op_list(file);
 	if (quote_strchr(command, '>'))
-	{
-		file->cmd_list = ft_split_quote(command, '>');
-		while (file->cmd_list[++i])
-			file->cmd_list[i] = deletechar(file->cmd_list[i], '"');
-		if (!quote_strchr(file->cmd_list[0], '<') && !quote_strchr(file->cmd_list[0], '|'))
-			check_and_create(file, 1);
-	}
+		norm_handle(file);
 	else if (quote_strchr(command, '<'))
 	{
 		file->cmd_list = ft_split_quote(command, '<');
@@ -79,7 +90,7 @@ void	op_handle(char *command)
 			file->cmd_list[i] = deletechar(file->cmd_list[i], '"');
 		less_op_handling(file);
 	}
-	else
+	if (file->flag)
 	{
 		op_check(file);
 		op_setup(file);

@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/04 10:26:44 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/22 14:27:14 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/25 17:31:06 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ft_free(void)
 	int	i;
 
 	i = -0;
-	if (g_shell->pipe_flag == 0 && g_shell->command[0] > 0 \
-	&& g_shell->op_flag == 0)
+	if (g_shell->pipe_flag == 0 && g_shell->command[0] > 0 && \
+	g_shell->op_flag == 0)
 	{
 		if (g_shell->commandlist)
 		{
@@ -45,7 +45,7 @@ void	dbfree(char **array)
 
 	i = 0;
 	x = 0;
-	while (array && array[i])
+	while (array != NULL && array[i])
 	{
 		x = 0;
 		while (array[i][x])
