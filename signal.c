@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/07 10:36:18 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/26 12:08:11 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 12:41:41 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,11 @@ void	ft_sig(int signo)
 			rl_redisplay();
 	}
 	else if (signo == SIGQUIT)
-	{
-		return;
-	}
+		return ;
 }
 
 void	ft_signal(void)
 {
 	signal(SIGINT, ft_sig);
-	signal(SIGQUIT, ft_sig);
+	signal(SIGQUIT, SIG_IGN);
 }
