@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/26 10:53:00 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/26 12:55:07 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	check_and_create(t_op *file, int flag)
 		check_exec(file);
 		while (file->cmd_list[i + 1])
 			i++;
-		printf("cmd %s\n", file->cmd_list[i]);
 		if (quote_strchr(file->cmd_list[i], '|'))
 			file->cmd_list[i] = pipe_handling(file, file->cmd_list[i]);
 		file->fd = create_file(file->cmd_list[i], file->ops[i - 1]);
@@ -61,7 +60,6 @@ void	norm_handle(t_op *file)
 
 	i = -1;
 	file->flag = 0;
-	printf("selam\n");
 	file->cmd_list = ft_split_quote(file->command, '>');
 	while (file->cmd_list[++i])
 		file->cmd_list[i] = deletechar(file->cmd_list[i], '"');
