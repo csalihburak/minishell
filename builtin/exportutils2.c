@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 14:25:57 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/16 05:29:03 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/26 12:16:22 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	findfirstindex(char *arr, char c)
 	int	i;
 
 	i = 0;
+	if (!arr)
+		return (0);
 	while (arr[i])
 	{
 		if (arr[i] == c)

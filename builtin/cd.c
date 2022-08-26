@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:53:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/23 14:23:59 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/26 12:15:47 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	gohome(void)
 	while (g_shell->env[++i])
 		if (!ft_strncmp(g_shell->env[i], "HOME", 4))
 			break ;
-		old = getcwd(NULL, 0);
+	old = getcwd(NULL, 0);
 	if (!chdir(g_shell->env[i] + findfirstindex(g_shell->env[i], '=') + 1))
 	{
 		new = getcwd(NULL, 0);

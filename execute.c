@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:08:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/25 12:37:26 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/26 12:22:06 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,18 @@ void	checkerror(char *command)
 		g_shell->status = 32512;
 	if (g_shell->exeflag == 0)
 	{
-		printf("minishell: command not found: %s\n", command);
+		ft_putstr_fd("minishell: command not found: ", 2);
+		ft_putstr_fd(command, 2);
+		ft_putstr_fd("\n", 1);
 	}
 	if (g_shell->exeflag == -1)
-		printf("minishell: %s: %s\n", command, strerror(errno));
+	{
+		ft_putstr_fd("minishell: ", 2);
+		ft_putstr_fd(command, 2);
+		ft_putstr_fd(": ", 2);
+		ft_putstr_fd(strerror(errno), 2);
+		ft_putstr_fd("\n", 1);
+	}
 }
 
 void	runcommand(char *command)

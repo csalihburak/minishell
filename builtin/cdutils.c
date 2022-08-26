@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 19:55:59 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 03:01:15 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/26 12:19:26 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,49 +14,38 @@
 
 int	cdcheck(char *command)
 {
-	char	*buff;
-
-	buff = ft_strdup("minishell: cd: ");
-	buff = ft_strjoin(buff, command);
-	buff = ft_strjoin(buff, ": ");
 	if (access(command, F_OK) == -1)
 	{
-		buff = ft_strjoin(buff, strerror(errno));
-		write(2, buff, ft_strlen(buff));
-		write(1, "\n", 1);
-		free(buff);
+		ft_putstr_fd("minishell: cd: ", 2);
+		ft_putstr_fd(command, 2);
+		ft_putstr_fd(":", 2);
+		ft_putstr_fd(strerror(errno), 2);
+		ft_putstr_fd("\n", 1);
 		return (0);
 	}
 	else if (chdir(command) == -1)
 	{
-		buff = ft_strjoin(buff, strerror(errno));
-		write(2, buff, ft_strlen(buff));
-		write(1, "\n", 1);
-		free(buff);
+		ft_putstr_fd("minishell: cd: ", 2);
+		ft_putstr_fd(command, 2);
+		ft_putstr_fd(": ", 2);
+		ft_putstr_fd(strerror(errno), 2);
+		ft_putstr_fd("\n", 1);
 		return (0);
 	}
-	free(buff);
 	return (1);
 }
 
 void	notset(int status)
 {
-	char	*buff;
-
-	buff = NULL;
 	if (status == 1)
 	{
-		buff = ft_strdup("HOME NOT SET");
-		write(2, buff, ft_strlen(buff));
-		write(1, "\n", 1);
-		free(buff);
+		ft_putstr_fd("HOME NOT SET", 2);
+		ft_putstr_fd("\n", 1);
 	}
 	if (status == 2)
 	{
-		buff = ft_strdup("minishell: cd: OLDPWD not set");
-		write(2, buff, ft_strlen(buff));
-		write(1, "\n", 1);
-		free(buff);
+		ft_putstr_fd("minishell: cd: OLDPWD not set", 2);
+		ft_putstr_fd("\n", 1);
 	}
 }
 
