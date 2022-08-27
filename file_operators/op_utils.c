@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:54:53 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/26 10:40:37 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/27 15:52:54 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,13 @@ int	file_run(t_op *file, char **cmd_list, char *command)
 
 void	check_exec(t_op *file)
 {
-	int	i;
-	int	fd;
+	int		i;
+	int		fd;
+	char	*temp;
 
 	i = 0;
 	fd = 0;
+	temp = (ft_strrchr(file->command, '>') - 1);
 	while (file->cmd_list && file->cmd_list[++i])
 	{
 		if (quote_strchr(file->cmd_list[i], '|'))

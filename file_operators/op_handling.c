@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 16:27:38 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/26 13:29:34 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/27 15:49:18 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,7 @@ void	check_and_create(t_op *file, int flag)
 	i = 0;
 	temp = 0;
 	if (flag == 0)
-	{
 		check_exec(file);
-	}
 	if (flag == 1)
 	{
 		check_exec(file);

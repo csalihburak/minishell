@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:49:03 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/26 13:35:57 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/27 16:01:49 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,30 +35,43 @@ char	*pipe_handling(t_op *file, char *command)
 	return (command);
 }
 
+void	less_op_norm(t_op *file)
+{
+	char	**temp;
+
+	temp = ft_split_quote(file->command, ' ');
+	file->pid = fork();
+	if (file->pid == 0)
+	{
+		file->fd = open(temp[dblen2(temp) - 1], O_RDONLY);
+		if (file->fd == -1)
+		{
+			write(2, "minishell: ", 11);
+			write(2, temp[dblen2(temp) - 1], ft_strlen(temp[dblen2(temp) - 1]));
+			write(2, ": No such file or directory\n", 28);
+		}
+		else
+		{
+			dup2(file->fd, 0);
+			close(file->fd);
+			create_ops(file, file->cmd_list[0]);
+		}
+		kill(getpid(), SIGTERM);
+	}
+	else
+		wait(NULL);
+	dbfree(temp);
+}
+
 void	less_op_handling(t_op *file)
 {
 	int		i;
-	char	**temp;
 
 	i = -1;
 	while (file->ops[++i])
 	{
 		if (!ft_strcmp(file->ops[i], "<"))
-		{
-			temp = ft_split_quote(file->command, ' ');
-			file->pid = fork();
-			if (file->pid == 0)
-			{
-				file->fd = open(temp[dblen2(temp) - 1], O_RDONLY);
-				dup2(file->fd, 0);
-				close(file->fd);
-				create_ops(file, file->cmd_list[0]);
-				kill(getpid(), SIGTERM);
-			}
-			else
-				wait(NULL);
-			dbfree(temp);
-		}
+			less_op_norm(file);
 		else if (!ft_strcmp(file->ops[i], "<<"))
 			dbl_less(file);
 	}
