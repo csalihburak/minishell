@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:08:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/26 12:22:06 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/27 20:33:43 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,19 @@ char	**path(char **path, char *command)
 		g_shell->env[i][4] == '=')
 			break ;
 	}
-	path = ft_split_quote(ft_strchr(g_shell->env[i], '=') + 1, ':');
-	i = -1;
-	while (path[++i])
+	if (g_shell->env[i] != NULL)
 	{
-		path[i] = ft_strjoin(path[i], "/");
-		path[i] = ft_strjoin(path[i], \
-		command);
+		path = ft_split_quote(ft_strchr(g_shell->env[i], '=') + 1, ':');
+		i = -1;
+		while (path != NULL && path[++i])
+		{
+			path[i] = ft_strjoin(path[i], "/");
+			path[i] = ft_strjoin(path[i], \
+			command);
+		}
+		return (path);
 	}
-	return (path);
+	return (NULL);
 }
 
 int	exec(char **commandlist, char *path)
@@ -56,7 +60,7 @@ void	searchfor(char **path, char **commandlist, char *command)
 	i = -1;
 	g_shell->exeflag = 0;
 	g_shell->status = 0;
-	while (path[++i])
+	while (path != NULL && path[++i])
 	{
 		if (access(path[i], X_OK) == 0)
 		{
