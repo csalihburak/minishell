@@ -15,11 +15,7 @@
 char	*pipe_handling(t_op *file, char *command)
 {
 	char	**temp;
-	int		i;
-	int		k;
 
-	k = 0;
-	i = 0;
 	temp = ft_split(command, '|');
 	file->fd_rd = -1;
 	free(g_shell->command);
@@ -106,10 +102,8 @@ void	less_norm(t_op *file)
 
 void	dbl_less(t_op *file)
 {
-	int		i;
 	int		pid;
 
-	i = -1;
 	file->fds = ft_calloc(sizeof(int), 2);
 	pipe(file->fds);
 	pid = fork();

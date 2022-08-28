@@ -68,11 +68,9 @@ void	check_exec(t_op *file)
 {
 	int		i;
 	int		fd;
-	char	*temp;
 
 	i = 0;
 	fd = 0;
-	temp = (ft_strrchr(file->command, '>') - 1);
 	while (file->cmd_list && file->cmd_list[++i])
 	{
 		if (quote_strchr(file->cmd_list[i], '|'))
