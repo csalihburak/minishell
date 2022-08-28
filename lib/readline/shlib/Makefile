@@ -49,7 +49,7 @@ LN = ln
 
 SHELL = /bin/sh
 
-host_os = darwin21.6.0
+host_os = darwin19.6.0
 host_vendor = apple
 
 prefix = /Users/agunes/Desktop/Minishell/lib/readline

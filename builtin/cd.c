@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/30 12:53:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/27 20:21:48 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/28 13:49:55 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,41 +51,10 @@ void	changedirectory(char *command)
 	free(old);
 }
 
-void	golastpwd(void)
-{
-	int		i;
-	char	*old;
-	char	*new;
-	char	*temp;
-
-	i = -1;
-	old = getcwd(NULL, 0);
-	while (g_shell->export[++i])
-	{
-		if (!ft_strcmp(g_shell->export[i], "OLDPWD"))
-			notset(2);
-		else if (!ft_strncmp(g_shell->export[i], "OLDPWD=", 7))
-		{
-			new = deletechar(g_shell->export[i], '\"');
-			temp = new;
-			new = ft_strdup(new + findfirstindex(new, '=') + 1);
-			cdcheck(new);
-			free(temp);
-			exportpwdupdate(new, old);
-			envpwdupdate(new, old);
-			free(new);
-		}
-	}
-	if (old != NULL)
-		free(old);
-}
-
 int	cd(char *command)
 {
 	if (!command)
 		gohome();
-	else if (!ft_strcmp(command, "-"))
-		golastpwd();
 	else
 		changedirectory(command);
 	return (1);
