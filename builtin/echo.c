@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/31 12:48:17 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/15 04:45:31 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/28 19:07:36 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	echo(char **commandlist)
 		i++;
 	while (commandlist[i])
 	{
+		commandlist[i] = deletechar(commandlist[i], '\'');
 		write(1, commandlist[i], ft_strlen(commandlist[i]));
 		if (commandlist[i + 1])
 			write(1, " ", 1);
