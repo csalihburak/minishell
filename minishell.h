@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/26 11:41:06 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/25 16:17:10 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/28 18:39:25 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,6 @@ char	*cmdlistup(char *command);
 int		singlequo(char *command);
 char	*lastexe(void);
 int		dolarfind(char *arr);
+void	test(void);
 
 #endif

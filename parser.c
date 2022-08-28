@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:06:45 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/26 13:36:37 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/28 18:27:01 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,11 +108,5 @@ void	parser(void)
 	{
 		parser2();
 		return ;
-	}
-	i = -1;
-	while (g_shell->commandlist[++i])
-	{
-		g_shell->commandlist[i] = \
-		deletechar(g_shell->commandlist[i], '"');
 	}
 }

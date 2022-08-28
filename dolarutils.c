@@ -6,7 +6,7 @@
 /*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/24 13:10:25 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/24 13:11:58 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/28 19:04:18 by agunes           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,59 +50,45 @@ int	singlequo(char *command)
 	return (1);
 }
 
-void	cmdlistup2(char *first, int i)
-{
-	int	y;
-	int	len;
-
-	y = -1;
-	len = 0;
-	while (g_shell->buff[++y])
-	{
-		len = ft_strlen(first);
-		if (!ft_strncmp(g_shell->buff[y], first, len))
-		{
-			if (g_shell->buff[y][len])
-			{
-				if (g_shell->buff[y] != (void *)0)
-					free(g_shell->buff[y]);
-				g_shell->buff[y] = ft_strdup(" ");
-			}
-			else
-			{
-				if (g_shell->buff[y] != (void *)0)
-					free(g_shell->buff[y]);
-				g_shell->buff[y] = ft_strdup(g_shell->env[i] + \
-				findfirstindex(g_shell->env[i], '=') + 1);
-			}
-		}
-	}
-}
-
-char	*cmdlistup(char *command)
+char	*addchar(char *command)
 {
 	int		i;
-	int		x;
-	char	*first;
+	int		k;
+	char	*arr;
 
-	i = -1;
-	x = -1;
-	g_shell->buff = ft_split(command, '$');
-	while (g_shell->env[++i])
+	i = 2;
+	k = 0;
+	arr = ft_calloc(sizeof(char), (ft_strlen(command) + 3));
+	arr[0] = '\'';
+	arr[1] = '$';
+	while (command[k])
 	{
-		x = -1;
-		first = ft_calloc(100, 1);
-		if (ft_strchr(g_shell->env[i], '='))
-		{
-			while (g_shell->env[i][++x] && g_shell->env[i][x] != '=')
-				first[x] = g_shell->env[i][x];
-			first[x] = '\0';
-		}
-		cmdlistup2(first, i);
-		free(first);
+		arr[i] = command[k];
+		i++;
+		k++;
 	}
-	first = merge(g_shell->buff, 0);
-	dbfree(g_shell->buff);
+	arr[i] = '\0';
 	free(command);
-	return (first);
+	return (arr);
+}
+
+void	test(void)
+{
+	int		i;
+	char	*temp;
+
+	i = 0;
+	temp = NULL;
+	while (g_shell->buff[i])
+	{
+		if (ft_strchr(g_shell->buff[i], '\"'))
+		{	
+			g_shell->buff[i] = deletechar(g_shell->buff[i], '\"');
+			g_shell->buff[i] = deletechar(g_shell->buff[i], '\'');
+		}
+		if (!ft_strchr(g_shell->buff[i], '\"') && \
+		ft_strchr(g_shell->buff[i], '\''))
+			g_shell->buff[i] = addchar(g_shell->buff[i]);
+		i++;
+	}
 }
