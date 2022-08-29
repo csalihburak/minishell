@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:37:00 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/27 15:39:08 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/29 10:03:49 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	run_ops(t_op *file, int i)
 		{
 			run_run(file, i);
 			create_ops(file, file->pipe_list[i]);
-			kill(getpid(), SIGTERM);
+			exit(0);
 		}
 		close(file->pipes[i][1]);
 		close(file->pipes[i][0]);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agunes <agunes@student.42.fr>              +#+  +:+       +#+        */
+/*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/02 17:08:36 by agunes            #+#    #+#             */
-/*   Updated: 2022/08/28 13:44:28 by agunes           ###   ########.fr       */
+/*   Updated: 2022/08/29 10:03:41 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	exec(char **commandlist, char *path)
 	if (pid == 0)
 	{
 		execve(path, commandlist, g_shell->env);
-		kill(getpid(), SIGTERM);
+		exit(0);
 	}
 	else
 		waitpid(pid, &g_shell->status, 0);

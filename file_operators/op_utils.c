@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 12:54:53 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/27 15:52:54 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/29 10:03:47 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	file_fork(t_op *file, char **cmd_list, int i, int flag)
 			dup2(file->fd, 1);
 			close(file->fd);
 			exec(cmd_list, file->path[i]);
-			kill(getpid(), SIGTERM);
+			exit(0);
 		}
 		return ;
 	}
@@ -32,7 +32,7 @@ void	file_fork(t_op *file, char **cmd_list, int i, int flag)
 		dup2(file->fd, 1);
 		close(file->fd);
 		exec(cmd_list, file->command);
-		kill(getpid(), SIGTERM);
+		exit(0);
 	}
 }
 

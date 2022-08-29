@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/06 12:43:23 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/26 13:33:36 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/29 10:03:50 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	run_with_forks(int i)
 			else
 				ft_dup(i);
 			create_tokens(g_shell->commandlist[i]);
-			kill(getpid(), SIGTERM);
+			exit(0);
 			return ;
 		}
 		ft_close(g_shell->pipes[i]);

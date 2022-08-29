@@ -6,7 +6,7 @@
 /*   By: scoskun <scoskun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 14:49:03 by scoskun           #+#    #+#             */
-/*   Updated: 2022/08/27 16:01:49 by scoskun          ###   ########.fr       */
+/*   Updated: 2022/08/29 10:03:48 by scoskun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	less_op_norm(t_op *file)
 			close(file->fd);
 			create_ops(file, file->cmd_list[0]);
 		}
-		kill(getpid(), SIGTERM);
+		exit(0);
 	}
 	else
 		wait(NULL);
@@ -97,7 +97,7 @@ void	less_norm(t_op *file)
 	dup2(file->fds[0], 0);
 	close(file->fds[0]);
 	create_ops(file, file->cmd_list[0]);
-	kill(getpid(), SIGTERM);
+	exit(0);
 }
 
 void	dbl_less(t_op *file)
