@@ -5,7 +5,6 @@ Impementation of clasic bash written completely from scratch with [Ahmet Hakan G
 + It works by geting input from user. Then dividing it into tokens. Then parsing it into varios data structures and executing.
 
 ## Getting Started 
-
 ### Prerequisites
 + GCC compiler
 + Make utility
@@ -23,7 +22,7 @@ $ cd minishell && make
 $ ./minishell
 
 ```
-## Features
+## Features
 ### Command execution
 + The shell supports executing external commands, built-in commands, and pipeline commands.
 
@@ -46,8 +45,7 @@ $ ./minishell
 - export - creates or modifies an environment variable
 - unset - deletes an environment variable
 - env - prints the environment variables
-## Acknowledgments
+# Acknowledgments
 This project was inspired by the Unix shell, and was built using the following resources:
-
 + The readline library documentation
 + The Bash shell documentation
