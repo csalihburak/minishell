@@ -4,8 +4,9 @@ Impementation of clasic bash written completely from scratch with [Ahmet Hakan G
 + This custom shell has most of the features from original bash like custom enironment, builtins, pipes, multiple redirections, logical operators and parenthesis, signal and error handling.
 + It works by geting input from user. Then dividing it into tokens. Then parsing it into varios data structures and executing.
 
-## Getting Started 
-### Prerequisites
+## Getting Started
+
+### Prerequisites
 + GCC compiler
 + Make utility
 + GNU readline
